@@ -52,10 +52,10 @@ function generateHtml() {
 
    if(MINIFY){
       minifyHTML(html, function (htmlMinified) {
-         fs.writeFileSync(__dirname + '/index.html', htmlMinified);
+         fs.writeFileSync(__dirname + '/RobotCrowd-Explorer.html', htmlMinified);
       });
    }else {
-      fs.writeFileSync(__dirname + '/index.html', html);
+      fs.writeFileSync(__dirname + '/RobotCrowd-Explorer.html', html);
    }
 
 }
