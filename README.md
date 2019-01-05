@@ -9,11 +9,11 @@ Permite o Download do arquivo de setup (RC-NOME_ROBO.set) e o Upload de um setup
 
 ## Build
 
-A documentação dos inputs e enums dos robos estão nos arquivos docs.txt e docs_gl.txt. A partir dessa documentação é gerado a ferramenta (index.html).
+A documentação dos inputs e enums dos robos estão nos arquivos docs.txt e docs_gl.txt. A partir dessa documentação é gerado a ferramenta (RobotCrowd-Explorer.html).
 
 Sempre que atualizar as entradas dos robos, atualizar tambem a documentação.
 
-Para fazer o build, é necessário ter instalado o NODE.js. Na linha de comando:
+Para fazer o build, é necessário ter instalado o node.js. Na linha de comando:
 
 ```
 node ./build.js

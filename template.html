@@ -285,11 +285,47 @@
             padding: 10px;
             font-weight: 300;
             border-radius: 3px;
+            margin: 0 5px;
+         }
+
+         input[type="number"],
+         input[type="text"],
+         select{
+            width: 85px;
+            height: 25px;
+            margin-left: 5px;
+         }
+
+         select{
+            width: auto;
          }
 
          @media (max-width: 980px) {
             .main-column, main {
                width: 100%;
+               padding: 0;
+            }
+
+            .subtle-wrap{
+               padding: 20px 10px 30px;
+            }
+
+            .article-body li {
+               margin-left: 5px;
+            }
+
+            input {
+               padding: 1px 2px;
+            }
+
+            h1 {
+               font-size: 1.2em;
+               line-height: 1.5em;
+               margin-bottom: 10px;
+            }
+
+            select{
+               width: 100px;
             }
          }
       </style>
