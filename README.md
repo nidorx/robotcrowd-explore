@@ -18,3 +18,9 @@ Para fazer o build, é necessário ter instalado o NODE.js. Na linha de comando:
 ```
 node ./build.js
 ```
+
+<div align="center">
+    <img
+        src="https://github.com/nidorx/robotcrowd-explore/raw/master/preview.png"
+        alt="Preview" style="max-width:100%;">
+</div>
