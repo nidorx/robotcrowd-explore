@@ -1,0 +1,672 @@
+<html dir="ltr" lang="en-US" class="fixedsticky-withoutfixedfixed">
+   <head>
+      <meta charset="utf-8">
+      <title>RobotCrowd V2.9 - Documentação - Gerador De Setup</title>
+      <style>
+         * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+         }
+
+         html {
+            background-color: rgba(240, 245, 252, 1);
+         }
+
+         body {
+            color: rgba(61, 71, 90, 1);
+            font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: normal;
+            line-height: 2;
+            margin: 0;
+         }
+
+         .btn {
+            display: block;
+         }
+
+         a {
+            color: #266bef;
+            text-decoration: none;
+         }
+
+         a:hover {
+            cursor: pointer;
+            text-decoration: underline;
+         }
+
+         img {
+            vertical-align: middle;
+         }
+
+         p {
+            margin-top: 0;
+         }
+
+         h1 {
+            font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+            font-weight: normal;
+         }
+
+         h1 {
+            font-size: 2em;
+            line-height: 2em;
+            margin: 0;
+            color: #0f42a4;
+            border-bottom: 1px solid #eef2f5;
+            margin-bottom: 30px;
+            font-weight: 300;
+         }
+
+         ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+         }
+
+         label{
+            font-weight: bold;
+         }
+
+         textarea {
+            border: 1px solid #DBDBDB;
+            border: 1px solid rgba(0, 0, 0, 0.13);
+            outline: none;
+            padding: 10px;
+            vertical-align: middle;
+         }
+
+         textarea {
+            padding: 7px 10px;
+            resize: vertical;
+         }
+
+         textarea {
+            width: 100%;
+         }
+
+         textarea {
+            color: rgba(61, 71, 90, 1);
+         }
+
+         input {
+            padding: 1px 5px;
+         }
+
+         table {
+            border-collapse: collapse;
+            text-align: left;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+         }
+
+         td,
+         th {
+            border-color: #dadfe8;
+            border-style: solid;
+            padding: 8px;
+         }
+
+         th {
+            border-width: 1px 1px 1px 1px;
+            border-color: #e5e5e5;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: normal;
+            background-color: #f0f5fc;
+            color: #2c4576;
+            line-height: 1;
+            text-transform: uppercase;
+         }
+
+         td {
+            border-width: 1px 1px 1px 1px;
+         }
+
+         .clearfix:before,
+         .clearfix:after {
+            content: " ";
+            display: table;
+         }
+
+         .clearfix:after {
+            clear: both;
+         }
+
+         .main-column {
+            float: left;
+            width: 618px;
+         }
+
+         main {
+            margin: 25px auto 0;
+            padding: 0 20px;
+            width: 980px;
+         }
+
+         .subtle-wrap {
+            background: #fafafa;
+            padding: 20px 30px 30px;
+            overflow: hidden;
+            margin-top: 25px;
+         }
+
+         .subtle-wrap {
+            margin-top: 15px;
+         }
+
+         .article-header h1 {
+            text-transform: capitalize;
+         }
+
+         .article-body {
+            margin-top: 6px;
+         }
+
+         .article-body {
+            font-size: 14px;
+            line-height: 24px;
+            word-wrap: break-word;
+         }
+
+         .article-body img {
+            border: 1px solid #ECECEC;
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            height: auto;
+            max-width: 100%;
+         }
+
+         .article-body ul {
+            margin: 0;
+            list-style-type: none;
+            list-style-position: outside;
+         }
+
+         .article-body li {
+            margin-left: 20px;
+            /* margin-top: 10px;
+            margin-bottom: 10px; */
+         }
+
+         .article-body li:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+         }
+
+         body {
+            font-family: 'Poppins', Arial, "Helvetica Neue", Helvetica, sans-serif;
+         }
+
+         h1 {
+            font-family: 'Poppins', Arial, "Helvetica Neue", Helvetica, sans-serif;
+         }
+
+         main {
+            /*width: 1200px;
+            */
+            width: 1300px;
+            margin: 0 auto;
+         }
+
+         .article-header h1 {
+            font-size: 25px;
+            font-weight: 600;
+            color: #3d475a;
+            /*text-transform: uppercase;
+            */
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eef2f5;
+            letter-spacing: .2px;
+         }
+
+         .main-column {
+            /*width: 840px;
+            */
+            width: 980px;
+         }
+
+         .main-column .subtle-wrap {
+            margin-top: 0px;
+            border-radius: 4px;
+         }
+
+         .subtle-wrap {
+            background: #fff;
+         }
+
+         .grey-background {
+            background: #f0f5fc;
+            padding: 35px 30px 30px 30px;
+            /* border: 1px solid #e1e9f7;
+            */
+            border-radius: 4px;
+         }
+
+         #main-container {
+            height: 100%;
+            position: relative;
+         }
+
+         .input-container {
+            display: flex;
+            flex-direction: row;
+            vertical-align: middle;
+            align-content: center;
+            background-color: transparent;
+            padding: 10px 5px;
+            transition: background-color 0.2s;
+         }
+
+         .input-container:hover{
+            background-color: rgba(0, 0, 0, 0.04);
+            /* background-color: #e5ecf2; */
+         }
+
+         .input-container label{
+            flex: 1;
+         }
+
+         .sub-grupo{
+            margin-top: 10px;
+            margin-bottom: 10px;
+         }
+
+         #botoes-controle{
+            display: flex;
+            align-content: space-between;
+            justify-content: space-evenly;
+            padding: 20px 0;
+         }
+
+         #botoes-controle > *{
+            font-size: 20px;
+            line-height: 20px;
+            margin: 0;
+            background: #0f42a4;
+            color: #fff;
+            border: 0;
+            padding: 10px;
+            font-weight: 300;
+            border-radius: 3px;
+         }
+      </style>
+   </head>
+   <body class="community-enabled" cz-shortcut-listen="true">
+      <main role="main">
+         <div class="clearfix" id="main-container">
+            <article class="main-column">
+               <div class="subtle-wrap">
+                  <header class="article-header clearfix">
+                     <h1>RobotCrowd v2.9 - Documentação - Gerador de setup</h1>
+                  </header>
+                  <div class="article-body">
+                     
+                     <h1>Resumo</h1>
+                     <p class="wysiwyg-indent5">
+                        Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos RobotCrowd. 
+                        Você pode gerar arquivos setups para execução, teste unitário e otimização.
+                     </p>
+                     <p class="wysiwyg-indent5">
+                        Além disso, esta ferramenta busca trazer uma documentação mais detalhada de todos os parametros disponíves para os robos RobotCrowd.
+                     </p>
+                     <h1><!--Tipo de Setup  e--> Robô</h1>
+                     <p class="wysiwyg-indent5">
+                        Selecione abaixo o <!-- tipo de Setup que deseja preparar e o --> robô
+                     </p>
+                     <div>
+                        <div class="input-container">
+                           <label placeholder="Qual robô deseja configurar?" for="robo-investidor" >
+                              <span>Qual robô deseja configurar?</span>
+                           </label>
+                           <select id="robo-investidor" name="robo-investidor" onchange="onChangeRobot(this)">
+                              <option value="" selected="">Selecione um robo</option>
+                              <option value="RC-1aBarra"             data-configs="R.01,A,B,C,D,E,V,F,G,H"   >01 - 1ª Barra</option>
+                              <option value="RC-Bollinger"           data-configs="R.02,A,B,C,D,E,V,F,G,H"   >02 - Bollinger</option>
+                              <option value="RC-CCI-MA"              data-configs="R.03,A,B,C,D,E,V,F,G,H"   >03 - CCI-MA</option>
+                              <option value="RC-CTOD"                data-configs="R.04,A,B,C,D,E,V,F,G,H"   >04 - CTOD</option>
+                              <option value="RC-Dunnigan"            data-configs="R.05,A,B,C,D,E,V,F,G,H"   >05 - Dunnigan</option>
+                              <option value="RC-Engulfing"           data-configs="R.06,A,B,C,D,E,V,F,G,H"   >06 - Engulfing</option>
+                              <option value="RC-Gaps"                data-configs="R.07,A,B,C,D,E,V,F,G,H"   >07 - Gaps</option>
+                              <option value="RC-HeinkenAshi"         data-configs="R.08,A,B,C,D,E,V,F,G,H"   >08 - HeinkenAshi</option>
+                              <option value="RC-IFR"                 data-configs="R.09,A,B,C,D,E,V,F,G,H"   >09 - IFR</option>
+                              <option value="RC-InsideDayBreakout"   data-configs="R.10,A,B,C,D,E,V,F,G,H"   >10 - Inside Day Breakout</option>
+                              <option value="RC-LastDayBreakout"     data-configs="R.11,A,B,C,D,E,V,F,G,H"   >11 - Last Day Breakout</option>
+                              <option value="RC-LinhaDAgua"          data-configs="R.12,A,B,C,D,E,V,F,G,H"   >12 - Linha D'Agua</option>
+                              <option value="RC-MAC"                 data-configs="R.13,A,B,C,D,E,V,F,G,H"   >13 - MAC</option>
+                              <option value="RC-RealizacaoFrustrada" data-configs="A,B,C,D,E,V,F,G,H"        >14 - Realizacao Frustrada</option>
+                              <option value="RC-MeanReversal"        data-configs="R.15,A,B,C,D,E,V,F,G,H"   >15 - Mean Reversal</option>
+                              <option value="RC-MMCross"             data-configs="R.16,A,B,C,D,E,V,F,G,H"   >16 - MMCross Cruzamento de Médias</option>
+                              <option value="RC-MME"                 data-configs="R.17,A,B,C,D,E,V,F,G,H"   >17 - MME</option>
+                              <option value="RC-Oops"                data-configs="R.18,A,B,C,D,E,V,F,G,H"   >18 - Oops</option>
+                              <option value="RC-PivotBreakout"       data-configs="R.19,A,B,C,D,E,V,F,G,H"   >19 - Pivot Breakout</option>
+                              <option value="RC-PontoContinuo"       data-configs="R.20,A,B,C,D,E,V,F,G,H"   >20 - Ponto Continuo</option>
+                              <option value="RC-ShadowLine"          data-configs="R.21,A,B,C,D,E,V,F,G,H"   >21 - ShadowLine</option>
+                              <option value="RC-Stochastic"          data-configs="R.22,A,B,C,D,E,V,F,G,H"   >22 - Stochastic</option>
+                              <option value="RC-ThreeBarReversal"    data-configs="R.23,A,B,C,D,E,V,F,G,H"   >23 - Three Bar Reversal</option>
+                              <option value="RC-TurtleTrader"        data-configs="R.24,A,B,C,D,E,V,F,G,H"   >24 - TurtleTrader</option>
+                              <option value="RC-VolatilityBreakout"  data-configs="R.25,A,B,C,D,E,V,F,G,H"   >25 - Volatility Breakout</option>
+                              <option value="RC-PhiboPCPV"           data-configs="R.26,A,B,C,D,E,V,F,G,H"   >26 - Phibo PC/PV</option>
+                              <option value="RC-Filtros"             data-configs="A,B,C,D,E,V,F,G,H"        >27 - Filtros</option>
+                              <option value="RC-SignalTrader"        data-configs="R.28,A,B,C,D,E,V,F,G,H"   >28 - SignalTrader</option>
+                              <option value="RC-HiLo"                data-configs="R.29,A,B,C,D,E,V,F,G,H"   >29 - HiLo</option>
+                              <option value="RC-RAFI"                data-configs="R.30,A,B,C,D,E,V,F,G,H"   >30 - RAFI</option>
+                              <option value="RC-AMKA"                data-configs="R.31,A,B,C,D,E,V,F,G,H"   >31 - AMKA</option>
+                              <option value="RC-SuperTrend"          data-configs="R.32,A,B,C,D,E,V,F,G,H"   >32 - SuperTrend</option>
+                              <option value="RC-MasterTrend"         data-configs="R.33,A,B,C,D,E,V,F,G,H"   >33 - MasterTrend</option>
+                              <option value="RC-EquityControl"       data-configs="R.34"                     >34 - Equity Control</option>
+                              <optgroup label="Gradiente Linear">
+                                 <option value="RC-GradienteLinear"     data-configs="GL_S.01,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G"     >01 - Gradiente Linear</option>
+                                 <option value="RC-GLBollinger"         data-configs="GL_S.02,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >02 - GL Bollinger</option>
+                                 <option value="RC-GLPhibo"             data-configs="GL_S.03,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >03 - GL Phibo</option>
+                                 <option value="RC-GLVolatilityBands"   data-configs="GL_S.04,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >04 - GL Volatility Bands</option>
+                                 <option value="RC-GLPriceAction"       data-configs="GL_S.05,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >05 - GL Price Action</option>
+                              </optgroup>
+                           </select>
+                        </div>
+                        <!-- <div  class="input-container">
+                           <label placeholder="Qual é o objetivo do setup?" for="tipo-setup" >
+                              <span>Qual é o objetivo do setup?</span>
+                           </label>
+                           <select id="tipo-setup" name="tipo-setup">
+                              <option value="" disabled="" selected="">Selecione um tipo de setup</option>
+                              <option value="trade">Trading/Teste unitário</option>
+                              <option value="otimizacao">Otimização</option>
+                           </select>
+                        </div> -->
+                     </div>
+                     <p>&nbsp;</p>
+                     <!-- @TODO: Documentação dos robos -->
+                     <!-- <div style="background-color: #f5f7fa; border: 1px solid #e5ecf2; padding: 30px 20px 15px 15px;" id="robo-investidor-info">
+                        <p class="wysiwyg-indent2"><span class="wysiwyg-font-size-large"> <strong>Robô MasterTrend</strong></span></p>
+                        <p class="wysiwyg-indent2">
+                              Este robô opera sinais dados pelo indicador de tendência MasterTrend, disponibilizado na comunidade, que tem por objetivo apresentar as tendências de forma mais estável, sem muitas sinalizações de inversão de tendência. O robô pode operar mudanças na cor do indicador, retorno até a linha, ou apenas a posição relativa dos preços em relação à linha.
+                        </p>
+                     </div>
+                     <p>&nbsp;</p> -->
+                     
+                     <div id="container-setup">
+                        <h1>Setup</h1>
+                        <div>
+                           <textarea id="output-setup" rows="20"></textarea>
+                           <br/>
+                           <div id="botoes-controle">
+                              <button onclick="downloadSetup()">
+                                    Download do Setup
+                                 </button>
+                                 <label for="load-setup" id="load-setup-label">
+                                    Carregar um Setup
+                                    <input type='file' id="load-setup" accept='.set' onchange='loadSetup(event)' style="display:none;">
+                                 </label>
+                              </div>
+                           </div>
+                     </div>
+                     <p>&nbsp;</p>    
+                     <div id="conteudo-formulario"></div>                 
+                     <p>&nbsp;</p>                     
+                  </div>
+               </div>
+            </article>
+         </div>
+      </main>
+
+
+      <!-- A documentação dos ROBOS -->
+      <div id="RC-1aBarra-doc" style="display: none;">
+      
+      </div>
+
+
+      <script type="text/javascript">
+         (function () {
+            
+            var enums = '__ENUMS__';
+            var inputs = '__INPUTS__';
+
+            // Nome do robo selecionado
+            var selected;
+            var values = {};
+            
+            function renderRobotParams(inputs){
+               if(!selected){
+                  document.getElementById('conteudo-formulario').innerHTML = '';
+                  return;
+               }
+
+               var html = [];
+               for(var groupLetter in inputs){
+                  if(!inputs.hasOwnProperty(groupLetter)) {
+                     continue;
+                  }
+                  var groupItem = inputs[groupLetter];
+                  var keys = [];
+                  for(var key in groupItem.itens){
+                     if(!groupItem.itens.hasOwnProperty(key)){
+                        continue;
+                     }
+                     keys.push(key);
+                  }
+                  
+                  html.push([
+                     '<h1>' + groupLetter.replace(/(^[^_]*_)/,'') + ' - ' + groupItem.name + '</h1>',
+                     '<ul>' + keys.map(function(key){ return renderItem(groupItem.itens[key]); }) .join('') + '</ul>'
+                  ].join(''));
+               }
+               document.getElementById('conteudo-formulario').innerHTML = html.join('');
+            }
+            
+
+            function renderItem(item){
+               var keys = [];
+               for(var key in item.itens){
+                  if(!item.itens.hasOwnProperty(key)){
+                     continue;
+                  }
+                  keys.push(key);
+               }
+               
+               if(item.type) {
+                  return [
+                     '<li>',
+                     '   <div class="input-container" title="' + item.descriptionOrig + '">',
+                     '      <label for="input-' + item.name + '"><span>' + item.description + '</span> </label>',
+                     (function(){
+
+                        values[item.name] = item.value;
+
+                        switch(item.type){
+                           case 'int':
+                           case 'uint':
+                           case 'long':
+                           case 'ulong':
+                                 return '<input type="number" id="input-' + item.name + '" name="input-' + item.name + '" value="' + item.value + '" onchange="onChangeInput(this)"/>';
+                           case 'double':
+                                 return '<input type="number" id="input-' + item.name + '" name="input-' + item.name + '" value="' + item.value + '" onchange="onChangeInput(this)" step="0.01"/>';
+                           case 'string':
+                                 return '<input type="text" id="input-' + item.name + '" name="input-' + item.name + '" value="' + item.value + '" onchange="onChangeInput(this)"/>';
+                           case 'bool':
+                                 return '<input type="checkbox" id="input-' + item.name + '" name="input-' + item.name + '" ' 
+                                          + (item.value.toUpperCase() === 'TRUE' ? 'checked="checked"': '') 
+                                          + ' onchange="onChangeCheckbox(this) "/>';
+                           
+                           default: // enum
+                              if(!enums.hasOwnProperty(item.type)) {
+                                 return item.type;
+                              }
+                              var keysEnum = [];
+                              for(var key in enums[item.type]){
+                                 if(!enums[item.type].hasOwnProperty(key)){
+                                    continue;
+                                 }
+                                 keysEnum.push(key);
+                              }
+
+                              return [
+                                 '<select id="input-' + item.name + '" name="input-' + item.name + '" onchange="onChangeSelect(this)">',
+                                 keysEnum.map(function(key){
+                                    if(key === item.value){
+                                       return '<option value="' + key + '" selected="selected">' + enums[item.type][key] + '</option>';
+                                    }else {
+                                       return '<option value="' + key + '">' + enums[item.type][key] + '</option>';
+                                    }
+                                 }).join(''),
+                                 '</select>'
+                              ].join('')  
+                        }
+                     })(),
+
+
+                     '   </div>',
+                     keys.length > 0 
+                        ?  '<ul>' + keys.map(function(key){ return renderItem(item.itens[key]); }) .join('') + '</ul>'
+                        : '',
+
+                     '</li>',
+                  ].join('');
+               } else {
+                  return [
+                     '<li class="sub-grupo">',
+                     '   <label><span>' + item.description + '</span> </label>',
+                     keys.length > 0 
+                        ?  '<ul>' + keys.map(function(key){ return renderItem(item.itens[key]); }) .join('') + '</ul>'
+                        : '',
+
+                     '</li>',
+                  ].join('');
+               }
+            }
+            
+
+            function updateSetup(){
+               if(!selected){
+                  document.getElementById('container-setup').style.display = 'none';
+                  return;
+               }
+
+               document.getElementById('output-setup').value = 
+                  Object.keys(values)
+                     .map(function(key){
+                        var value = values[key];
+                        if(value == '""'){
+                           value = '';
+                        }
+                        return key + '=' + value;
+                     })
+                     .join('\n');
+               document.getElementById('container-setup').style.display = '';
+            }
+
+            function downloadSetup() {
+               var element = document.createElement('a');
+               element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById('output-setup').value));
+               element.setAttribute('download', selected + '.set');
+
+               element.style.display = 'none';
+               document.body.appendChild(element);
+
+               element.click();
+
+               document.body.removeChild(element);
+            }
+
+            function loadSetup(event) {
+               values = {};
+               var input = event.target;
+
+               var reader = new FileReader();
+               reader.onload = function(){
+                  // Faz o processamento do arquivo de SET
+                  var text = reader.result;
+                  var lines = text.split('\n');
+                  
+                  for(var i = 0, l = lines.length; i < l; i++){
+                     var line = lines[i];
+                     var parts = line.match(/^([^=]+)=(.*)/);
+                     if(parts){
+                        var key = parts[1];
+                        var value = parts[2];
+                        values[key] = value;
+                        var el = document.getElementById('input-' + key);
+                        if(el){
+                           if(el.nodeName === 'INPUT'){
+                              if(el.type === 'checkbox'){
+                                 el.checked = (value === 'true');
+                              } else {
+                                 el.value = value;
+                              }
+                           } else if (el.nodeName === 'SELECT'){
+                              for(var b = 0; b < el.options.length; b++){
+                                 if(el.options[b].value ===  value){
+                                    el.options[b].selected = true;
+                                    break;
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+
+                  // Substitui o botão de seleção, afim de permitir o upload do mesmo arquivo novamente
+                  document.getElementById('load-setup-label').innerHTML 
+                     = 'Carregar um Setup <input type="file" id="load-setup" accept=".set" onchange="loadSetup(event)" style="display:none;">';
+
+                  // Atualiza conteúdo
+                  updateSetup();
+               };
+               reader.readAsText(input.files[0]);
+            };
+
+            function onChangeInput(input){
+               var name = input.attributes.name.value.replace(/^input-/,'');
+               values[name] = input.value;
+               updateSetup();
+            }
+
+            function onChangeCheckbox(checkbox){
+               var name = checkbox.attributes.name.value.replace(/^input-/,'');
+               values[name] = checkbox.checked;
+               updateSetup();
+            }
+
+            function onChangeSelect(select){
+               var name = select.attributes.name.value.replace(/^input-/,'');
+               values[name] = select.options[select.selectedIndex].value;
+               updateSetup();
+            }
+
+            function onChangeRobot(select){
+               values = {};          
+               selected = select.options[select.selectedIndex].value;
+               if(selected == ''){
+                  selected = null;
+               }
+
+               var robotInputs = {};
+               if(selected){
+                  // Quais coonfigurações serão exibidas para esse Robo?
+                  var groups = select.options[select.selectedIndex].attributes['data-configs'].value.split(',');
+                  for(var a = 0, l = groups.length; a < l; a++){
+                     var group = groups[a];
+                     if(inputs.hasOwnProperty(group)){
+                        robotInputs[group] = inputs[group];
+                     }
+                  }
+               }
+
+               renderRobotParams(robotInputs);
+               updateSetup();
+            }
+
+            window.onChangeInput = onChangeInput;
+            window.onChangeSelect = onChangeSelect;
+            window.onChangeCheckbox = onChangeCheckbox;
+            window.onChangeRobot = onChangeRobot;
+            window.downloadSetup = downloadSetup;
+            window.loadSetup = loadSetup;
+
+            updateSetup();
+         })();
+      </script>
+   </body>
+</html>

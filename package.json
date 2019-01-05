@@ -1,0 +1,11 @@
+{
+  "name": "robotcrowd-explore",
+  "version": "1.0.0",
+  "description": "Ferramenta para visualizar, editar e salvar os setups do Metatrader para os robos RobotCrowd (https://robotcrowd.com.br/robos)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

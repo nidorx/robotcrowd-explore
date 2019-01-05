@@ -1,0 +1,174 @@
+// Documentar aqui apenas os enums e parametros específicos dos robos GL
+
+
+// Tipos de calculos dos niveis de aumento
+enum levelCalcType {
+
+     LEVEL_CALC_POINTS,   // Definido em pontos ou preco
+     LEVEL_CALC_PERC_TP,  // Definido em % do TP
+     LEVEL_CALC_PERC_SL,  // Definido em % do SL
+     LEVEL_CALC_PIPS      // Definido em Pips
+
+};
+
+enum lotIncrementType {
+
+      LOT_INC_NONE,            // Manter lote fixo (=)
+      LOT_INC_ARITHMETIC,      // Progressao aritmetica (+)
+      LOT_INC_GEOMETRIC        // Progressao geometrica (x)
+
+};
+
+
+input string            inDesc0="===========================";       // ============ A. PARAMETROS GERAIS =============
+input string            inSetDescription="";                         // A.01 Descricao do ajuste ativo 
+input string            inUserEmail="";                              // A.02 e-mail cadastrado no site RobotCrowd
+input int               inEA_Magic=10000;                            // A.03 Numero identificador do expert advisor (Magic)
+input bool              inNotifyEmail=false;                         // A.04 Enviar avisos por e-mail
+input bool              inNotifyPush=false;                          // A.05 Enviar notificacoes push para terminal mobile
+input bool              inUseOldFashionComment=false;                // A.06 Usar padrao antigo nas informacoes (Comment)
+input int               inTickDelay=2;                               // A.07 Tempo de ciclo para processamento (segundos)
+input int               inDeviation = 10;                            // A.08 Desvio maximo de preco em pontos
+input bool              inCloseOnExpiration=true;                    // A.09 Encerrar operacao um dia antes da expiracao do contrato
+input tradeType         inTradeType=TRADE_TYPE_BOTH;                 // A.10 Tipo de operacao
+input string            inTradeSymbol="";                            // A.11 Ativo para negociacao (caso seja diferente do grafico)
+input ENUM_TIMEFRAMES   inPeriod = PERIOD_CURRENT;                   // A.12 Periodo grafico principal
+input bool              inShowIndicators = false;                    // A.13 Mostrar indicadores no grafico
+input bool              inDeleteIndicators = false;                  // A.14 Apagar indicadores ao remover o EA
+input publishPosType    inPublishPositions = PUBLISH_NONE;           // A.15 Publicar posicoes assumidas pelo robo
+input string            inPublishName = "";                          // A.15.1 Nome do arquivo ou variavel (Vazio: ROBO_ATIVO_TF)
+
+input string            inDesc1="===========================";       // ========== B. GERENCIAMENTO DE RISCO ==========
+input riskType          inRiskMode=RISK_FIXED_LOT;                   // B.01 Metodo para calculo de volume inicial
+input double            inLot = 1.0;                                 // B.02 Volume fixo ou incremento/minimo
+input double            inRiskParameter = 0.0;                       // B.03 Incremento de capital ou risco percentual
+input double            inActualBalance = 0.0;                       // B.04 Capital considerado (Zero usa saldo da conta/Negativo variavel global)
+input lotIncrementType  inLotIncType=LOT_INC_NONE;                   // B.05 Tipo de aumento de volume a cada nivel de entrada
+input double            inLotMultiplier = 1.0;                       // B.06 Valor para soma ou multiplicao para lotes progressivos
+
+input string            inDesc3="===========================";       // =============== D. DAY TRADE ==================
+input bool              inDayTrade=true;                             // D.01 Operacao apenas como day trade
+input int               inStartHour=9;                               // D.02 Hora inicio negociacao
+input int               inStartWaitMin=1;                            // D.03 Minutos a aguardar antes de iniciar operacoes
+input int               inStopHour=18;                               // D.04 Hora fim negociacao
+input int               inStopBeforeEndMin=15;                       // D.05 Minutos antes do fim para encerrar posicoes
+input int               inNoTradeBeforeEndMin=75;                    // D.06 Minutos antes do fim para abertura de trades
+
+input string            inDesc5="===========================";       // =========== F. LIMITES DE OPERACAO ============
+input double            inMaxDayLoss=0.0;                            // F.01 Perda maxima aceitavel no dia (Zero ilimitado)
+input double            inMaxDayProfit=0.0;                          // F.02 Objetivo de lucro diario (Zero ilimitado)
+input double            inMaxWeekLoss=0.0;                           // F.03 Perda maxima aceitavel na semana (Zero ilimitado)
+input double            inMaxWeekProfit=0.0;                         // F.04 Objetivo de lucro semanal (Zero ilimitado)
+input double            inMaxMonthLoss=0.0;                          // F.05 Perda maxima aceitavel no mes (Zero ilimitado)
+input double            inMaxMonthProfit=0.0;                        // F.06 Objetivo de lucro mensal (Zero ilimitado)
+input int               inMaxDayTrades=0;                            // F.07 Numero maximo de trades no dia (Zero ilimitado)
+input int               inMaxDayTP=0;                                // F.08 Numero maximo de take profit no dia (Zero ilimitado)
+input bool              inCheckPLAfterClose=false;                   // F.09 Verificar limites de perda e ganho apenas apos fechar operacao
+input bool              inEquityControlEnable=false;                 // F.10 Respeitar limites globais com RC-EquityControl
+input bool              inEquityControlCloseTrades=false;            // F.10.1 Encerrar operacoes quando limite global for atingido 
+input bool              inTDWFilter=false;                           // F.11 Filtrar operacoes por dia da semana
+input bool              inTDWMonday=true;                            // F.11.1 Operar segunda-feira
+input bool              inTDWTuesday=true;                           // F.11.2 Operar terca-feira
+input bool              inTDWWednesday=true;                         // F.11.3 Operar quarta-feira
+input bool              inTDWThursday=true;                          // F.11.4 Operar quinta-feira
+input bool              inTDWFriday=true;                            // F.11.5 Operar sexta-feira
+input bool              inTDWSaturday=false;                         // F.11.6 Operar sabado
+input bool              inTDWSunday=false;                           // F.11.7 Operar domingo
+
+
+input string            inDesc4="===========================";       // ======== E. STOP LOSS E OBJETIVO ========
+input SLTPType          inSLTP=SL_TP_FIXED;                          // E.01 Tipo de stop e objetivo
+input double            inSLValue=200.0;                             // E.01.1 Valor ou multiplicador stop loss (Zero desativa)
+input double            inSLMin=0.0;                                 // E.01.1.1 Valor minimo em pontos para SL (zero ilimitado) 
+input double            inSLMax=0.0;                                 // E.01.1.2 Valor maximo em pontos para SL (zero ilimitado) 
+input double            inTPValue=30.0;                              // E.01.2 Valor ou multiplicador take profit (Zero desativa)
+input double            inTPMin=0.0;                                 // E.01.2.1 Valor minimo em pontos para TP (zero ilimitado) 
+input double            inTPMax=0.0;                                 // E.01.2.2 Valor maximo em pontos para TP (zero ilimitado) 
+input int               inSLTPPeriod=20;                             // E.01.3 Periodo dos indicadores para calculo de SL e TP
+input ENUM_TIMEFRAMES   inSLTPTimeframe=PERIOD_CURRENT;              // E.01.4 Tempo grafico dos indicadores para calculo de SL e TP
+input timeStopCondType  inTimeStopCond=TIME_STOP_COND_NONE;          // E.06 Usar stop de tempo
+input ENUM_TIMEFRAMES   inTimeStopPeriod=PERIOD_CURRENT;             // E.06.1 Periodo para determinacao do stop
+input int               inTimeStopValue=10;                          // E.06.2 Numero de barras considerado
+input double            inTradeProfit=0.0;                           // E.08 Objetivo de lucro no trade (Zero ilimitado)
+input double            inTradeLoss=0.0;                             // E.09 Limite de perda financeira no trade (Zero ilimitado)
+
+input string            inDesc7="===========================";       // ==== L. PARAMETROS GRADIENTE LINEAR =====
+input levelCalcType     inGLLevelCalc=LEVEL_CALC_POINTS;             // L.01 Tipo de valor usado nos offsets
+input double            inGLOffsetOpen=20.0;                         // L.02 Offset para novas ordens de entrada
+input double            inGLOffsetClose=30.0;                        // L.03 Offset para realizacao de lucro 
+input bool              inGLTrailingTrade=false;                     // L.04 Mover as ordens a favor do trade (trailing)
+input double            inGLTrailingOffset=20.0;                     // L.04.1 Offset em relacao ao preco atual para posicionamento
+input ENUM_TIMEFRAMES   inGLTrailingTimeFrame=PERIOD_CURRENT;        // L.04.2 Timeframe para atualizacao do trailing
+input int               inGLMaxLevels=0;                             // L.05 Numero maximo de ordens/niveis (Zero ilimitado)
+input bool              inGLUseSingleOrderOut=false;                 // L.06 Usar ordem de saida unica na superacao do preco medio
+input bool              inGLUseLimitOrderTP=false;                   // L.07 Usar ordem limite como TP (contas netting)
+input uint              inGLOrderTimeLimit=0;                        // L.08 Tempo limite (minutos) para ordem de entrada (zero ilimitado)
+       
+
+input string            inDescGL="==========================="; // == S.01. PARAMETROS ROBO GRADIENTE LINEAR ===
+input double            inGLStartOffset=15;                     // S.01.1 Offset em ticks para ordens Start e Limit       
+
+input string      inDescGLBollinger="==========================="; // ===== S.02. PARAMETROS GRADIENTE LINEAR - BOLLINGER =====
+input int         inBandsGLPeriod=17;                              // S.02.1 Periodo para media 
+input double      inBandsGLDev=1.5;                                // S.02.2 Multiplicador desvio padrao
+input double      inMaxStopLoss=0;                                 // S.02.3 Tamanho maximo do stop (zero ilimitado)
+input double      inBandsRangeLimit=0.0;                           // S.02.4 Limite de largura das bandas (zero ilimitado)
+input bool        inStopAtBand=false;                              // S.02.5 Usar stop na banda oposta ao inves da media
+input bool        inBandsGLInvertSignal=false;                     // S.02.6 Inverter sinais de compra e venda
+
+
+input string      inDescPhiboGL="==========================="; // ===== S.03. PARAMETROS GRADIENTE LINEAR - PHIBO =====
+input int         inPhiboGLPeriod=72;                          // S.03.1 Periodo para Phibo
+input bool        inPhiboLevelMaxMin=true;                     // S.03.2 Usar niveis 0% e 100% do Phibo
+input bool        inPhiboLevel786_214=true;                    // S.03.3 Usar niveis 21.4% e 78.6% do Phibo
+input bool        inPhiboLevel618_382=true;                    // S.03.4 Usar niveis 61.8% e 38.2% do Phibo
+input double      inMaxStopLoss=0;                             // S.03.5 Tamanho maximo do stop (zero ilimitado)
+input bool        inStopFirstLevel=false;                      // S.03.6 Usar stop no nivel mais proximo
+input double      inPhiboRangeLimit=0.0;                       // S.03.7 Limite maximo entre niveis Max/Min do Phibo (zero ilimitado)
+input double      inPhiboRangeMinimum=0.0;                     // S.03.8 Limite minimo entre niveis Max/Min do Phibo
+input bool        inBandsFilter=true;                          // S.03.9 Filtrar com bandas de bollinger
+input int         inBandsPeriod=34;                            // S.03.9.1 Periodo para media
+input double      inBandsDev=1.0;                              // S.03.9.2 Multiplicador desvio padrao
+input double      inBandMinAmp=0.0;                            // S.03.9.3 Amplitude minima das bandas para trade
+input bool        inPhiboInvertSignal=false;                   // S.03.10 Inverter sinais de compra e venda
+
+
+
+input string               inDescVolBandsGL="===========================";       // ===== S.04 PARAMETROS GRAD LINEAR - VOLATILITY =====
+input int                  inVolBandsMAPeriod=20;                                // S.04.1 Periodo da media movel
+input ENUM_MA_METHOD       inVolBandsMAMethod=MODE_EMA;                          // S.04.2 Metodo de calculo da media movel
+input double               inVolBandsFixed=0.0;                                  // S.04.3 Valor fixo para calculo das bandas
+input int                  inVolBandsATRPeriod=2;                                // S.04.4 Periodo ATR para calculo das bandas
+input int                  inVolBandsStdDevPeriod=20;                            // S.04.5 Periodo para calculo do desvio padrao
+input bool                 inVolBandsInvertSignal=false;                         // S.04.6 Inverter sinais de compra e venda
+input bool                 inVolBandsUseCurrentCandle=false;                     // S.04.7 Definir pontos de entrada com barra atual
+
+
+
+enum priceActionPattern {
+
+   GL_PA_DUNNGIGAN,          // Dunnigan
+   GL_PA_INSIDEBAR,          // Uma inside bar
+   GL_PA_DOUBLE_INSIDEBARS,  // Duas inside bars
+   GL_PA_ENGULFING,          // Engolfo
+   GL_PA_BODY_RANGE,         // B1 < 50% R1
+   GL_PA_OPEN_CLOSE_5BARS,   // (O1-C5) < 50% (H5-C1)
+   GL_PA_OPEN_CLOSE_5RANGE   // (O5-C1) < 50% R1-5 
+
+};
+
+
+enum priceActionEntryPrice {
+
+   GL_PA_ENTRY_LAST_BAR,      // Maxima/Minima barra anterior
+   GL_PA_ENTRY_NEXT_OPEN,     // Abertura da proxima barra
+   GL_PA_ENTRY_LAST_CLOSE,    // Fechamento barra anterior
+   GL_PA_ENTRY_OFFSET         // Offset do preco atual
+
+};
+
+                                                                  
+input string                inDescGLPA="==========================="; // ==== S.05. PARAMETROS GL - PRICE ACTION =====
+input priceActionPattern    inGLPAPattern=GL_PA_DUNNGIGAN;            // S.05.1 Padrao observado para sinal
+input priceActionEntryPrice inGLPAEntry=GL_PA_ENTRY_LAST_BAR;         // S.05.2 Preco usado para ordem inicial
+input double                inGLPAEntryOffset=0.0;                    // S.05.2.1 Offset em relacao ao preco atual

@@ -1,0 +1,1346 @@
+enum ENUM_APPLIED_PRICE {
+   PRICE_CLOSE,         // Preço de Fechamento
+   PRICE_OPEN,          // Preço de Abertura
+   PRICE_HIGH,          // O preço máximo para o período
+   PRICE_LOW,           // O preço mínimo para o período
+   PRICE_MEDIAN,        // O preço mediano, (máx + mín)/2
+   PRICE_TYPICAL,       // Preço típico, (máx + mín + fech)/3
+   PRICE_WEIGHTED       // Preço médio, (máx + mín + fech + fech)/4
+};
+
+enum ENUM_APPLIED_VOLUME {
+   VOLUME_TICK,      // Volume de Tick
+   VOLUME_REAL       // Volume de negociação (Real)
+};
+
+enum ENUM_TIMEFRAMES {
+   PERIOD_CURRENT,   // Corrente
+   PERIOD_M1,        // 1 minuto
+   PERIOD_M2,        // 2 minutos
+   PERIOD_M3,        // 3 minutos
+   PERIOD_M4,        // 4 minutos
+   PERIOD_M5,        // 5 minutos
+   PERIOD_M6,        // 6 minutos
+   PERIOD_M10,       // 10 minutos
+   PERIOD_M12,       // 12 minutos
+   PERIOD_M15,       // 15 minutos
+   PERIOD_M20,       // 20 minutos
+   PERIOD_M30,       // 30 minutos
+   PERIOD_H1,        // 1 hora
+   PERIOD_H2,        // 2 horas
+   PERIOD_H3,        // 3 horas
+   PERIOD_H4,        // 4 horas
+   PERIOD_H6,        // 6 horas
+   PERIOD_H8,        // 8 horas
+   PERIOD_H12,       // 12 horas
+   PERIOD_D1,        // 1 dia
+   PERIOD_W1,        // 1 semana
+   PERIOD_MN1,       // 1 mês
+};
+
+enum ENUM_STO_PRICE {
+   STO_LOWHIGH,       // Mínimo/Máximo
+   STO_CLOSECLOSE,    // Fechamento/Fechamento
+};
+
+// Métodos de Suavização
+enum ENUM_MA_METHOD {
+   MODE_SMA,       // SMA  - Média simples
+   MODE_EMA,       // EMA  - Média exponencial
+   MODE_SMMA,      // SMMA - Média suavizada
+   MODE_LWMA,      // LWMA - Média linear-ponderada
+};
+
+// Tipos de realizacao parcial
+enum partialProfitType {
+     PARTIAL_PROFIT_NONE,      // Nenhuma ou feito pelo EA
+     PARTIAL_PROFIT_1_2,       // Realizacao 1/2
+     PARTIAL_PROFIT_2_3,       // Realizacao 2/3
+     PARTIAL_PROFIT_AUTO,      // Automatico pelo volume
+     PARTIAL_PROFIT_POINTS,    // Manual em pontos ou preco
+     PARTIAL_PROFIT_PERC_TP,   // Manual definida em % do TP
+     PARTIAL_PROFIT_PERC_SL,   // Manual definida em % do SL
+     PARTIAL_PROFIT_PIPS       // Manual definida em Pips
+};
+
+// Tipos de acrescimo de posicao
+enum positionAddType {
+     POSITION_ADD_NONE,           // Nenhuma ou feito pelo EA
+     POSITION_ADD_POINTS,         // Manual em pontos ou preco
+     POSITION_ADD_PERC_TP,        // Manual definida em % do TP
+     POSITION_ADD_PERC_SL,        // Manual definida em % do SL
+     POSITION_ADD_PIPS            // Manual definida em Pips
+};
+
+enum positionAddDir {
+
+     POSITION_ADD_DIR_PRO,        // Movimento a favor do trade
+     POSITION_ADD_DIR_CON         // Movimento contra o trade
+     
+};
+
+enum positionAddInc {
+
+      POSITION_ADD_INC_NONE,        // Manter lote fixo (=)
+      POSITION_ADD_INC_ARITHMETIC,  // Progressao aritmetica (+)
+      POSITION_ADD_INC_GEOMETRIC    // Progressao geometrica (x)
+
+};
+
+
+// Tipos de stop movel
+enum trailingStopType {
+      TRAILING_STOP_NONE,      // Nenhum
+      TRAILING_STOP_AMPLITUDE, // Amplitude risco inicial
+      TRAILING_STOP_MIN_MAX,   // Minima/Maxima Anterior
+      TRAILING_STOP_MIN_3BAR,  // Minima ultimas 3 barras
+      TRAILING_STOP_MIN_2BAR,  // Minima ultimas 2 barras
+      TRAILING_STOP_MA,        // Media movel exponencial
+      TRAILING_STOP_HILO,      // HiLo
+      TRAILING_STOP_OFFSET,    // Distancia fixa pontos
+      TRAILING_STOP_PERCENT,   // Distancia fixa %
+      TRAILING_STOP_ATR        // Multiplicador ATR
+};
+
+
+
+// Triggers para inicio do trailing stop
+enum trStopTriggerType {
+
+      TRAILING_TRIGGER_PROFIT_BARS,    // Numero barras positivas
+      TRAILING_TRIGGER_POINTS,         // Movimento a favor pontos
+      TRAILING_TRIGGER_PERCENT,        // Movimento a favor %
+      TRAILING_TRIGGER_BREAKEVEN       // Apos aplicacao breakeven
+
+};
+
+
+
+// Tipos de colocacao de breakeven
+enum breakevenType {
+
+      BREAKEVEN_NONE,          // Nao usar breakeven
+      BREAKEVEN_PERCENT,       // Variacao percentual
+      BREAKEVEN_POINTS,        // Variacao em pontos
+      BREAKEVEN_RISK,          // Proporcao do SL
+      BREAKEVEN_PROFIT         // Proporcao do TP
+
+};
+
+
+// Tipos de trigger para reducao do take profit
+enum tpMoveType {
+
+      TP_MOVE_NONE,           // Nao reduzir o TP
+      TP_MOVE_TIME,           // Apos limite de tempo
+      TP_MOVE_RET_PRICE,      // Apos recuo em pontos
+      TP_MOVE_RET_PERCENT,    // Apos recuo percentual
+      TP_MOVE_RET_PIPS,       // Apos recuo em Pips
+      TP_MOVE_POSITION_ADD    // Apos n acrescimos posicao
+
+};
+
+
+
+// Modo de calculo dos stops
+enum SLTPType { 
+
+      SL_TP_NONE,        // Nenhum ou definido pelo EA
+      SL_TP_AMPLITUDE,   // Amplitude barra de sinal
+      SL_TP_FIXED,       // Fixo: preco ou pontos
+      SL_TP_PIPS,        // Fixo definido em pips
+      SL_TP_PERCENT,     // % valor de entrada
+      SL_TP_ATR,         // Multiplicador para ATR
+      SL_TP_STDDEV,      // Multip para Desvio Padrao
+      SL_TP_PERC_OPEN,   // % valor de abertura dia
+      SL_TP_PERC_CLOSE   // % valor ultimo fechamento
+
+};
+
+// Tipos de trade aceitos
+enum tradeType {
+      TRADE_TYPE_BOTH,   // Compra e Venda
+      TRADE_TYPE_BUY,    // Apenas Compra
+      TRADE_TYPE_SELL    // Apenas Venda
+};
+
+// Modo de stop no tempo
+enum timeStopCondType {
+      TIME_STOP_COND_NONE,     // Sem stop no tempo
+      TIME_STOP_COND_ANY,      // Lucro ou prejuizo
+      TIME_STOP_COND_PROFIT,   // Apenas com lucro
+      TIME_STOP_COND_LOSS      // Apenas com prejuizo
+};
+
+
+// Tipos de manejo de risco
+enum riskType {
+
+      RISK_FIXED_LOT,          // Volume fixo
+      RISK_PERCENT_BALANCE,    // Percentual de risco no capital
+      RISK_CAPITAL_INCREMENT,  // Incremento por passo capital
+      RISK_DEFINED_BY_EA       // Definido pelo EA
+
+};
+
+
+enum publishPosType {
+
+      PUBLISH_NONE,            // Nao publicar
+      PUBLISH_GLOBAL_VAR,      // Variavel global
+      PUBLISH_FILE             // Arquivo em disco
+
+};
+
+
+enum tradeHoldType {
+
+      TRADE_HOLD_REVERT,       // Inverte a operacao
+      TRADE_HOLD_CLOSE,        // Encerra operacao aberta
+      TRADE_HOLD_KEEP          // Mantem a operacao
+      
+};
+
+// Precos de referencia para entradas
+enum refEntryPrice {
+
+   REF_ENTRY_LAST_BAR,      // Maxima/Minima barra anterior
+   REF_ENTRY_NEXT_OPEN,     // Abertura da proxima barra
+   REF_ENTRY_LAST_CLOSE,    // Fechamento barra anterior
+
+};
+
+/* Modo de funcionamento dos filtros */
+enum filterModeType {
+   FILTER_BOTH,        // Compra e Venda
+   FILTER_BUY,         // Apenas Compra
+   FILTER_SELL         // Apenas Venda
+};
+
+/* Barra a ser usada no calculo dos filtros */
+enum filterBarType {
+   FILTER_BAR_LAST,    // Barra anterior
+   FILTER_BAR_CURRENT  // Barra atual
+};
+
+
+/* Tipos disponiveis para os filtros de media movel */
+enum filterMAType {
+
+   FILTER_MA_TYPE_SMA,         // Simples (SMA)
+   FILTER_MA_TYPE_EMA,         // Exponencial (EMA)
+   FILTER_MA_TYPE_SMMA,        // Suavizada (SMA)
+   FILTER_MA_TYPE_LWMA,        // Ponderada (LWMA)
+   FILTER_MA_TYPE_FRAMA,       // Adaptativa Fractal (FrAMA)
+   FILTER_MA_TYPE_DEMA,        // Exponencial Dupla (DEMA)
+   FILTER_MA_TYPE_TEMA,        // Exponencial Tripla (TEMA)
+   FILTER_MA_TYPE_HMA,         // Hull (HMA)
+   FILTER_MA_TYPE_VWAP         // Ponderada por volume (VWAP)
+   
+};
+
+
+
+/* Modo de operacao do filtro por candles */
+enum filterPAMode {
+   PA_MODE_NONE,           // [0]-- Desativado --
+   PA_MODE_PATTERN_1,      // [1](BD1) < 0.5 * (RD1)
+   PA_MODE_PATTERN_2,      // [2](OD1-CD5) < 0.5 * (HD5-CD1)
+   PA_MODE_PATTERN_3,      // [3](OD5-CD1) < 0.5 * RD1-5
+   PA_MODE_PATTERN_4,      // [4](HD0-OD0) > (HD1-OD1)
+   PA_MODE_PATTERN_5,      // [5](HD0-OD0) > 1.5 * (HD1-OD1)
+   PA_MODE_PATTERN_6,      // [6](OD0-LD0) > (OD1-LD1)
+   PA_MODE_PATTERN_7,      // [7](OD0-LD0) > 1.5 * (OD1-LD1)
+   PA_MODE_PATTERN_8,      // [8](CD1>CD2)&(CD2>CD3)&(CD3>CD4)
+   PA_MODE_PATTERN_9,      // [9](CD1<CD2)&(CD2<CD3)&(CD3<CD4)
+   PA_MODE_PATTERN_10,     // [10](HD1>HD2)&(LD1>LD2)
+   PA_MODE_PATTERN_11,     // [11](HD1<HD2)&(LD1<LD2)
+   PA_MODE_PATTERN_12,     // [12](RD0) > 0.0075 * (LD0)
+   PA_MODE_PATTERN_13,     // [13](RD0) < 0.0075 * (LD0)
+   PA_MODE_PATTERN_14,     // [14](CD1) > (CD2)
+   PA_MODE_PATTERN_15,     // [15](CD1) < (CD2)
+   PA_MODE_PATTERN_16,     // [16](CD1) < (OD1)
+   PA_MODE_PATTERN_17,     // [17](CD1) > (OD1)
+   PA_MODE_PATTERN_18,     // [18](CD1) < (CD2 - 0.005*CD2)
+   PA_MODE_PATTERN_19,     // [19](CD1) > (CD2 + 0.005*CD2)
+   PA_MODE_PATTERN_20,     // [20](HD0) > (HD1)
+   PA_MODE_PATTERN_21,     // [21](HD1) > (HD5)
+   PA_MODE_PATTERN_22,     // [22](LD0) < (LD1)
+   PA_MODE_PATTERN_23,     // [23](LD1) < (LD5)
+   PA_MODE_PATTERN_24,     // [24](HD1) > (HD2-4)
+   PA_MODE_PATTERN_25,     // [25](HD1) < (HD2-4)
+   PA_MODE_PATTERN_26,     // [26](LD1) < (LD2-4)
+   PA_MODE_PATTERN_27,     // [27](LD1) > (LD2-4)
+   PA_MODE_PATTERN_28,     // [28](OD0>CD1)&(CD1>CD2)&(CD2>CD3)
+   PA_MODE_PATTERN_29,     // [29](OD0<CD1)&(CD1<CD2)&(CD2<CD3)
+   PA_MODE_PATTERN_30,     // [30](HD1-CD1) < 0.2 * (RD1)
+   PA_MODE_PATTERN_31,     // [31](CD1-LD1) < 0.2 * (RD1)
+   PA_MODE_PATTERN_32,     // [32](OD0>HD1)|(OD0<LD1)
+   PA_MODE_PATTERN_33,     // [33](OD0) < (CD1 - 0.005*CD1)
+   PA_MODE_PATTERN_34,     // [34](OD0) > (CD1 + 0.005*CD1)
+   PA_MODE_PATTERN_35,     // [35](HD0<HD1)&(LD0>LD1)
+   PA_MODE_PATTERN_36,     // [36](RD1) < (RD2+RD3)/3
+   PA_MODE_PATTERN_37,     // [37](RD1) < (RD2) < (RD3)
+   PA_MODE_PATTERN_38,     // [38](HD1<HD2)&(LD1>LD2)
+   PA_MODE_PATTERN_39,     // [39](HD1<HD2)|(LD1>LD2)
+   PA_MODE_PATTERN_40,     // [40](HD1>HD2)&(LD1<LD2)
+   PA_MODE_PATTERN_41,     // [41](CD1) < (CD2 - 0.01*CD2)
+   PA_MODE_PATTERN_42,     // [42](CD1) > (CD2 + 0.01*CD2)
+   PA_MODE_PATTERN_43,     // [43] ABS((CD0/CD1)-1) < 0.005
+   PA_MODE_PATTERN_44,     // [44] ABS((CD0/CD1)-1) < 0.01
+};
+
+enum filMAMode {
+
+   MA_MODE_NONE,              // -- Desativado --
+   MA_MODE_DIR_UP,            // Media virada para cima
+   MA_MODE_DIR_DOWN,          // Media virada para baixo
+   MA_MODE_PRICE_ABOVE,       // Preco acima da media
+   MA_MODE_PRICE_BELOW,       // Preco abaixo da media
+   MA_MODE_UP_ABOVE,          // Media para cima e preco acima
+   MA_MODE_DOWN_BELOW,        // Media para baixo e preco abaixo
+   MA_MODE_OUTSIDE_OFFSET,    // Preco alem do afastamento
+   MA_MODE_INSIDE_OFFSET,     // Preco dentro do afastamento
+   MA_MODE_VARIATION_SMALLER, // Variacao da media menor que offset
+   MA_MODE_VARIATION_GREATER  // Variacao da media maior que offset
+
+};
+
+enum filADXMode {
+
+   ADX_MODE_NONE,            // -- Desativado --
+   ADX_MODE_DIP_ABOVE_DIM,   // DI+ acima de DI-
+   ADX_MODE_DIM_ABOVE_DIP,   // DI- acima de DI+
+   ADX_MODE_VALUE_GREATER,   // ADX maior que o definido
+   ADX_MODE_VALUE_SMALLER,   // ADX menor que o definido
+   ADX_MODE_DIP_DIM_GREATER, // DI+ acima de DI- e ADX maior
+   ADX_MODE_DIM_DIP_GREATER, // DI- acima de DI+ e ADX maior
+   ADX_MODE_DIP_DIM_LOWER,   // DI+ acima de DI- e ADX menor
+   ADX_MODE_DIM_DIP_LOWER    // DI- acima de DI+ e ADX menor
+
+};
+
+
+enum filMACDMode {
+
+   MACD_MODE_NONE,               // -- Desativado --
+   MACD_MODE_ABOVE_ZERO,         // MACD acima da linha zero
+   MACD_MODE_BELOW_ZERO,         // MACD abaixo da linha zero
+   MACD_MODE_SIGNAL_ABOVE_ZERO,  // Linha de sinal acima de zero
+   MACD_MODE_SIGNAL_BELOW_ZERO,  // Linha de sinal abaixo de zero
+   MACD_MODE_CROSS_SIGNAL_UP,    // MACD cruza sinal para cima
+   MACD_MODE_CROSS_SIGNAL_DOWN,  // MACD cruza sinal para baixo
+   
+
+};
+
+
+enum filSARMode {
+   
+   SAR_MODE_NONE,                // -- Desativado --
+   SAR_MODE_PRICE_ABOVE,         // Preco acima do SAR
+   SAR_MODE_PRICE_BELOW          // Preco abaixo do SAR      
+
+};
+
+
+/* Modo de operacao do filtro IFR */
+enum filRSIMode {
+   
+   RSI_MODE_NONE,             // -- Desativado --
+   RSI_MODE_ABOVE_OB,         // Acima limite sobrecomprado
+   RSI_MODE_BELOW_OS,         // Abaixo limite sobrevendido
+   RSI_MODE_BELOW_OB,         // Abaixo limite sobrecomprado
+   RSI_MODE_ABOVE_OS          // Acima limite sobrevendido
+   
+};
+
+
+enum filVOLMode {
+
+   VOL_MODE_NONE,             // -- Desativado --
+   VOL_MODE_ABOVE_MEAN,       // Volume acima da media
+   VOL_MODE_BELOW_MEAN,       // Volume abaixo da media
+   VOL_MODE_GREATER_LAST,     // Maior que barra anterior
+   VOL_MODE_SMALLER_LAST,     // Menor que barra anterior
+   VOL_MODE_GREATER_THREE,    // Maior que ultimas 3 barras
+   VOL_MODE_SMALLER_THREE     // Menor que ultimas 3 barras
+
+};
+
+
+enum filPhiboMode {
+
+   PHIBO_MODE_NONE,               // -- Desativado --
+   PHIBO_MODE_ABOVE_PC1,          // Preco acima de PC1
+   PHIBO_MODE_ABOVE_PC2,          // Preco acima de PC2
+   PHIBO_MODE_ABOVE_PC3,          // Preco acima de PC3
+   PHIBO_MODE_ABOVE_PC1_PC2,      // Preco acima de PC1/PC2
+   PHIBO_MODE_ABOVE_PC2_PC3,      // Preco acima de PC2/PC3
+   PHIBO_MODE_ABOVE_PC1_PC2_PC3,  // Preco acima de PC1/PC2/PC3
+   PHIBO_MODE_BELOW_PV1,          // Preco abaixo de PV1
+   PHIBO_MODE_BELOW_PV2,          // Preco abaixo de PV2
+   PHIBO_MODE_BELOW_PV3,          // Preco abaixo de PV3
+   PHIBO_MODE_BELOW_PV1_PV2,      // Preco abaixo de PV1/PV2
+   PHIBO_MODE_BELOW_PV2_PV3,      // Preco abaixo de PV2/PV3
+   PHIBO_MODE_BELOW_PV1_PV2_PV3,  // Preco abaixo de PV1/PV2/PV3
+   PHIBO_MODE_BELOW_PC1,          // Preco abaixo de PC1
+   PHIBO_MODE_BELOW_PC2,          // Preco abaixo de PC2
+   PHIBO_MODE_BELOW_PC3,          // Preco abaixo de PC3
+   PHIBO_MODE_BELOW_PC1_PC2,      // Preco abaixo de PC1/PC2
+   PHIBO_MODE_BELOW_PC2_PC3,      // Preco abaixo de PC2/PC3
+   PHIBO_MODE_BELOW_PC1_PC2_PC3,  // Preco abaixo de PC1/PC2/PC3
+   PHIBO_MODE_ABOVE_PV1,          // Preco acima de PV1
+   PHIBO_MODE_ABOVE_PV2,          // Preco acima de PV2
+   PHIBO_MODE_ABOVE_PV3,          // Preco acima de PV3
+   PHIBO_MODE_ABOVE_PV1_PV2,      // Preco acima de PV1/PV2
+   PHIBO_MODE_ABOVE_PV2_PV3,      // Preco acima de PV2/PV3
+   PHIBO_MODE_ABOVE_PV1_PV2_PV3,  // Preco acima de PV1/PV2/PV3
+
+};
+
+
+/* Modo de operacao do filtro IFR */
+enum filWPRMode {
+   
+   WPR_MODE_NONE,             // -- Desativado --
+   WPR_MODE_ABOVE_OB,         // Acima limite sobrecomprado
+   WPR_MODE_BELOW_OS,         // Abaixo limite sobrevendido
+   WPR_MODE_BELOW_OB,         // Abaixo limite sobrecomprado
+   WPR_MODE_ABOVE_OS          // Acima limite sobrevendido
+   
+};
+
+
+enum filMTMode {
+
+   MT_MODE_NONE,              // -- Desativado --
+   MT_MODE_BUY_LINE,          // Linha sinalizando alta
+   MT_MODE_SELL_LINE,         // Linha sinalizando baixa
+   MT_MODE_PRICE_ABOVE,       // Preco acima da linha
+   MT_MODE_PRICE_BELOW,       // Preco abaixo da linha
+   MT_MODE_PRICE_ABOVE_BUY,   // Preco acima e linha de alta
+   MT_MODE_PRICE_BELOW_SELL,  // Preco abaixo e linha de baixa
+   MT_MODE_PRICE_BELOW_BUY,   // Preco abaixo e linha de alta
+   MT_MODE_PRICE_ABOVE_SELL   // Preco acima e linha de baixa
+
+};
+
+
+enum filGMMAMode {
+
+   GMMA_MODE_NONE,            // -- Desativado --
+   GMMA_MODE_UP,              // Medias viradas para cima
+   GMMA_MODE_DOWN,            // Medias viradas para baixo
+   GMMA_MODE_OPPOSITE,        // Medias em direcoes opostas
+   GMMA_MODE_MIXED            // Medias entrelacadas 
+
+};
+
+
+enum filATRMode {
+
+   ATR_MODE_NONE,             // -- Desativado --
+   ATR_MODE_GT_REFERENCE,     // ATR maior que referencia 1
+   ATR_MODE_LT_REFERENCE,     // ATR menor que referencia 1
+   ATR_MODE_BETWEEN_REF       // ATR entre referencia 1 e 2
+
+};
+
+
+enum filSTDDEVMode {
+
+   STDDEV_MODE_NONE,          // -- Desativado --
+   STDDEV_MODE_GT_REFERENCE,  // Desvio padrao maior que ref
+   STDDEV_MODE_LT_REFERENCE,  // Desvio padrao menor que ref
+   STDDEV_MODE_VARIATION      // Variacao abrupta para alta
+
+};
+
+
+enum filHILOMode {
+   
+   HILO_MODE_NONE,            // -- Desativado --
+   HILO_MODE_PRICE_ABOVE,     // Preco acima do HiLo
+   HILO_MODE_PRICE_BELOW      // Preco abaixo do HiLo      
+
+};
+
+
+enum filRAFIMode {
+   
+   RAFI_MODE_NONE,            // -- Desativado --
+   RAFI_MODE_VERY_STRONG,     // RAFI acima de 2,5
+   RAFI_MODE_STRONG,          // RAFI acima de 0
+   RAFI_MODE_WEAK,            // RAFI abaixo de 0
+   RAFI_MODE_VERY_WEAK        // RAFI abaixo de -2,5
+
+};
+
+enum filCCIMode {
+
+   CCI_MODE_NONE,             // -- Desativado --
+   CCI_MODE_ABOVE_100,        // CCI acima de +100
+   CCI_MODE_BELOW_100,        // CCI abaixo de -100
+   CCI_MODE_ABOVE_ZERO,       // CCI acima de 0
+   CCI_MODE_BELOW_ZERO,       // CCI abaixo de 0
+   CCI_MODE_BETWEEN_100       // CCI entre -100 e +100
+
+};
+
+
+enum filVoltyMode {
+
+   VOLTY_MODE_NONE,           // -- Desativado --
+   VOLTY_MODE_BUY_LINE,       // Linha sinalizando alta
+   VOLTY_MODE_SELL_LINE       // Linha sinalizando baixa
+
+};
+
+
+enum filSTMode {
+
+   ST_MODE_NONE,              // -- Desativado --
+   ST_MODE_BUY_LINE,          // Linha sinalizando alta
+   ST_MODE_SELL_LINE          // Linha sinalizando baixa
+
+};
+
+
+
+enum filTickMode {
+
+   TICK_MODE_NONE,            // -- Desativado --
+   TICK_MODE_BUY_DAY,         // Saldo comprador no dia
+   TICK_MODE_SELL_DAY,        // Saldo vendedor no dia
+   TICK_MODE_BUY_HOUR,        // Saldo comprador hora
+   TICK_MODE_SELL_HOUR,       // Saldo vendedor hora
+   TICK_MODE_BUY_LAST,        // Saldo comprador barra
+   TICK_MODE_SELL_LAST        // Saldo vendedor barra
+
+};
+
+
+
+input string            inDesc0="===========================";                        // =========== A. PARAMETROS GERAIS ==============
+input string            inSetDescription="";                                          // A.01 Descricao do ajuste ativo
+input string            inUserEmail="";                                               // A.02 e-mail cadastrado no site RobotCrowd
+input int               inEA_Magic=10000;                                             // A.03 Numero identificador do expert advisor (Magic)
+input bool              inNotifyEmail=false;                                          // A.04 Enviar avisos por e-mail
+input bool              inNotifyPush=false;                                           // A.05 Enviar notificacoes push para terminal mobile
+input bool              inUseOldFashionComment=false;                                 // A.06 Usar padrao antigo nas informacoes (Comment)
+input int               inTickDelay=1;                                                // A.07 Tempo de ciclo para processamento (segundos)
+input int               inDeviation = 10;                                             // A.08 Desvio maximo de preco em pontos
+input bool              inCloseOnExpiration=true;                                     // A.09 Encerrar operacao um dia antes da expiracao do contrato
+input tradeType         inTradeType=TRADE_TYPE_BOTH;                                  // A.10 Tipo de operacao
+input tradeHoldType     inTradeHold=TRADE_HOLD_REVERT;                                // A.11 Comportamento quando observado sinal contrario
+input string            inTradeSymbol="";                                             // A.12 Ativo para negociacao (caso seja diferente do grafico)
+input ENUM_TIMEFRAMES   inPeriod = PERIOD_CURRENT;                                    // A.13 Periodo grafico principal
+input bool              inShowIndicators = false;                                     // A.14 Mostrar indicadores no grafico
+input bool              inDeleteIndicators = false;                                   // A.15 Apagar indicadores ao remover o EA
+input publishPosType    inPublishPositions = PUBLISH_NONE;                            // A.16 Publicar posicoes assumidas pelo robo
+input string            inPublishName = "";                                           // A.16.1 Nome do arquivo ou variavel (Vazio: ROBO_ATIVO_TF)
+
+input string            inDesc1="===========================";                        // =========== B. GERENCIAMENTO DE RISCO =========
+input riskType          inRiskMode=RISK_FIXED_LOT;                                    // B.01 Metodo para calculo de volume
+input double            inLot = 1.0;                                                  // B.02 Volume fixo ou incremento/minimo
+input double            inRiskParameter = 0.0;                                        // B.03 Incremento de capital ou risco percentual
+input double            inActualBalance = 0.0;                                        // B.04 Capital considerado (Zero saldo onta/Neg var global)
+
+input string            inDesc2="===========================";                        // ============ C. EXECUCAO DE ORDENS ============
+input bool              inPendingOrders=true;                                         // C.01 Utilizar ordens pendentes
+input double            inPendingOffset = 0.0;                                        // C.02 Offset para colocacao da ordem pendente
+input uint              inPendingTimeLimit = 0;                                       // C.03 Tempo limite (minutos) para ordem aberta (zero ilimitado)
+input bool              inPendingCancelNewBar = false;                                // C.04 Cancelar ordem pendente com uma nova barra
+
+input string            inDesc3="===========================";                        // =============== D. DAY TRADE ==================
+input bool              inDayTrade=true;                                              // D.01 Operacao apenas como day trade
+input int               inStartHour=9;                                                // D.02 Hora inicio negociacao
+input int               inStartWaitMin=1;                                             // D.03 Minutos a aguardar antes de iniciar operacoes
+input int               inStopHour=18;                                                // D.04 Hora final negociacao
+input int               inStopBeforeEndMin=15;                                        // D.05 Minutos antes do fim para encerrar posicoes
+input int               inNoTradeBeforeEndMin=75;                                     // D.06 Minutos antes do fim limite para abertura de trades
+
+input string            inDesc4="===========================";                        // ============= E. DEFINICAO DE STOPS ==========
+input SLTPType          inSLTP=SL_TP_AMPLITUDE;                                       // E.01 Tipo de stop e objetivo
+input double            inSLValue=1.0;                                                // E.01.1 Valor ou multiplicador stop loss (Zero desativa)
+input double            inSLMin=0.0;                                                  // E.01.1.1 Valor minimo em pontos para SL (zero ilimitado) 
+input double            inSLMax=0.0;                                                  // E.01.1.2 Valor maximo em pontos para SL (zero ilimitado) 
+input double            inTPValue=0.0;                                                // E.01.2 Valor ou multiplicador take profit (Zero desativa)
+input double            inTPMin=0.0;                                                  // E.01.2.1 Valor minimo em pontos para TP (zero ilimitado) 
+input double            inTPMax=0.0;                                                  // E.01.2.2 Valor maximo em pontos para TP (zero ilimitado)
+input int               inSLTPPeriod=20;                                              // E.01.3 Periodo dos indicadores para calculo de SL e TP
+input ENUM_TIMEFRAMES   inSLTPTimeframe=PERIOD_CURRENT;                               // E.01.4 Tempo grafico dos indicadores para calculo de SL e TP
+input trailingStopType  inTrailingStop=TRAILING_STOP_NONE;                            // E.02 Stop loss movel (Trailing Stop)
+input trStopTriggerType inTrailingStopTrigger=TRAILING_TRIGGER_PROFIT_BARS;           // E.02.1 Tipo de gatilho para iniciar trailing stop
+input int               inTrailingStopDelay=3;                                        // E.02.2 Numero barras, pontos ou % para iniciar trailing
+input double            inTrailingStopOffset=0;                                       // E.02.3 Valor fixo em pontos, % ou multiplicador ATR
+input int               inTrailingStopPeriod=9;                                       // E.02.4 Periodo dos trailing stops com indicadores
+input breakevenType     inBreakeven=BREAKEVEN_NONE;                                   // E.03 Aplicar breakeven apos movimentacao do ativo
+input double            inBreakevenValue=1.0;                                         // E.03.1 Valor em pontos, percentual ou multiplicador breakeven
+input double            inBreakevenOffset=0.0;                                        // E.03.2 Offset em relacao ao preco de entrada para breakeven
+input tpMoveType        inTPMove=TP_MOVE_NONE;                                        // E.04 Reducao do take profit (protecao)
+input double            inTPMoveTrigger=0.0;                                          // E.04.1 Tempo (min), recuo ou numero de acrescimos para reducao
+input double            inTPMoveValue=0.0;                                            // E.04.2 Nova distancia para take profit (Pontos, %, Pips - E.04)
+input bool              inTPMoveRefPriceMean=true;                                    // E.04.3 Usar preco medio como referencia (false - preco atual)
+input ENUM_TIMEFRAMES   inStopsTimeFrame=PERIOD_CURRENT;                              // E.05 Tempo grafico para atualizacao de stops
+input bool              inFixStopsSlippage=true;                                      // E.06 Corrigir stops em caso de slippage na entrada
+input timeStopCondType  inTimeStopCond=TIME_STOP_COND_NONE;                           // E.07 Usar stop de tempo
+input ENUM_TIMEFRAMES   inTimeStopPeriod=PERIOD_CURRENT;                              // E.07.1 Periodo para determinacao do stop no tempo
+input int               inTimeStopValue=10;                                           // E.07.2 Numero de barras considerado
+
+input string            inDesc7="===========================";                        // =========== V. PARCIAIS E ACRESCIMO ===========
+input partialProfitType inPartialProfit=PARTIAL_PROFIT_NONE;                          // V.01 Tipo das Realizacoes parciais
+input int               inPartialProfitNum=1;                                         // V.01.1 Numero de realizacoes parciais (max 9)
+input bool              inPartialProfitDistributedAs1=false;                          // V.01.2 Usar niveis com distancia padrao conforme #1
+input double            inPartialProfit1Level=0.0;                                    // V.01.3 Distancia para realizacao parcial #1
+input double            inPartialProfit1Vol=0.0;                                      // V.01.4 Quantidade executada na RP #1
+input double            inPartialProfit2Level=0.0;                                    // V.01.5 Distancia para realizacao parcial #2
+input double            inPartialProfit2Vol=0.0;                                      // V.01.6 Quantidade executada na RP #2
+input double            inPartialProfit3Level=0.0;                                    // V.01.7 Distancia para realizacao parcial #3
+input double            inPartialProfit3Vol=0.0;                                      // V.01.8 Quantidade executada na RP #3
+input positionAddType   inPositionAdd=POSITION_ADD_NONE;                              // V.02 Fazer acrescimo de posicao
+input int               inPositionAddNum=1;                                           // V.02.1 Numero de acrescimos de posicao (max 9)
+input positionAddDir    inPositionAddDir=POSITION_ADD_DIR_CON;                        // V.02.2 Direcao dos aumentos definidos manualmente
+input bool              inPositionAddDistributedAs1=false;                            // V.02.3 Usar niveis com distancia padrao conforme #1
+input positionAddInc    inPositionAddIncrement=POSITION_ADD_INC_NONE;                 // V.02.4 Incremento de volume a cada nivel padrao
+input double            inPositionAddLotMultiplier=1.0;                               // V.02.4.1 Valor para soma ou multiplicao de volume
+input double            inPositionAdd1Level=0.0;                                      // V.02.5 Distancia para acrescimo de posicao #1
+input double            inPositionAdd1Vol=0.0;                                        // V.02.6 Quantidade executada no acrescimo #1
+input double            inPositionAdd2Level=0.0;                                      // V.02.7 Distancia para acrescimo de posicao #2
+input double            inPositionAdd2Vol=0.0;                                        // V.02.8 Quantidade executada no acrescimo #2
+input double            inPositionAdd3Level=0.0;                                      // V.02.9 Distancia para acrescimo de posicao #3
+input double            inPositionAdd3Vol=0.0;                                        // V.02.10 Quantidade executada no acrescimo #3
+input bool              inPositionAddUpdateTP=false;                                  // V.02.11 Atualizar TP em relacao ao novo preco medio
+input bool              inPositionAddUpdateSL=false;                                  // V.02.12 Atualizar SL em relacao ao novo preco medio
+input bool              inPendingVolumeChangeOrders=false;                            // V.03 Usar ordens pendentes para RP e acrescimo
+   
+input string            inDesc5="===========================";                        // ============ F. LIMITES DE OPERACAO ===========
+input double            inMaxDayLoss=0.0;                                             // F.01 Perda maxima aceitavel no dia (Zero ilimitado)
+input double            inMaxDayProfit=0.0;                                           // F.02 Objetivo de lucro diario em dinheiro (Zero ilimitado)
+input double            inMaxWeekLoss=0.0;                                            // F.03 Perda maxima aceitavel na semana (Zero ilimitado)
+input double            inMaxWeekProfit=0.0;                                          // F.04 Objetivo de lucro semanal em dinheiro (Zero ilimitado)
+input double            inMaxMonthLoss=0.0;                                           // F.05 Perda maxima aceitavel no mes (Zero ilimitado)
+input double            inMaxMonthProfit=0.0;                                         // F.06 Objetivo de lucro mensal em dinheiro (Zero ilimitado)
+input int               inMaxDayTrades=0;                                             // F.07 Numero maximo de trades no dia (Zero ilimitado)
+input int               inMaxDayTP=0;                                                 // F.08 Numero maximo de take profits no dia (Zero ilimitado)
+input bool              inCheckPLAfterClose=false;                                    // F.09 Verificar limites de perda e ganho apos fechar trade
+input bool              inEquityControlEnable=false;                                  // F.10 Respeitar limites globais com RC-EquityControl
+input bool              inEquityControlCloseTrades=false;                             // F.10.1 Encerrar operacoes quando limite global for atingido 
+input bool              inAvoidGapDays=false;                                         // F.11 Evitar dias com abertura em gap maior que o valor abaixo
+input double            inMaxGapSize=0.0;                                             // F.11.1 Tamanho maximo do gap para permitir operacoes
+input bool              inTDWFilter=false;                                            // F.12 Filtrar operacoes por dia da semana
+input bool              inTDWMonday=true;                                             // F.12.1 Operar segunda-feira
+input bool              inTDWTuesday=true;                                            // F.12.2 Operar terca-feira
+input bool              inTDWWednesday=true;                                          // F.12.3 Operar quarta-feira
+input bool              inTDWThursday=true;                                           // F.12.4 Operar quinta-feira
+input bool              inTDWFriday=true;                                             // F.12.5 Operar sexta-feira
+input bool              inTDWSaturday=false;                                          // F.12.6 Operar sabado
+input bool              inTDWSunday=false;                                            // F.12.7 Operar domingo
+
+
+input string            inDesc6="===========================";                        // ======== G. INTERTRAVAMENTO ENTRE ROBOS =======
+input bool              inLockEnable=false;                                           // G.01 Habilita intertravamento
+input bool              inLockMaster=false;                                           // G.02 Robo e preferencial para trava
+input string            inLockName="globalLockPAPEL";                                 // G.03 Nome da trava (Ex: globalLockWDOX15)
+input double            inLockValue=0.0;                                              // G.04 Valor atribuido a trava (unico para cada EA)
+
+
+input string              inDescFilter1="===========================";                 // ======= H. PARAMETROS PARA FILTRAGEM DE TRADES =======
+input filterModeType      inFilterMode=FILTER_BOTH;                                    // H.01 Modo de operacao dos filtros
+input filterBarType       inFilterBar=FILTER_BAR_LAST;                                 // H.02 Barra usada na verificacao dos filtros
+input bool                inFilterSwapBuySell=false;                                   // H.03 Trocar sinais de compra e venda dos filtros
+input bool                inFilterShowIndicators=false;                                // H.04 Mostrar indicadores de filtro (apenas mesmo timeframe)
+input string              inDescFilPA="===========================";                   // ======== H.06. Filtro por Price Action =======
+input filterPAMode        inFilPABuy1Mode=PA_MODE_NONE;                                // H.06.1 Filtro Price Action para compras 1
+input filterPAMode        inFilPABuy2Mode=PA_MODE_NONE;                                // H.06.2 Filtro Price Action para compras 2
+input filterPAMode        inFilPABuy3Mode=PA_MODE_NONE;                                // H.06.3 Filtro Price Action para compras 3
+input filterPAMode        inFilPABuy4Mode=PA_MODE_NONE;                                // H.06.4 Filtro Price Action para compras 4
+input filterPAMode        inFilPABuy5Mode=PA_MODE_NONE;                                // H.06.5 Filtro Price Action para compras 5
+input filterPAMode        inFilPASell1Mode=PA_MODE_NONE;                               // H.06.6 Filtro Price Action para vendas 1
+input filterPAMode        inFilPASell2Mode=PA_MODE_NONE;                               // H.06.7 Filtro Price Action para vendas 2
+input filterPAMode        inFilPASell3Mode=PA_MODE_NONE;                               // H.06.8 Filtro Price Action para vendas 3
+input filterPAMode        inFilPASell4Mode=PA_MODE_NONE;                               // H.06.9 Filtro Price Action para vendas 4
+input filterPAMode        inFilPASell5Mode=PA_MODE_NONE;                               // H.06.10 Filtro Price Action para vendas 5
+input bool                inFilPAInvert4=false;                                        // H.06.11 Logica inversa filtro 4 compra e venda
+input bool                inFilPAInvert5=false;                                        // H.06.12 Logica inversa filtro 5 compra e venda
+input string              inFilPASymbol5="";                                           // H.06.13 Ativo usado no filtro 5 se diferente
+input string              inDescFilMA1="===========================";                  // ======== H.07. Filtro de Media Movel 1 ========
+input bool                inFilMA1Enable=false;                                        // H.07.1 Habilita Filtro de Media Movel 1
+input filMAMode           inFilMA1BuyMode=MA_MODE_DIR_UP;                              // H.07.2 Modo do filtro media 1 para compras 
+input filMAMode           inFilMA1SellMode=MA_MODE_DIR_DOWN;                           // H.07.3 Modo do filtro media 1 para vendas
+input ENUM_TIMEFRAMES     inFilMA1TimeFrame=PERIOD_CURRENT;                            // H.07.4 Tempo grafico media movel 1
+input int                 inFilMA1Period=20;                                           // H.07.5 Periodo media movel 1 (Barras)
+input filterMAType        inFilMA1Type=FILTER_MA_TYPE_SMA;                             // H.07.6 Tipo media movel 1 
+input ENUM_APPLIED_PRICE  inFilMA1Price=PRICE_CLOSE;                                   // H.07.7 Preco media movel 1
+input double              inFilMA1Offset=0.0;                                          // H.07.8 Afastamento da media movel 1
+input string              inFilMA1Symbol="";                                           // H.07.9 Ativo para calculo da media 1 (Se diferente do atual)
+input string              inDescFilMA2="===========================";                  // ======== H.08. Filtro de Media Movel 2 =======
+input bool                inFilMA2Enable=false;                                        // H.08.1 Habilita Filtro de Media Movel 2
+input filMAMode           inFilMA2BuyMode=MA_MODE_DIR_UP;                              // H.08.2 Modo do filtro media 2 para compras
+input filMAMode           inFilMA2SellMode=MA_MODE_DIR_DOWN;                           // H.08.3 Modo do filtro media 2 para vendas
+input ENUM_TIMEFRAMES     inFilMA2TimeFrame=PERIOD_CURRENT;                            // H.08.4 Tempo grafico media movel 2
+input int                 inFilMA2Period=20;                                           // H.08.5 Periodo media movel 2 (Barras)
+input filterMAType        inFilMA2Type=FILTER_MA_TYPE_SMA;                             // H.08.6 Tipo media movel 2
+input ENUM_APPLIED_PRICE  inFilMA2Price=PRICE_CLOSE;                                   // H.08.7 Preco media movel 2
+input double              inFilMA2Offset=0.0;                                          // H.08.8 Afastamento da media movel 2
+input string              inFilMA2Symbol="";                                           // H.08.9 Ativo para calculo da media 2 (Se diferente do atual)
+input string              inDescFilADX="===========================";                  // ============ H.09. Filtro pelo ADX ===========
+input bool                inFilADXEnable=false;                                        // H.09.1 Habilita Filtro pelo ADX
+input filADXMode          inFilADXBuyMode=ADX_MODE_DIP_ABOVE_DIM;                      // H.09.2 Modo do filtro ADX para compras
+input filADXMode          inFilADXSellMode=ADX_MODE_DIM_ABOVE_DIP;                     // H.09.3 Modo do filtro ADX para vendas
+input ENUM_TIMEFRAMES     inFilADXTimeFrame=PERIOD_CURRENT;                            // H.09.4 Tempo grafico para indicador ADX
+input int                 inFilADXPeriod=8;                                            // H.09.5 Periodo para ADX
+input double              inFilADXMin=20.0;                                            // H.09.6 Valor referencia do ADX
+input string              inDescFilMACD="===========================";                 // ========== H.10. Filtro pelo MACD ============
+input bool                inFilMACDEnable=false;                                       // H.10.1 Habilita Filtro pelo MACD
+input filMACDMode         inFilMACDBuyMode=MACD_MODE_ABOVE_ZERO;                       // H.10.2 Modo do filtro MACD para compras
+input filMACDMode         inFilMACDSellMode=MACD_MODE_BELOW_ZERO;                      // H.10.3 Modo do filtro MACD para vendas
+input ENUM_TIMEFRAMES     inFilMACDTimeFrame=PERIOD_CURRENT;                           // H.10.4 Tempo grafico para MACD
+input int                 inFilMACDFastMA=12;                                          // H.10.5 Periodo media rapida do MACD
+input int                 inFilMACDSlowMA=26;                                          // H.10.6 Periodo media lenta do MACD
+input int                 inFilMACDSignal=9;                                           // H.10.7 Periodo sinal do MACD
+input string              inDescFilSAR="===========================";                  // ========== H.11. Filtro pelo SAR =============
+input bool                inFilSAREnable=false;                                        // H.11.1 Habilita Filtro pelo SAR
+input filSARMode          inFilSARBuyMode=SAR_MODE_PRICE_ABOVE;                        // H.11.2 Modo do filtro SAR para compras
+input filSARMode          inFilSARSellMode=SAR_MODE_PRICE_BELOW;                       // H.11.3 Modo do filtro SAR para vendas
+input ENUM_TIMEFRAMES     inFilSARTimeFrame=PERIOD_CURRENT;                            // H.11.4 Tempo grafico para o SAR
+input double              inFilSARStep=0.02;                                           // H.11.5 Valor de passo para o SAR
+input double              inFilSARMax=0.2;                                             // H.11.6 Valor maximo para o SAR
+input string              inDescFilRSI="===========================";                  // ========== H.12. Filtro pelo IFR =============
+input bool                inFilRSIEnable=false;                                        // H.12.1 Habilita Filtro pelo IFR
+input filRSIMode          inFilRSIBuyMode=RSI_MODE_ABOVE_OS;                           // H.12.2 Modo do filtro IFR para compras
+input filRSIMode          inFilRSISellMode=RSI_MODE_BELOW_OB;                          // H.12.3 Modo do filtro IFR para vendas
+input ENUM_TIMEFRAMES     inFilRSITimeFrame=PERIOD_CURRENT;                            // H.12.4 Tempo grafico IFR
+input int                 inFilRSIPeriod=2;                                            // H.12.5 Periodo para o IFR
+input double              inFilRSIOSLevel=30.0;                                        // H.12.6 Nivel de sobrevenda do IFR
+input double              inFilRSIOBLevel=70.0;                                        // H.12.7 Nivel de sobrecompra do IFR
+input string              inDescFilVOL="===========================";                  // ========== H.13. Filtro por Volume ===========
+input bool                inFilVOLEnable=false;                                        // H.13.1 Habilita Filtro pelo Volume
+input filVOLMode          inFilVOLBuyMode=VOL_MODE_ABOVE_MEAN;                         // H.13.2 Modo do filtro Volume para compras
+input filVOLMode          inFilVOLSellMode=VOL_MODE_ABOVE_MEAN;                        // H.13.3 Modo do filtro Volume para vendas
+input ENUM_APPLIED_VOLUME inFilVOLType=VOLUME_REAL;                                    // H.13.4 Tipo de volume considerado
+input int                 inFilVOLMeanPeriod=40;                                       // H.13.5 Periodo da media movel do volume
+input string              inDescPhibo="===========================";                   // ========== H.14. Filtro pelo Phibo ===========
+input bool                inFilPhiboEnable=false;                                      // H.14.1 Habilita Filtro pelo Phibo
+input filPhiboMode        inFilPhiboBuyMode=PHIBO_MODE_ABOVE_PC1_PC2_PC3;              // H.14.2 Modo do filtro Phibo para compras
+input filPhiboMode        inFilPhiboSellMode=PHIBO_MODE_BELOW_PV1_PV2_PV3;             // H.14.3 Modo do filtro Phibo para vendas
+input ENUM_TIMEFRAMES     inFilPhiboTimeFrame=PERIOD_CURRENT;                          // H.14.4 Tempo grafico para o Phibo
+input string              inDescWPR="===========================";                     // ============ H.15. Filtro pelo WPR ===========
+input bool                inFilWPREnable=false;                                        // H.15.1 Habilita Filtro pelo Williams' Percent Range
+input filWPRMode          inFilWPRBuyMode=WPR_MODE_ABOVE_OB;                           // H.15.2 Modo do filtro WPR para compras
+input filWPRMode          inFilWPRSellMode=WPR_MODE_BELOW_OS;                          // H.15.3 Modo do filtro WPR para vendas
+input ENUM_TIMEFRAMES     inFilWPRTimeFrame=PERIOD_CURRENT;                            // H.15.4 Tempo grafico para o WPR
+input int                 inFilWPRPeriod=34;                                           // H.15.5 Periodo para calculo do WPR
+input double              inFilWPROSLevel=-80;                                         // H.15.6 Nivel de sobrevenda do WPR
+input double              inFilWPROBLevel=-20;                                         // H.15.7 Nivel de sobrecompra do WPR
+input string              inDescMT="===========================";                      // ======= H.16. Filtro pelo MasterTrend =========
+input bool                inFilMTEnable=false;                                         // H.16.1 Habilita Filtro pelo MasterTrend
+input filMTMode           inFilMTBuyMode=MT_MODE_BUY_LINE;                             // H.16.2 Modo do filtro MasterTrend para compras
+input filMTMode           inFilMTSellMode=MT_MODE_SELL_LINE;                           // H.16.3 Modo do filtro MasterTrend para vendas
+input ENUM_TIMEFRAMES     inFilMTTimeFrame=PERIOD_CURRENT;                             // H.16.4 Tempo grafico para o MasterTrend
+input int                 inFilMTCCIPeriod=10;                                         // H.16.5 Periodo do CCI para calculo do MasterTrend
+input int                 inFilMTATRPeriod=5;                                          // H.16.6 Periodo do ATR para calculo do MasterTrend
+input double              inFilMTATRRate=1.0;                                          // H.16.7 Multiplicador do ATR para calculo do MasterTrend
+input int                 inFilMTMAPeriod=40;                                          // H.16.8 Periodo Media Movel para calculo do MasterTrend
+input string              inDescGMMA="===========================";                    // ======= H.17. Filtro pelo GMMA - Guppy ========
+input bool                inFilGMMAEnable=false;                                       // H.17.1 Habilita Filtro pelo GMMA
+input filGMMAMode         inFilGMMABuyMode=GMMA_MODE_UP;                               // H.17.2 Modo do filtro GMMA para compras
+input filGMMAMode         inFilGMMASellMode=GMMA_MODE_DOWN;                            // H.17.3 Modo do filtro GMMA para vendas
+input ENUM_TIMEFRAMES     inFilGMMATimeFrame=PERIOD_CURRENT;                           // H.17.4 Tempo grafico para o GMMA
+input string              inDescATR="===========================";                    // ============ H.18. Filtro pelo ATR =============
+input bool                inFilATREnable=false;                                       // H.18.1 Habilita Filtro pelo ATR
+input filATRMode          inFilATRBuyMode=ATR_MODE_GT_REFERENCE;                      // H.18.2 Modo do filtro ATR para compras
+input filATRMode          inFilATRSellMode=ATR_MODE_GT_REFERENCE;                     // H.18.3 Modo do filtro ATR para vendas
+input ENUM_TIMEFRAMES     inFilATRTimeFrame=PERIOD_CURRENT;                           // H.18.4 Tempo grafico para o ATR
+input int                 inFilATRPeriod=14;                                          // H.18.5 Periodo para calculo do ATR
+input double              inFilATRReference1=0.0;                                     // H.18.6 Valor de referencia 1 para o ATR
+input double              inFilATRReference2=0.0;                                     // H.18.7 Valor de referencia 2 para o ATR
+input string              inDescSTDDEV="===========================";                 // ======= H.19. Filtro pelo Desvio Padrao ========
+input bool                inFilSTDDEVEnable=false;                                    // H.19.1 Habilita Filtro pelo Desvio Padrao
+input filSTDDEVMode       inFilSTDDEVBuyMode=STDDEV_MODE_GT_REFERENCE;                // H.19.2 Modo do filtro desvio padrao para compras
+input filSTDDEVMode       inFilSTDDEVSellMode=STDDEV_MODE_GT_REFERENCE;               // H.19.3 Modo do filtro desvio padrao para vendas
+input ENUM_TIMEFRAMES     inFilSTDDEVTimeFrame=PERIOD_CURRENT;                        // H.19.4 Tempo grafico para o desvio padrao
+input int                 inFilSTDDEVPeriod=6;                                        // H.19.5 Periodo para calculo do desvio padrao
+input double              inFilSTDDEVReference=0.0;                                   // H.19.6 Valor de referencia para o desvio padrao
+input string              inDescFilHILO="===========================";                // =========== H.20. Filtro pelo HiLo =============
+input bool                inFilHILOEnable=false;                                      // H.20.1 Habilita Filtro pelo HiLo
+input filHILOMode         inFilHILOBuyMode=HILO_MODE_PRICE_ABOVE;                     // H.20.2 Modo do filtro HiLo para compras
+input filHILOMode         inFilHILOSellMode=HILO_MODE_PRICE_BELOW;                    // H.20.3 Modo do filtro HiLo para vendas
+input ENUM_TIMEFRAMES     inFilHILOTimeFrame=PERIOD_CURRENT;                          // H.20.4 Tempo grafico para o HiLo
+input int                 inFilHILOPeriod=3;                                          // H.20.5 Periodo para calculo do HiLo
+input string              inDescFilRAFI="===========================";                // =========== H.21. Filtro pelo RAFI =============
+input bool                inFilRAFIEnable=false;                                      // H.21.1 Habilita Filtro pelo RAFI
+input filRAFIMode         inFilRAFIBuyMode=RAFI_MODE_VERY_STRONG;                     // H.21.2 Modo do filtro RAFI para compras
+input filRAFIMode         inFilRAFISellMode=RAFI_MODE_VERY_STRONG;                    // H.21.3 Modo do filtro RAFI para vendas
+input ENUM_TIMEFRAMES     inFilRAFITimeFrame=PERIOD_CURRENT;                          // H.21.4 Tempo grafico para o RAFI
+input string              inDescFilCCI="===========================";                 // =========== H.22. Filtro pelo CCI =============
+input bool                inFilCCIEnable=false;                                       // H.22.1 Habilita Filtro pelo CCI
+input filCCIMode          inFilCCIBuyMode=CCI_MODE_ABOVE_100;                         // H.22.2 Modo do filtro CCI para compras
+input filCCIMode          inFilCCISellMode=CCI_MODE_BELOW_100;                        // H.22.3 Modo do filtro CCI para vendas
+input ENUM_TIMEFRAMES     inFilCCITimeFrame=PERIOD_CURRENT;                           // H.22.4 Tempo grafico para o CCI
+input int                 inFilCCIPeriod=20;                                          // H.22.5 Periodo para calculo do CCI
+input string              inDescFilVolty="===========================";               // ======= H.23. Filtro pelo VoltyChannel ========
+input bool                inFilVoltyEnable=false;                                     // H.23.1 Habilita Filtro pelo VoltyChannel
+input filVoltyMode        inFilVoltyBuyMode=VOLTY_MODE_BUY_LINE;                      // H.23.2 Modo do filtro VoltyChannel para compras
+input filVoltyMode        inFilVoltySellMode=VOLTY_MODE_SELL_LINE;                    // H.23.3 Modo do filtro VoltyChannel para vendas
+input ENUM_TIMEFRAMES     inFilVoltyTimeFrame=PERIOD_CURRENT;                         // H.23.4 Tempo grafico para o VoltyChannel
+input int                 inFilVoltyMAPeriod=1;                                       // H.23.5 Periodo media movel VoltyChannel
+input ENUM_MA_METHOD      inFilVoltyMAMethod=MODE_SMA;                                // H.23.6 Metodo de calculo media movel VoltyChannel
+input ENUM_APPLIED_PRICE  inFilVoltyMAPrice=PRICE_CLOSE;                              // H.23.7 Preco usado media movel VoltyChannel
+input int                 inFilVoltyATRPeriod=10;                                     // H.23.8 Periodo do ATR para VoltyChannel
+input double              inFilVoltyVolFactor=4.0;                                    // H.23.9 Fator de volatilidade VoltyChannel 
+input double              inFilVoltyOffsetFactor=1.0;                                 // H.23.10 Fator de offset VoltyChannel
+input bool                inFilVoltyUseBreak=true;                                    // H.23.11 Usar rompimentos para VoltyChannel
+input bool                inFilVoltyUseEnvelopes=true;                                // H.23.12 Usar envelopes para VoltyChannel
+input string              inDescFilST="===========================";                  // ======= H.24. Filtro pelo SilverTrend =========
+input bool                inFilSTEnable=false;                                        // H.24.1 Habilita Filtro pelo SilverTrend
+input filSTMode           inFilSTBuyMode=ST_MODE_BUY_LINE;                            // H.24.2 Modo do filtro SilverTrend para compras
+input filSTMode           inFilSTSellMode=ST_MODE_SELL_LINE;                          // H.24.3 Modo do filtro SilverTrend para vendas
+input ENUM_TIMEFRAMES     inFilSTTimeFrame=PERIOD_CURRENT;                            // H.24.4 Tempo grafico para o SilverTrend
+input int                 inFilSTRisk=3;                                              // H.24.5 Parametro Risco do SilverTrend
+input string              inDescFilTick="===========================";                // ===== H.25. Filtro por saldo de agressao ======
+input bool                inFilTickEnable=false;                                      // H.25.1 Habilita Filtro por saldo de agressao (ticks)
+input filTickMode         inFilTickBuyMode=TICK_MODE_BUY_DAY;                         // H.25.2 Modo do filtro de ticks para compras
+input filTickMode         inFilTickSellMode=TICK_MODE_SELL_DAY;                       // H.25.3 Modo do filtro de ticks para vendas
+input ENUM_TIMEFRAMES     inFilTickTimeFrame=PERIOD_CURRENT;                          // H.25.4 Tempo grafico para a analise de ticks
+input double              inFilTickMinDif=0.0;                                        // H.25.5 Saldo minimo esperado para permitir trades         
+
+enum OpenGapType {
+   GAP_UNAWARE,         // Com ou sem gap
+   GAP_LAST_BAR,        // Barra de fechamento
+   GAP_HI_LO_DAY        // Max/Min dia anterior
+};
+
+enum GapCalcType {
+   GAP_CALC_OPEN,       // Preco de abertura
+   GAP_CALC_BAR         // Barra completa
+};
+
+enum GapDirType {
+   GAP_DIR_BOTH,        // Ambas direcoes
+   GAP_DIR_PRO,         // A favor do gap
+   GAP_DIR_CON          // Contrario ao gap
+};      
+
+enum OffsetType {
+   OFFSET_POINTS,       // Absoluto em pontos
+   OFFSET_MULT          // Proporcao amplitude
+
+};
+
+input string      inDesc1stBar="===========================";  // ====== R.01. PARAMETROS PRIMEIRA BARRA ======
+input OpenGapType inOpenGap=GAP_UNAWARE;                       // R.01.1 Operar gaps de abertura
+input double      inGapSize=0;                                 // R.01.2 Tamanho do gap operado
+input GapCalcType inGapCalc=GAP_CALC_OPEN;                     // R.01.3 Considerar gap como abertura ou barra
+input double      inPriceOffset=0;                             // R.01.4 Offset de rompimento para confirmacao
+input OffsetType  inOffsetType=OFFSET_POINTS;                  // R.01.5 Tipo do offset aplicado no ponto de entrada
+input GapDirType  inGapDir=GAP_DIR_BOTH;                       // R.01.6 Orientacao do trade em relacao ao gap    
+input bool        inCloseConfirm=false;                        // R.01.7 Aguardar fechamento para confirmacao
+input bool        inBarFilter=false;                           // R.01.8 Opera apenas continuacao da barra
+input double      inBarMinSize=0.0;                            // R.01.9 Amplitude minima da primeira barra (0.0 - qualquer)
+input double      inBarMaxSize=1.0e6;                          // R.01.10 Amplitude maxima da primeira barra
+input bool        inInvertSignal=false;                        // R.01.11 Inverter sinais de compra e venda
+input bool        inSkipFirstBreakout=false;                   // R.01.12 Nao operar primeiro rompimento do dia
+input int         inWaitBarsAfterFirstBreakout=0;              // R.01.12.1 Numero minimo de barras apos primeiro rompimento
+
+
+enum bandsDirectionType {
+
+   BANDS_DIR_TREND,           // A favor da tendencia
+   BANDS_DIR_COUNTER          // Contra tendencia (retorno media) 
+
+};
+
+
+enum bandsStartModeType {
+   
+   BANDS_START_CLOSE_OUT,     // Fechamento fora das bandas
+   BANDS_START_CLOSE_IN,      // Retorno e fechamento dentro bandas
+   BANDS_START_MIN_MAX,       // Candle que toca as bandas
+   BANDS_START_BAND_TURN      // Bandas virando
+
+};
+
+enum bandsCloseModeType {
+
+   BANDS_CLOSE_NONE,          // No take profit
+   BANDS_CLOSE_MEAN,          // Na media
+   BANDS_CLOSE_OPPOSITE_BAND, // Na banda oposta
+   BANDS_CLOSE_MEAN_OPPOSITE  // 50% na media e 50% na banda
+   
+};
+
+
+enum bandsLimitType {
+
+   BANDS_LIMIT_NONE,          // Sem limitacao
+   BANDS_LIMIT_POINTS,        // Definido em pontos ou $
+   BANDS_LIMIT_ATR            // Multiplicador do ATR(20)
+
+};
+
+                                                                          
+input string             inDescBands="===========================";     // ==== R.02. PARAMETROS BANDAS DE BOLLINGER ===
+input int                inBandsPeriod=20;                              // R.02.1 Periodo da Banda de Bollinger
+input double             inBandsDeviation=2.0;                          // R.02.2 Desvio Padrao da Banda de Bollinger
+input ENUM_APPLIED_PRICE inBandsPrice=PRICE_CLOSE;                      // R.02.3 Preco usado na Banda de Bollinger
+input bandsDirectionType inBandsDirection=BANDS_DIR_COUNTER;            // R.02.4 Direcao das operacoes
+input bandsStartModeType inBandsStartMode=BANDS_START_CLOSE_OUT;        // R.02.5 Modo de abertura da posicao
+input bandsCloseModeType inBandsCloseMode=BANDS_CLOSE_MEAN;             // R.02.6 Ponto de encerramento da posicao
+input refEntryPrice      inBandsRefPrice=REF_ENTRY_LAST_CLOSE;          // R.02.7 Preco de referencia para entradas
+input bandsLimitType     inBandsAmpLimit=BANDS_LIMIT_NONE;              // R.02.8 Limite amplitude Bandas Bollinger
+input double             inBandsAmpMin=0.0;                             // R.02.8.1 Valor para amplitude minima
+input double             inBandsAmpMax=0.0;                             // R.02.8.2 Valor para amplitude maxima
+input bool               inBandAvoidPrevDayBars=true;                   // R.02.9 Evitar o uso de barras do dia anterior
+
+
+input string             inDescCCIMA="===========================";  // ========== R.03. PARAMETROS CCI/MA ==========
+input int                inCCIMAPeriod=10;                           // R.03.1 Periodo para CCI e sua media movel
+input ENUM_MA_METHOD     inCCIMAType=MODE_SMA;                       // R.03.2 Metodo de calculo da media movel
+input double             inCCIOBLevel=100.0;                         // R.03.3 Nivel de sobrecompra CCI
+input double             inCCIOSLevel=-100.0;                        // R.03.4 Nivel de sobrevenda CCI
+
+
+enum MaxMinCalcType {
+
+   MAX_MIN_CLOSE,       // Precos de fechamento
+   MAX_MIN_HI_LO        // Maximas e minimas
+
+};
+
+input string         inDescCTOD="==========================="; // =========== R.04. PARAMETROS CTOD ===========
+input int            inObservedBars=12;                        // R.04.1 Numero de barras observadas
+input int            inIgnoredBars=0;                          // R.04.2 Numero de barras iniciais desprezadas
+input MaxMinCalcType inMaxMinCalc=MAX_MIN_CLOSE;               // R.04.3 Referencia de calculo dos pontos de entrada
+input double         inPriceOffset=0;                          // R.04.4 Offset de rompimento para confirmacao
+input bool           inCloseConfirm=false;                     // R.04.5 Aguardar fechamento para confirmacao
+input bool           inCrossBar=true;                          // R.04.6 Operar apenas barra com abertura dentro dos limites
+input bool           inFirstCloseConfirm=false;                // R.04.7 Aguarda fechamento da primeira barra
+input bool           inTradeFakeBreakout=false;                // R.04.8 Operar buscando falso rompimento
+input double         inMinAmp=10.0;                            // R.04.9 Valor minimo diferenca entre fechamentos
+input double         inMaxAmp=40.0;                            // R.04.10 Valor maximo diferenca entre fechamentos
+input bool           inInvertSignal=false;                     // R.04.11 Inverter sinais de compra e venda
+input bool           inSkipFirstBreakout=false;                // R.04.12 Nao operar primeiro rompimento do dia
+input int            inWaitBarsAfterFirstBreakout=0;           // R.04.12.1 Numero minimo de barras apos primeiro rompimento
+
+
+input string         inDescDunnigan="===========================";   // ========= R.05. PARAMETROS DUNNIGAN =========
+input bool           inAvoidGaps=true;                               // R.05.1 Nao considerar gaps como Dunnigan
+input bool           inNextBarBreak=true;                            // R.05.2 Operar apenas rompimentos na barra seguinte
+input double         inPriceOffset=0;                                // R.05.3 Offset de rompimento para confirmacao
+
+input string         inDescEngulfing="===========================";  // ======== R.06. PARAMETROS ENGULFING =========
+input double         inMinAmplitude=0.0;                             // R.06.1 Amplitude minima da corpo na barra de sinal
+input int            inCompareBars=5;                                // R.06.2 Numero de Barras para Determinar Minimo/Maximo
+input bool           inBandsFilter=false;                            // R.06.3 Filtrar com bandas de bollinger (fora)
+input int            inBandsPeriod=20;                               // R.06.3.1 Periodo para media bollinger
+input double         inBandsDev=1.0;                                 // R.06.3.2 Multiplicador desvio padrao bollinger
+
+
+enum Smooth_Method {
+      MODE_SMA_,  //SMA
+      MODE_EMA_,  //EMA
+      MODE_SMMA_, //SMMA
+      MODE_LWMA_  //LWMA
+};
+
+
+
+
+input string      inDescGap="===========================";  // ========== R.07. PARAMETROS GAPS ============
+input double      inGapSize=0;                              // R.07.1 Tamanho do gap operado
+input GapDirType  inGapDir=GAP_DIR_BOTH;                    // R.07.2 Orientacao do trade em relacao ao gap    
+input bool        inBarFilter=false;                        // R.07.3 Opera apenas continuacao da barra
+
+                                                                           
+input string             inDescHeikenAshi="==========================="; // ======= R.08 PARAMETROS HEIKEN ASHI ========
+input Smooth_Method      inHASMethod=MODE_EMA_;                          // R.08.1 Metodo de calculo da media para suavizacao
+input int                inHASmLength=35;                                // R.08.2 Periodo da media para suavizacao
+input ENUM_MA_METHOD     inHAMAMethod=MODE_SMA;                          // R.08.3 Metodo de calculo da media do Heiken Ashi
+input int                inHAMAPeriod=2;                                 // R.08.4 Periodo da media do Heiken Ashi
+input ENUM_APPLIED_PRICE inHAMAPrice=PRICE_OPEN;                         // R.08.5 Preco usado na media do Heiken Ashi
+input int                inHAMAShift=1;                                  // R.08.6 Deslocamento da media do Heiken Ashi
+
+
+enum IFRExitSignalType {
+   IFR_EXIT_OB_OS,        // Superacao percentual SC/SV
+   IFR_EXIT_MA,           // Retorno para media movel
+   IFR_EXIT_PARTIAL,      // 50% media 50% percentual
+   IFR_EXIT_NONE          // Nenhum - usa o stop movel
+};
+
+enum IFRStartSignalType {
+   IFR_START_CLOSE,        // Fechamento alem de SC/SV
+   IFR_START_CROSS         // Cruzameno limites SC/SV
+};
+
+
+input string             inDescIFR="===========================";    // =========== R.09. PARAMETROS IFR ============
+input int                inIFRPeriod=2;                              // R.09.1 Periodo (Numero de barras)
+input ENUM_APPLIED_PRICE inIFRPrice=PRICE_CLOSE;                     // R.09.2 Preco usado no IFR
+input double             inOSLevel=5.0;                              // R.09.3 Nivel de sobrevenda (%)
+input double             inOBLevel=95.0;                             // R.09.4 Nivel de sobrecompra (%)
+input IFRStartSignalType inIFRStartSignal=IFR_START_CLOSE;           // R.09.5 Ponto de entrada pelo IFR
+input IFRExitSignalType  inIFRExitSignal=IFR_EXIT_MA;                // R.09.6 Metodo de Saida da Operacao
+input int                inMAPeriod=7;                               // R.09.6.1 Periodo da media movel
+input ENUM_MA_METHOD     inMAType=MODE_SMA;                          // R.09.6.2 Tipo da media movel
+input ENUM_APPLIED_PRICE inMAPrice=PRICE_CLOSE;                      // R.09.6.3 Preco para calculo da media
+
+
+
+input string      inDescInsideDay="==========================="; // ==== R.10. PARAMETROS INSIDE DAY BREAKOUT ===
+input bool        inAvoidGaps=true;                              // R.10.1 Nao operar abertura com gap fora da inside bar
+input double      inPriceOffset=0;                               // R.10.2 Offset de rompimento para confirmacao
+input bool        inCloseConfirm=false;                          // R.10.3 Aguardar fechamento para confirmacao
+input bool        inInvertSignal=false;                          // R.10.4 Inverter sinais de compra e venda
+input bool        inSkipFirstBreakout=false;                     // R.10.5 Nao operar primeiro rompimento do dia
+input int         inWaitBarsAfterFirstBreakout=0;                // R.10.5.1 Numero minimo de barras apos primeiro rompimento
+
+
+input string      inDescLastDay="===========================";   // ====== R.11. PARAMETROS LAST DAY BREAKOUT =====
+input bool        inAvoidGaps=true;                              // R.11.1 Nao operar abertura com gap alem da max/min anterior
+input double      inPriceOffset=0;                               // R.11.2 Offset de rompimento para confirmacao
+input bool        inCloseConfirm=false;                          // R.11.3 Aguardar fechamento para confirmacao
+input bool        inInvertSignal=false;                          // R.11.4 Inverter sinais de compra e venda
+input bool        inSkipFirstBreakout=false;                     // R.11.5 Nao operar primeiro rompimento do dia
+input int         inWaitBarsAfterFirstBreakout=0;                // R.11.5.1 Numero minimo de barras apos primeiro rompimento
+input double      inMaxDistancePlaceOrder=0.0;                   // R.11.6 Distancia maxima entre abertura e pontos de entrada
+
+
+         
+input string      inDescLinhaDagua="==========================="; // ======= R.12. PARAMETROS LINHA D'AGUA =======
+input double      inGapSize=0;                                    // R.12.1 Tamanho do gap operado
+input bool        inCloseConfirm=false;                           // R.12.2 Aguardar confirmacao com fechamento
+input bool        inInvertSignal=false;                           // R.12.3 Inverter sinais de compra e venda
+input bool        inSkipFirstBreakout=false;                      // R.12.4 Nao operar primeiro rompimento do dia
+input int         inWaitBarsAfterFirstBreakout=0;                 // R.12.4.1 Numero minimo de barras apos primeiro rompimento
+
+
+         
+enum SecInTypeMac {
+
+   SEC_IN_NONE,            // Nao fazer
+   SEC_IN_RET_CHANNEL      // Retorno ao canal
+
+};
+
+input string         inDescMAC="===========================";  // =========== R.13. PARAMETROS MAC ============
+input int            inMAHighPeriod=9;                         // R.13.1 Periodo da Media Movel das Maximas
+input int            inMALowPeriod=9;                          // R.13.2 Periodo da Media Movel das Minimas
+input ENUM_MA_METHOD inMAType=MODE_SMA;                        // R.13.3 Metodo de Calculo das Medias Moveis
+input SecInTypeMac      inSecondaryIn=SEC_IN_NONE;             // R.13.4 Metodo de Entrada Secundario
+
+
+         
+enum  MROpMode {
+
+   MR_OP_MODE_BREAKOUT,          // Na superacao do afastamento
+   MR_OP_MODE_CLOSE_OUT,         // Fechamento alem do afastamento
+   MR_OP_MODE_CLOSE_IN,          // Retorno com fechamento dentro
+   MR_OP_MODE_COUNTER_CLOSE      // Fechamento fora e candle contra media
+
+};
+
+
+enum MRExitMethod {
+
+   MR_EXIT_PARAM,     // Usar parametro geral TP
+   MR_EXIT_TP_MA,     // Take profit na media movel
+   MR_EXIT_CLOSE      // Fechamento alem da media
+
+};
+
+input string         inDescMeanReversal="===========================";  // ====== R.15. PARAMETROS MEAN REVERSAL =======
+input int            inMRMeanPeriod=15;                                 // R.15.1 Periodo da media movel de referencia
+input ENUM_MA_METHOD inMRMAMethod=MODE_SMA;                             // R.15.2 Metodo de calculo da media movel de referencia
+input double         inMRFixedDistance=800.0;                           // R.15.3 Distancia fixa de afastamento da media
+input int            inMRATRPeriod=0;                                   // R.15.4 Periodo do ATR para somar ao afastamento
+input double         inMRATRMultiplier=1.0;                             // R.15.4.1 Multiplicador aplicado ao ATR
+input int            inMRStdDevPeriod=20;                               // R.15.5 Periodo do desvio padrao para somar ao afastamento
+input double         inMRStdDevMultiplier=1.0;                          // R.15.5.1 Multiplicador aplicado ao desvio padrao
+input MROpMode       inMROperationMode=MR_OP_MODE_BREAKOUT;             // R.15.6 Modo de determinacao dos pontos de entrada
+input bool           inMRPositionAdd=false;                             // R.15.6.1 Fazer aumento de posicao a cada candle contra media
+input double         inMRPositionAddMinDistance=0.0;                    // R.15.6.2 Deslocamento minimo para fazer aumento de posicao
+input bool           inMRWaitForBreakout=true;                          // R.15.7 Aguardar superacao do afastamento para colocar ordens
+input MRExitMethod   inMRExitMethod=MR_EXIT_TP_MA;                      // R.15.8 Metodo usado para saida do trade
+
+
+enum MAType {
+
+   MA_TYPE_SMA,         // Simples (SMA)
+   MA_TYPE_EMA,         // Exponencial (EMA)
+   MA_TYPE_SMMA,        // Suavizada (SMA)
+   MA_TYPE_LWMA,        // Ponderada (LWMA)
+   MA_TYPE_FRAMA,       // Adaptativa Fractal (FrAMA)
+   MA_TYPE_DEMA,        // Exponencial Dupla (DEMA)
+   MA_TYPE_TEMA,        // Exponencial Tripla (TEMA)
+   MA_TYPE_VWAP,        // Ponderada por Volume (VWAP)
+   MA_TYPE_HMA          // Hull (HMA)
+   
+};
+
+input string             inDescMMECros="===========================";   // === R.16. PARAMETROS CRUZAMENTO DE MEDIAS ===
+input MAType             inFastMAType=MA_TYPE_EMA;                      // R.16.1 Tipo da media movel rapida
+input int                inFastMAPeriod=4;                              // R.16.1.1 Periodo da media movel rapida
+input ENUM_APPLIED_PRICE inFastMAPrice=PRICE_CLOSE;                     // R.16.1.2 Preco usado no calculo da media rapida
+input int                inFastMAShift=0;                               // R.16.1.3 Deslocamento da media movel rapida
+input MAType             inSlowMAType=MA_TYPE_EMA;                      // R.16.2 Tipo da media movel lenta
+input int                inSlowMAPeriod=17;                             // R.16.2.1 Periodo da media movel lenta
+input ENUM_APPLIED_PRICE inSlowMAPrice=PRICE_CLOSE;                     // R.16.2.2 Preco usado no calculo da media lenta
+input int                inSlowMAShift=0;                               // R.16.2.3 Deslocamento da media movel lenta
+input MAType             inSuperSlowMAType=MA_TYPE_EMA;                 // R.16.3 Tipo da media movel super lenta
+input int                inSuperSlowMAPeriod=0;                         // R.16.3.1 Periodo da media super lenta (zero desativa)
+input ENUM_APPLIED_PRICE inSuperSlowMAPrice=PRICE_CLOSE;                // R.16.3.2 Preco usado no calculo da media super lenta
+input int                inSuperSlowMAShift=0;                          // R.16.3.3 Deslocamento da media movel super lenta
+input refEntryPrice      inRefPrice=REF_ENTRY_LAST_BAR;                 // R.16.4 Preco de referencia para entrada
+
+
+enum SecInType {
+
+   SEC_IN_NONE,            // Nao fazer
+   SEC_IN_CLOSE_MIN_MAX,   // Fechamento abaixo minima 
+   SEC_IN_3_CLOSE_DOWN,    // Tres fechamentos em queda
+   SEC_IN_TOUCH_MA         // Retorno ate a media movel
+
+};
+
+
+input string         inDescMME="===========================";  // =========== R.17. PARAMETROS MME ============
+input int            inMAPeriod=9;                             // R.17.1 Periodo da media movel
+input ENUM_MA_METHOD inMAType=MODE_EMA;                        // R.17.2 Metodo de calculo da media movel
+input SecInType      inSecondaryIn=SEC_IN_NONE;                // R.17.3 Metodo de entrada secundario
+
+
+input string      inDescGap="===========================";  // ========== R.18. PARAMETROS OOPS ============
+input double      inGapSize=0;                              // R.18.1 Tamanho do gap operado
+
+
+input string         inDescPivot="===========================";   // ====== R.19. PARAMETROS PIVOT BREAKOUT ======
+input int            inPivotCompareBars=5;                        // R.19.1 Numero de Barras para Determinar Minimo/Maximo
+input int            inPivotSwingFilterBars=0;                    // R.19.2 Numero de Barras para Confirmacao de Rompimento
+input double         inPivotPriceOffset=0.0;                      // R.19.3 Offset de rompimento para confirmacao
+input bool           inPivotCloseConfirm=false;                   // R.19.4 Aguarda fechamento para confirmacao
+input bool           inPivotMoveStop=true;                        // R.19.5 Move o stop para o ultimo fundo/topo
+
+
+
+
+input string             inDescPtoContinuo="===========================";  // ====== R.20. PARAMETROS PONTO CONTINUO ======
+input int                inMAPeriod=20;                                    // R.20.1 Periodo da media movel 
+input MAType             inMAType=MA_TYPE_SMA;                             // R.20.2 Tipo da media movel
+input ENUM_APPLIED_PRICE inMAPrice=PRICE_CLOSE;                            // R.20.3 Preco usado no calculo das medias
+input int                inMAShift=0;                                      // R.20.4 Deslocamento da media movel
+input double             inTouchMargin=0.0;                                // R.20.5 Margem em relacao a media para toque
+input refEntryPrice      inRefPrice=REF_ENTRY_LAST_BAR;                    // R.20.6 Preco de referencia para entrada
+
+
+input string             inDescShadow="===========================";    // ======== R.21. PARAMETROS SHADOW LINE =======
+input int                inShadowMAPeriod=10;                           // R.21.1 Periodo da media movel
+input int                inShadowShift=1;                               // R.21.2 Deslocamento da sombra
+input ENUM_MA_METHOD     inShadowMAType=MODE_EMA;                       // R.21.3 Metodo de calculo da media movel
+input ENUM_APPLIED_PRICE inShadowMAPrice=PRICE_CLOSE;                   // R.21.4 Preco usado no calculo da media
+
+
+enum StoTradeModeType {
+   STO_MODE_POP,          // Estocastico Pop
+   STO_MODE_OB_OS,        // Sobrecompra/Sobrevenda
+   STO_MODE_BOTH          // Ambos
+};
+
+enum StoExitSignalType {
+   STO_EXIT_CROSS,        // Cruzamento principal/sinal
+   STO_EXIT_PERCENT,      // Superacao percentual SC/SV
+   STO_EXIT_PARTIAL,      // 50% cruzando 50% percentual
+   STO_EXIT_NONE          // Nenhum - usa o stop movel
+};
+                                             
+
+input string            inDescSto="===========================";  // ======== R.22. PARAMETROS ESTOCASTICO =======
+input int               inKPeriod=14;                             // R.22.1 Periodo %K (Numero de barras)
+input int               inDPeriod=3;                              // R.22.2 Periodo %D (Primeira suavizacao)
+input int               inSlowing=3;                              // R.22.3 Periodo de suavizacao final
+input ENUM_MA_METHOD    inSlowingType=MODE_EMA;                   // R.22.4 Metodo de calculo da suavizacao (Media Movel)
+input ENUM_STO_PRICE    inStoPrice=STO_CLOSECLOSE;                // R.22.5 Preco considerado no estocastico
+input double            inOSLevel=25.0;                           // R.22.6 Nivel de sobrevenda (%)
+input double            inOBLevel=75.0;                           // R.22.7 Nivel de sobrecompra (%)
+input StoTradeModeType  inStoTradeMode=STO_MODE_POP;              // R.22.8 Modo de operacao pelo estocastico
+input StoExitSignalType inStoExitSignal=STO_EXIT_PARTIAL;         // R.22.9 Metodo de saida da operacao
+
+
+input string         inDescTBR="===========================";  // ==== R.23. PARAMETROS THREE BAR REVERSAL ====
+input int            inTBRCompareBars=5;                       // R.23.1 Numero de barras para determinar minimo/maximo
+input bool           inTBRCloseAboveBars=true;                 // R.23.2 Barra de reversao deve fechar alem das duas barras         
+         
+
+
+input string         inDescTurtleTrader="===========================";  // ====== R.24. PARAMETROS TURTLE TRADER =======
+input MaxMinCalcType inTTMaxMinCalc=MAX_MIN_HI_LO;                      // R.24.1 Precos para calculo dos pontos de entrada
+input int            inTTNumBarMax=17;                                  // R.24.2 Numero de barras para verificacao da maxima (compra)
+input int            inTTNumBarMin=17;                                  // R.24.3 Numero de barras para verificacao da minima (venda)
+input bool           inInvertSignals=false;                             // R.24.4 Inverter sinais de compra e venda
+
+
+// Tipos de determinacao de volatilidade
+enum VolCalcType {
+
+   VOLATILITY_MAX_CLOSE,     // Diferenca entre maxima e fechamento
+   VOLATILITY_MIN_CLOSE,     // Diferenca entre minima e fechamento
+   VOLATILITY_MAX_MIN,       // Diferenca entre maxima e minima
+   VOLATILITY_ATR,           // Average True Range
+   VOLATILITY_STD_DEV,       // Desvio padrao dos precos
+   VOLATILITY_GSV,           // Greatest Swing Value
+   VOLATILITY_FIXED,         // Valor fixo em pontos
+   VOLATILITY_PERCENT        // Variacao percentual
+
+};
+
+enum VolPeriodType {
+
+   VOLATILITY_MODE_DAY,       // Diario
+   VOLATILITY_MODE_INTRADAY   // Intraday
+
+};
+
+
+enum VolInitPriceType {
+
+   VOL_PRICE_OPEN,            // Preco de abertura
+   VOL_PRICE_LAST_CLOSE       // Fechamento anterior
+
+};
+
+                                                                        
+input string           inDescVolatility="==========================="; // ===== R.25. PARAMETROS VOLATILITY BREAKOUT =====
+input VolCalcType      inVolCalc=VOLATILITY_ATR;                       // R.25.1 Tipo de calculo da volatilidade
+input VolPeriodType    inVolPeriod=VOLATILITY_MODE_DAY;                // R.25.2 Periodo para calulo da volatilidade
+input VolInitPriceType inVolInitPrice=VOL_PRICE_OPEN;                  // R.25.3 Preco utilizado como base para limites
+input bool             inCalcAtOpen=true;                              // R.25.4 Calcular pontos de entrada apenas na abertura
+input int              inVolBars=4;                                    // R.25.5 Numero de barras para media de volatilidade
+input double           inBuyFactor=1.0;                                // R.25.6 Valor fixo, percentual, ou multiplicador ponto de compra
+input double           inSellFactor=1.0;                               // R.25.7 Valor fixo, percentual, ou multiplicador ponto de venda
+input double           inPriceOffset=0.0;                              // R.25.8 Offset de rompimento para confirmacao
+input bool             inCloseConfirm=false;                           // R.25.9 Aguardar fechamento para confirmacao
+input bool             inCrossBar=true;                                // R.25.10 Opera apenas barra com cruzamento dos limites
+input bool             inInsideBarFilter=false;                        // R.25.11 Calcular limites intraday apos uma inside bar
+input double           inATRFilterVal=0.0;                             // R.25.12 Valor maximo ATR para calcular limites intraday
+input bool             inInvertSignal=false;                           // R.25.13 Inverter sinais de compra e venda
+input bool             inSkipFirstBreakout=false;                      // R.25.12 Nao operar primeiro rompimento do dia
+input int              inWaitBarsAfterFirstBreakout=0;                 // R.25.12.1 Numero minimo de barras apos primeiro rompimento
+
+
+// Precos de referencia para entradas
+enum phiboEntryPrice {
+
+   PHIBO_ENTRY_TOUCH_BAR,   // Maxima/Minima barra que toca linha
+   PHIBO_ENTRY_NEXT_OPEN,   // Abertura da proxima barra
+   PHIBO_ENTRY_LAST_CLOSE,  // Fechamento barra que toca linha
+   PHIBO_ENTRY_LIMIT        // Ordem limite nas linhas
+
+};
+
+                                                                                       
+input string             inDescPhiboPCPV="===========================";    // ======= R.26. PARAMETROS PHIBO PC/PV ========
+input double             inPhiboPCPV1Vol=1.0;                              // R.26.1 Volume negociado na linha PC1/PV1
+input double             inPhiboPCPV2Vol=1.0;                              // R.26.2 Volume negociado na linha PC2/PV2
+input double             inPhiboPCPV3Vol=1.0;                              // R.26.3 Volume negociado na linha PC3/PV3
+input double             inPhiboTouchMargin=1.0;                           // R.26.4 Margem para entrada em relacao a linha (%)
+input phiboEntryPrice    inPhiboEntryPrice=PHIBO_ENTRY_LIMIT;              // R.26.5 Metodo utilizado para entradas
+
+
+enum  signalType {
+   SIGNAL_TRADER_GLOBAL_VAR,     // Variavel Global
+   SIGNAL_TRADER_FILE            // Arquivo em disco
+};
+
+input string      inDescSignalTrader="==========================="; // =========== R.28. PARAMETROS SIGNAL TRADER ==========
+input signalType  inSTSignalType=SIGNAL_TRADER_GLOBAL_VAR;          // R.28.1 Tipo de sinal usado como referencia
+input string      inSTSignalName="";                                // R.28.2 Nome da variavel global ou arquivo com sinal
+input bool        inSTInverseTrade=false;                           // R.28.3 Operar no sentido inverso ao sinal
+input double      inSTVolumeScale=1.0;                              // R.28.4 Fator de escala sobre volume do sinal
+input bool        inSTFollowVolChanges=true;                        // R.28.5 Seguir mudancas de volume verificadas no sinal
+input string      inDescSignalTrader2="===========================";// -------------- AUXILIO PARA BACKTESTS ----------------
+input string      inSTBacktestFile="SignalTrader.csv";              // R.28.6 Arquivo CSV com os deals do sinal (Common/Files)
+input string      inSTBackTestFileDelimiter=",";                    // R.28.6.1 Delimitador usado no arquivo CSV
+
+
+input string         inDescHiLo="===========================";      // =========== R.29. PARAMETROS HILO ===========
+input int            inHiLoPeriod=14;                               // R.29.1 Periodo para calculo do HiLo
+input bool           inHiLoCloseConfirm=true;                       // R.29.2 Aguardar fechamento com virada do HiLo
+input bool           inHiloEnterNextOpen=false;                     // R.29.3 Entrar na abertura da barra seguinte
+
+
+
+input string         inDescRAFI="===========================";      // =========== R.30. PARAMETROS RAFI ===========
+input bool           inRAFICloseOnYellow=false;                     // R.30.1 Encerrar operacao com barra amarela
+
+
+input string         inDescAMKA="===========================";      // =========== R.31. PARAMETROS AMKA ===========
+input int            inAMKAPeriod=9;                                // R.31.1 Periodo da media movel adaptativa (AMA)
+input int            inAMKAFastMAPeriod=2;                          // R.31.2 Periodo media movel rapida
+input int            inAMKASlowMAPeriod=30;                         // R.31.3 Periodo media movel lenta
+input double         inAMKAG=2.0;                                   // R.31.4 Expoente constante suavizacao (G)
+input double         inAMKAdK=1.0;                                  // R.31.5 Coeficiente de filtragem (dK)
+input bool           inAMKABreakout=true;                           // R.31.6 Entrar no rompimento da barra de sinal
+
+enum SuperTrendEntryType {
+
+   SUPERTREND_ENTRY_CHANGE,        // Apenas nas viradas
+   SUPERTREND_ENTRY_TOUCH,         // No retorno a linha
+   SUPERTREND_ENTRY_BOTH,          // Nas viradas e retorno
+   SUPERTREND_ENTRY_ALWAYS         // Qualquer barra acima/abaixo
+
+};
+   
+                                                                         
+input string              inDescSuperTrend="===========================";  // ======== R.32. PARAMETROS SUPERTREND ========
+input int                 inSuperTrendPeriod=14;                           // R.32.1 Periodo para calculo do SuperTrend
+input double              inSuperTrendMultiplier=3.0;                      // R.32.2 Multiplicador aplicado ao calculo
+input SuperTrendEntryType inSuperTrendEntry=SUPERTREND_ENTRY_BOTH;         // R.32.3 Sinal usado para entradas
+input double              inSuperTrendMargin=0.0;                          // R.32.4 Margem em relacao a linha para retorno
+
+
+
+enum masterTrendEntryType {
+
+   MASTERTREND_ENTRY_CHANGE,        // Apenas nas mudancas de cor
+   MASTERTREND_ENTRY_TOUCH,         // No retorno a linha
+   MASTERTREND_ENTRY_BOTH,          // Nas viradas e retorno
+   MASTERTREND_ENTRY_ABOVE,         // Acima da linha e cor ok
+   MASTERTREND_ENTRY_BELOW,         // Abaixo da linha e cor ok
+   MASTERTREND_ENTRY_ALWAYS         // Qualquer barra pela cor
+
+};
+   
+                                                                         
+input string               inDescMasterTrend="===========================";  // ======= R.33. PARAMETROS MASTERTREND ========
+input int                  inMasterTrendCCIPeriod=10;                        // R.33.1 Periodo do CCI para calculo do MasterTrend
+input int                  inMasterTrendATRPeriod=5;                         // R.33.2 Periodo do ATR para calculo do MasterTrend
+input double               inMasterTrendATRMultiplier=1.0;                   // R.33.3 Multiplicador para ATR aplicado ao calculo
+input int                  inMasterTrendSMAPeriod=40;                        // R.33.4 Periodo da media movel para MasterTrend
+input masterTrendEntryType inMasterTrendEntry=MASTERTREND_ENTRY_BOTH;        // R.33.5 Sinal usado para entradas
+input double               inMasterTrendMargin=0.0;                          // R.33.6 Margem em relacao a linha para retorno
+
+         
+enum equityMeasureType {
+
+   EQUIT_MONEY_VALUE,      // Variacao em moeda
+   EQUIT_PERCENT_CHANGE    // Variacao percentual
+
+};
+
+
+input string               inDescEquityControl="===========================";  // ========== R.34. PARAMETROS EQUITY CONTROL ==========
+input string               inECUserEmail="";                                   // R.34.1 e-mail cadastrado no site RobotCrowd
+input int                  inECEA_Magic=999999;                                // R.34.2 Numero identificador do expert advisor (Magic)
+input bool                 inECNotifyEmail=false;                              // R.34.3 Enviar notificacoes por e-mail
+input bool                 inECNotifyPush=false;                               // R.34.4 Enviar notificacoes push para terminal mobile
+input equityMeasureType    inECEquityMeasure=EQUIT_MONEY_VALUE;                // R.34.5 Tipo de valores usados nos limites
+input double               inECDailyProfit=0.0;                                // R.34.6 Objetivo global de lucro no dia (zero ilimitado)
+input double               inECWeeklyProfit=0.0;                               // R.34.7 Objetivo global de lucro na semana (zero ilimitado)
+input double               inECMonthlyProfit=0.0;                              // R.34.8 Objetivo global de lucro no mes (zero ilimitado)
+input double               inECDailyLoss=0.0;                                  // R.34.9 Limite global de perda no dia (zero ilimitado)
+input double               inECWeeklyLoss=0.0;                                 // R.34.10 Limite global de perda na semana (zero ilimitado)
+input double               inECMonthlyLoss=0.0;                                // R.34.11 Limite global de perda no mes (zero ilimitado)
+input bool                 inECCloseAllPositions=false;                        // R.34.12 Fechar todas as posicoes e ordens abertas por EAs
+input bool                 inECDisableAutoTrading=false;                       // R.34.12.1 Desabilitar auto-trading apos fechar posicoes
