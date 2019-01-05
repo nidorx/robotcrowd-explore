@@ -1,4 +1,4 @@
-<html dir="ltr" lang="en-US" class="fixedsticky-withoutfixedfixed">
+<html dir="ltr" lang="pt-BR" class="fixedsticky-withoutfixedfixed">
    <head>
       <meta charset="utf-8">
       <meta name="author" content="Alex Rodin - contato@alexrodin.info">
@@ -187,6 +187,9 @@
 
          .article-body li {
             margin-left: 20px;
+            color: #aaa;
+            
+            transition: color 0.3s;
             /* margin-top: 10px;
             margin-bottom: 10px; */
          }
@@ -194,6 +197,21 @@
          .article-body li:hover {
             background-color: rgba(0, 0, 0, 0.04);
          }
+
+         .article-body li input, .article-body li select{
+            transition: opacity 0.3s;
+            opacity: 0.5;
+         }
+
+         /* Elemntos ativos quando o valor é diferente do valor default */
+         .article-body li.ativo{
+            color: #000;
+         }
+
+         .article-body li.ativo input, .article-body li.ativo select{
+            opacity: 1;
+         }
+
 
          body {
             font-family: 'Poppins', Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -311,7 +329,11 @@
             }
 
             .article-body li {
-               margin-left: 5px;
+               margin-left: 10px;
+            }
+
+            label {
+               font-weight: normal;
             }
 
             input {
@@ -343,15 +365,16 @@
                      <h1>Resumo</h1>
                      <p class="wysiwyg-indent5">
                         Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos RobotCrowd. 
-                        Você pode gerar arquivos setups para execução, teste unitário e otimização.
+                        Permite também o Download do arquivo de setup (RC-*.set) e o Upload de um setup pronto.
+                        <!-- Você pode gerar arquivos setups para execução, teste unitário e otimização. -->
                      </p>
                      <p class="wysiwyg-indent5">
                         Além disso, esta ferramenta busca trazer uma documentação mais detalhada de todos os parametros disponíves para os robos RobotCrowd.
                      </p>
                      <h1><!--Tipo de Setup  e--> Robô</h1>
-                     <p class="wysiwyg-indent5">
-                        Selecione abaixo o <!-- tipo de Setup que deseja preparar e o --> robô
-                     </p>
+                     <!-- <p class="wysiwyg-indent5">
+                        Selecione abaixo o  tipo de Setup que deseja preparar e o robô
+                     </p> -->
                      <div>
                         <div class="input-container">
                            <label placeholder="Qual robô deseja configurar?" for="robo-investidor" >
@@ -505,7 +528,7 @@
                
                if(item.type) {
                   return [
-                     '<li>',
+                     '<li id="input-' + item.name + '-parent" default-value="' + item.value + '">',
                      '   <div class="input-container" title="' + item.descriptionOrig + '">',
                      '      <label for="input-' + item.name + '"><span>' + item.description + '</span> </label>',
                      (function(){
@@ -622,10 +645,12 @@
                      var parts = line.match(/^([^=]+)=(.*)/);
                      if(parts){
                         var key = parts[1];
-                        var value = parts[2];
-                        values[key] = value;
+                        // ignora arquivos de SET de otimização
+                        // @TODO: Tratar arquivos de otimização
+                        var value = parts[2].split('||')[0];
                         var el = document.getElementById('input-' + key);
                         if(el){
+                           values[key] = value;
                            if(el.nodeName === 'INPUT'){
                               if(el.type === 'checkbox'){
                                  el.checked = (value === 'true');
@@ -640,6 +665,8 @@
                                  }
                               }
                            }
+
+                           checkDefaultValue('input-' + key, values[key]);
                         }
                      }
                   }
@@ -654,22 +681,38 @@
                reader.readAsText(input.files[0]);
             };
 
+            function checkDefaultValue(elID, value){
+               // Valor diferente do padrão?
+               var elParent = document.getElementById(elID + '-parent');
+               if(value !== elParent.attributes['default-value'].value){
+                  elParent.className = 'ativo';
+               } else {
+                  elParent.className = '';
+               } 
+            }
+
             function onChangeInput(input){
                var name = input.attributes.name.value.replace(/^input-/,'');
                values[name] = input.value;
                updateSetup();
+
+               checkDefaultValue(input.attributes.id.value, values[name]);
             }
 
             function onChangeCheckbox(checkbox){
                var name = checkbox.attributes.name.value.replace(/^input-/,'');
                values[name] = checkbox.checked;
                updateSetup();
+
+               checkDefaultValue(checkbox.attributes.id.value, (values[name]||false)+'');
             }
 
             function onChangeSelect(select){
                var name = select.attributes.name.value.replace(/^input-/,'');
                values[name] = select.options[select.selectedIndex].value;
                updateSetup();
+
+               checkDefaultValue(select.attributes.id.value, values[name]);
             }
 
             function onChangeRobot(select){
