@@ -156,7 +156,7 @@ function parseDocs(docs, prefix) {
          if (matchInput) {
             var inputType = matchInput[1];
             var inputName = matchInput[2];
-            var inputDefault = matchInput[3];
+            var inputDefault = (matchInput[3]||'').replace(/(^")|("$)/g, '').replace(/(^\s+)|(\s+$)/g, ''); // Remove aspas (SE HOUVER) + TRIM;
             var inputDescriptionOrig = (matchInput[5] || inputName).replace(/([=])/g, '').replace(/(^\s+)|(\s+$)/g, '');; // remove "====" de descrição + TRIM
             var matchGroupDescri = inputDescriptionOrig.match(/^([A-Z])\.([\d.]*)\s+(.*)/);
 
