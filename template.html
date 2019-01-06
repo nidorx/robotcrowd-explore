@@ -942,7 +942,7 @@
                            setElementValue(startEl, startValue);
                            setElementValue(document.getElementById('step-' + key), stepValue);
                            setElementValue(document.getElementById('stop-' + key), stopValue);
-                           setElementValue(document.getElementById('optimize-' + key), optimizeValue == 'T' ? 'true' : 'false');
+                           setElementValue(document.getElementById('optimize-' + key), optimizeValue == 'Y' ? 'true' : 'false');
                         } else {
                            value = value.split('||')[0];
                            setElementValue(inputEl, value);
@@ -1026,14 +1026,14 @@
                   var startEl = document.getElementById('start-' + name);
                   if(startEl){
                      var optimizeEl = document.getElementById('optimize-' + name);
-                     var optimize = (getElementValue(optimizeEl) === 'true' ? 'T' : 'N');
+                     var optimize = (getElementValue(optimizeEl) === 'true' ? 'Y' : 'N');
                      // Se existir o elemento, significa que o tipo de dado aceita range de parametrização
                      value = value + '||' + getElementValue(startEl);
                      value = value + '||' + getElementValue(document.getElementById('step-' + name));
                      value = value + '||' + getElementValue(document.getElementById('stop-' + name));
                      value = value + '||' + optimize;
 
-                     if(optimize === 'T'){
+                     if(optimize === 'Y'){
                         optimizeEl.parentElement.className = 'grupo-otimizacao ativo';
                      } else {
                         optimizeEl.parentElement.className = 'grupo-otimizacao ';
