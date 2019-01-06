@@ -656,19 +656,11 @@
                            continue;
                         }
 
-                        if(mode === 'otimizacao') {
-                           if(value === key){
-                              // conversão automática do valor para o índice
-                              value = i;
-                           }
-                           keysEnum.push(i);
-                        } else {
-                           if(value === i){
-                              // conversão automática de índice para valor
-                              value = key;
-                           }
-                           keysEnum.push(key);
+                        if(value === key){
+                           // conversão automática do valor para o índice
+                           value = i;
                         }
+                        keysEnum.push(i);
                         labelsEnum[i] = enums[type][key];
                         i++;
                      }
@@ -702,18 +694,10 @@
                      continue;
                   }
 
-                  if(mode === 'otimizacao') {
-                     if(value === key){
-                        // conversão automática do valor para o índice
-                        value = i;
-                        break;
-                     }
-                  } else {
-                     if(value === i){
-                        // conversão automática de índice para valor
-                        value = key;
-                        break;
-                     }
+                  if(value === key){
+                     // conversão automática do valor para o índice
+                     value = i;
+                     break;
                   }
                   i++;
                }

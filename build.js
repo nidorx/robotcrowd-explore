@@ -189,11 +189,19 @@ function parseDocs(docs, prefix) {
                inputs[groupLetter] = groupItem;
             } else {
 
-               if(['int', 'uint', 'long', 'ulong', 'double', 'string', 'bool'].indexOf(inputType) < 0){
+               var PRIMITIVES = ['char', 'short', 'int', 'long', 'uchar', 'ushort', 'uint', 'ulong', 'color', 'datetime', 'double', 'float', 'string', 'bool'];
+               if(PRIMITIVES.indexOf(inputType) < 0){
                   // É um enum, deve usar o prefixo, se o enum existir
                   if(enums.hasOwnProperty(prefix + inputType)){
                      inputType = prefix + inputType;                  
                   }
+
+                  if(!enums.hasOwnProperty(inputType)) {
+                     throw new Error('Tipo de dado não documentado: ' + inputType);
+                  }
+
+                  // Valor do enum é por índice
+                  inputDefault = getEnumValue(inputType, inputDefault);
                }
 
                // Um item de input comum
@@ -252,3 +260,29 @@ function parseDocs(docs, prefix) {
    }
 }
 
+
+/**
+ * Obtém o valor para o item do enum, seja indice ou nome, de acordo com o modo selecionado
+ */
+function getEnumValue(enumName, value) {
+   if(!Number.isNaN(Number.parseInt(value))){
+      // Tratamento para conversão automática, quando o valor é o índice do item do enum
+      value = Number.parseInt(value);
+   }
+
+   var i = 0;
+   for(var key in enums[enumName]){
+      if(!enums[enumName].hasOwnProperty(key)){
+         continue;
+      }
+
+      if(value === key){
+         // conversão automática do valor para o índice
+         value = i;
+         break;
+      }
+      i++;
+   }
+
+   return value;
+}
