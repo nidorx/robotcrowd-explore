@@ -932,11 +932,11 @@
                            var defaultValues = document.getElementById('input-' + key + '-parent').attributes['default-value'].value.split('||');
 
                            // Se a entrada não tiver valores, considera o valor default para o campo
-                           var inputValue    =  partsOptimization[0] || defaultValues[0];
-                           var startValue    =  partsOptimization[1] || defaultValues[1];
-                           var stepValue     =  partsOptimization[2] || defaultValues[2];
-                           var stopValue     =  partsOptimization[3] || defaultValues[3];
-                           var optimizeValue =  partsOptimization[4] || defaultValues[4];
+                           var inputValue    =  partsOptimization[0] !== undefined ? partsOptimization[0] : defaultValues[0];
+                           var startValue    =  partsOptimization[1] !== undefined ? partsOptimization[1] : defaultValues[1];
+                           var stepValue     =  partsOptimization[2] !== undefined ? partsOptimization[2] : defaultValues[2];
+                           var stopValue     =  partsOptimization[3] !== undefined ? partsOptimization[3] : defaultValues[3];
+                           var optimizeValue =  partsOptimization[4] !== undefined ? partsOptimization[4] : defaultValues[4];
 
                            setElementValue(inputEl, inputValue);
                            setElementValue(startEl, startValue);
@@ -986,6 +986,7 @@
                   }
                } else if (el.nodeName === 'SELECT'){
                   value = getEnumValue(el.attributes['data-enum-type'].value, value);
+                  value = '' + value;
                   for(var b = 0; b < el.options.length; b++){
                      if(el.options[b].value ===  value){
                         el.options[b].selected = true;
