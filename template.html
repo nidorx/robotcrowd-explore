@@ -2,7 +2,7 @@
    <head>
       <meta charset="utf-8">
       <meta name="author" content="Alex Rodin - contato@alexrodin.info">
-      <meta name="keywords" content="MT4, MT5, Metatrader, EA, Expert Advisor, Robô Investidor, RobotCrowd, Forex, Mini Índice, Mini Dolar">
+      <meta name="keywords" content="MT4, MT5, Metatrader, EA, Expert Advisor, Robô Investidor, RobotCrowd, Forex, Mini Índice, Mini Dolar, Backtest, Backtesting">
       <meta name="description" content="Ferramenta para visualizar, editar e salvar os setups do Metatrader para os robos RobotCrowd (https://robotcrowd.com.br/robos).">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -435,17 +435,13 @@
                      
                      <h1>Resumo</h1>
                      <p class="wysiwyg-indent5">
-                        Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos RobotCrowd. 
+                        Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos <a href="https://www.robotcrowd.com.br/" target="_blank">RobotCrowd</a>. 
                         Permite também o Download do arquivo de setup (RC-*.set) e o Upload de um setup pronto.
-                        <!-- Você pode gerar arquivos setups para execução, teste unitário e otimização. -->
                      </p>
                      <p class="wysiwyg-indent5">
                         Além disso, esta ferramenta busca trazer uma documentação mais detalhada de todos os parametros disponíves para os robos RobotCrowd.
                      </p>
-                     <h1><!--Tipo de Setup  e--> Robô</h1>
-                     <!-- <p class="wysiwyg-indent5">
-                        Selecione abaixo o  tipo de Setup que deseja preparar e o robô
-                     </p> -->
+                     <h1>Robô & Tipo de Setup</h1>
                      <div>
                         <div class="input-container" style="display: flex;">
                            <label placeholder="Qual robô deseja configurar?" for="robo-investidor" >
@@ -502,8 +498,8 @@
                            </label>
                            <select id="tipo-setup" name="tipo-setup" onchange="onChangeMode()">
                               <option value="" selected="">Selecione um tipo de setup</option>
-                              <option value="trade">Trading | Backtest</option>
-                              <option value="otimizacao">Otimização</option>
+                              <option value="trade">Trading</option>
+                              <option value="otimizacao">Backtest + Otimização</option>
                            </select>
                         </div>
                      </div>
@@ -635,7 +631,7 @@
                      return '<input type="number" ' + nameIdOnChange + ' value="' + value + '" step="0.01"/>';
 
                   case 'string':
-                     return '<input   type="text" ' + nameIdOnChange + ' value="' + value + '"/>';
+                     return '<input   type="text" ' + nameIdOnChange + ' value="' + value + '" maxlength="64"/>';
 
                   case 'bool':
                      return '<input type="checkbox" ' + nameIdOnChange + ' ' + (('' + value).toUpperCase() === 'TRUE' ? 'checked="checked"': '') + ' />'; 
@@ -798,7 +794,7 @@
                return value;
             }
 
-            function renderItem(item){
+            function renderItem(item) {
                var keys = [];
                for(var key in item.itens){
                   if(!item.itens.hasOwnProperty(key)){
@@ -891,11 +887,10 @@
                   
                   return [
                      '<li class="sub-grupo">',
-                     '   <label><span>' + item.description + '</span> </label>',
-                     keys.length > 0 
-                        ?  '<ul>' + keys.map(function(key){ return renderItem(item.itens[key]); }) .join('') + '</ul>'
-                        : '',
-
+                     '  <label><span>' + item.description + '</span> </label>',
+                        keys.length > 0 
+                           ?  '<ul>' + keys.map(function(key){ return renderItem(item.itens[key]); }) .join('') + '</ul>'
+                           : '',
                      '</li>',
                   ].join('');
                }
