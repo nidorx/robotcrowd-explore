@@ -1,0 +1,7 @@
+[S.05] PARAMETROS GL - PRICE ACTION
+
+[S.05.1] Padrao observado para sinal
+
+[S.05.2] Preco usado para ordem inicial
+
+[S.05.2.1] Offset em relacao ao preco atual

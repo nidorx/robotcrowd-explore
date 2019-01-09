@@ -1,0 +1,21 @@
+[L] PARAMETROS GRADIENTE LINEAR
+
+[L.01] Tipo de valor usado nos offsets
+
+[L.02] Offset para novas ordens de entrada
+
+[L.03] Offset para realizacao de lucro
+
+[L.04] Mover as ordens a favor do trade (trailing)
+
+[L.04.1] Offset em relacao ao preco atual para posicionamento
+
+[L.04.2] Timeframe para atualizacao do trailing
+
+[L.05] Numero maximo de ordens/niveis (Zero ilimitado)
+
+[L.06] Usar ordem de saida unica na superacao do preco medio
+
+[L.07] Usar ordem limite como TP (contas netting)
+
+[L.08] Tempo limite (minutos) para ordem de entrada (zero ilimitado)

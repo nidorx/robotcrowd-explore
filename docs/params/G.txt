@@ -1,0 +1,9 @@
+[G] INTERTRAVAMENTO ENTRE ROBOS
+
+[G.01] Habilita intertravamento
+
+[G.02] Robo e preferencial para trava
+
+[G.03] Nome da trava (Ex: globalLockWDOX15)
+
+[G.04] Valor atribuido a trava (unico para cada EA)

@@ -1,0 +1,13 @@
+[S.02] PARAMETROS GRADIENTE LINEAR - BOLLINGER
+
+[S.02.1] Periodo para media
+
+[S.02.2] Multiplicador desvio padrao
+
+[S.02.3] Tamanho maximo do stop (zero ilimitado)
+
+[S.02.4] Limite de largura das bandas (zero ilimitado)
+
+[S.02.5] Usar stop na banda oposta ao inves da media
+
+[S.02.6] Inverter sinais de compra e venda

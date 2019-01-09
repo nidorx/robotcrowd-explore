@@ -1,0 +1,27 @@
+[R.34] PARAMETROS EQUITY CONTROL
+
+[R.34.1] e-mail cadastrado no site RobotCrowd
+
+[R.34.2] Numero identificador do expert advisor (Magic)
+
+[R.34.3] Enviar notificacoes por e-mail
+
+[R.34.4] Enviar notificacoes push para terminal mobile
+
+[R.34.5] Tipo de valores usados nos limites
+
+[R.34.6] Objetivo global de lucro no dia (zero ilimitado)
+
+[R.34.7] Objetivo global de lucro na semana (zero ilimitado)
+
+[R.34.8] Objetivo global de lucro no mes (zero ilimitado)
+
+[R.34.9] Limite global de perda no dia (zero ilimitado)
+
+[R.34.10] Limite global de perda na semana (zero ilimitado)
+
+[R.34.11] Limite global de perda no mes (zero ilimitado)
+
+[R.34.12] Fechar todas as posicoes e ordens abertas por EAs
+
+[R.34.12.1] Desabilitar auto-trading apos fechar posicoes

@@ -1,0 +1,27 @@
+[R.16] PARAMETROS CRUZAMENTO DE MEDIAS
+
+[R.16.1] Tipo da media movel rapida
+
+[R.16.1.1] Periodo da media movel rapida
+
+[R.16.1.2] Preco usado no calculo da media rapida
+
+[R.16.1.3] Deslocamento da media movel rapida
+
+[R.16.2] Tipo da media movel lenta
+
+[R.16.2.1] Periodo da media movel lenta
+
+[R.16.2.2] Preco usado no calculo da media lenta
+
+[R.16.2.3] Deslocamento da media movel lenta
+
+[R.16.3] Tipo da media movel super lenta
+
+[R.16.3.1] Periodo da media super lenta (zero desativa)
+
+[R.16.3.2] Preco usado no calculo da media super lenta
+
+[R.16.3.3] Deslocamento da media movel super lenta
+
+[R.16.4] Preco de referencia para entrada

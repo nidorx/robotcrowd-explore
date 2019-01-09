@@ -1,0 +1,7 @@
+[R.07] PARAMETROS GAPS
+
+[R.07.1] Tamanho do gap operado
+
+[R.07.2] Orientacao do trade em relacao ao gap
+
+[R.07.3] Opera apenas continuacao da barra

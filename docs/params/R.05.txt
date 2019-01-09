@@ -1,0 +1,7 @@
+[R.05] PARAMETROS DUNNIGAN
+
+[R.05.1] Nao considerar gaps como Dunnigan
+
+[R.05.2] Operar apenas rompimentos na barra seguinte
+
+[R.05.3] Offset de rompimento para confirmacao

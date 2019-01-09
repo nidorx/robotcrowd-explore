@@ -1,0 +1,13 @@
+[R.20] PARAMETROS PONTO CONTINUO
+
+[R.20.1] Periodo da media movel
+
+[R.20.2] Tipo da media movel
+
+[R.20.3] Preco usado no calculo das medias
+
+[R.20.4] Deslocamento da media movel
+
+[R.20.5] Margem em relacao a media para toque
+
+[R.20.6] Preco de referencia para entrada

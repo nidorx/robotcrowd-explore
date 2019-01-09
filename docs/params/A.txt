@@ -1,0 +1,37 @@
+[A] PARAMETROS GERAIS
+
+[A.01] Descricao do ajuste ativo
+
+[A.02] e-mail cadastrado no site RobotCrowd
+
+[A.03] Numero identificador do expert advisor (Magic)
+
+[A.04] Enviar avisos por e-mail
+
+[A.05] Enviar notificacoes push para terminal mobile
+
+[A.06] Usar padrao antigo nas informacoes (Comment)
+
+[A.07] Tempo de ciclo para processamento (segundos)
+
+[A.08] Desvio maximo de preco em pontos
+
+[A.09] Encerrar operacao um dia antes da expiracao do contrato
+
+[A.10] Tipo de operacao
+
+[A.11] Comportamento quando observado sinal contrario
+
+[A.12] Ativo para negociacao (caso seja diferente do grafico)
+    Documentação A 12
+    AA
+
+[A.13] Periodo grafico principal
+
+[A.14] Mostrar indicadores no grafico
+
+[A.15] Apagar indicadores ao remover o EA
+
+[A.16] Publicar posicoes assumidas pelo robo
+
+[A.16.1] Nome do arquivo ou variavel (Vazio: ROBO_ATIVO_TF)

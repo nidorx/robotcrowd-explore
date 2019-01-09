@@ -1,0 +1,11 @@
+[R.26] PARAMETROS PHIBO PC/PV
+
+[R.26.1] Volume negociado na linha PC1/PV1
+
+[R.26.2] Volume negociado na linha PC2/PV2
+
+[R.26.3] Volume negociado na linha PC3/PV3
+
+[R.26.4] Margem para entrada em relacao a linha (%)
+
+[R.26.5] Metodo utilizado para entradas

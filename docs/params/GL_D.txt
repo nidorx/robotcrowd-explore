@@ -1,0 +1,13 @@
+[D] DAY TRADE
+
+[D.01] Operacao apenas como day trade
+
+[D.02] Hora inicio negociacao
+
+[D.03] Minutos a aguardar antes de iniciar operacoes
+
+[D.04] Hora fim negociacao
+
+[D.05] Minutos antes do fim para encerrar posicoes
+
+[D.06] Minutos antes do fim para abertura de trades

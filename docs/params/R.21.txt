@@ -1,0 +1,9 @@
+[R.21] PARAMETROS SHADOW LINE
+
+[R.21.1] Periodo da media movel
+
+[R.21.2] Deslocamento da sombra
+
+[R.21.3] Metodo de calculo da media movel
+
+[R.21.4] Preco usado no calculo da media

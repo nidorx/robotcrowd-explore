@@ -1,0 +1,9 @@
+Primeira Barra
+opera o rompimento da primeira barra do dia
+
+Este robô tem característica de day trade e opera o rompimento da primeira barra do dia no tempo gráfico escolhido pelo usuário.
+
+Pode operar tanto na compra quanto na venda, seguindo o sentido do rompimento das máximas ou mínimas da primeira barra observada.
+
+Seu funcionamento pode ser condicionado à existência de um gap de abertura, buscando operação no fechamento do gap ou apostando na continuação do movimento inicial.
+

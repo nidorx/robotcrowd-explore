@@ -1,0 +1,3 @@
+[R.18] PARAMETROS OOPS
+
+[R.18.1] Tamanho do gap operado

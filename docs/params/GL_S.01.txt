@@ -1,0 +1,3 @@
+[S.01] PARAMETROS ROBO GRADIENTE LINEAR
+
+[S.01.1] Offset em ticks para ordens Start e Limit

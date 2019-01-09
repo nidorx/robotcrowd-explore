@@ -1,0 +1,43 @@
+[F] LIMITES DE OPERACAO
+
+[F.01] Perda maxima aceitavel no dia (Zero ilimitado)
+
+[F.02] Objetivo de lucro diario em dinheiro (Zero ilimitado)
+
+[F.03] Perda maxima aceitavel na semana (Zero ilimitado)
+
+[F.04] Objetivo de lucro semanal em dinheiro (Zero ilimitado)
+
+[F.05] Perda maxima aceitavel no mes (Zero ilimitado)
+
+[F.06] Objetivo de lucro mensal em dinheiro (Zero ilimitado)
+
+[F.07] Numero maximo de trades no dia (Zero ilimitado)
+
+[F.08] Numero maximo de take profits no dia (Zero ilimitado)
+
+[F.09] Verificar limites de perda e ganho apos fechar trade
+
+[F.10] Respeitar limites globais com RC-EquityControl
+
+[F.10.1] Encerrar operacoes quando limite global for atingido
+
+[F.11] Evitar dias com abertura em gap maior que o valor abaixo
+
+[F.11.1] Tamanho maximo do gap para permitir operacoes
+
+[F.12] Filtrar operacoes por dia da semana
+
+[F.12.1] Operar segunda-feira
+
+[F.12.2] Operar terca-feira
+
+[F.12.3] Operar quarta-feira
+
+[F.12.4] Operar quinta-feira
+
+[F.12.5] Operar sexta-feira
+
+[F.12.6] Operar sabado
+
+[F.12.7] Operar domingo

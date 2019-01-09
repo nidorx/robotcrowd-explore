@@ -1,0 +1,3 @@
+[R.30] PARAMETROS RAFI
+
+[R.30.1] Encerrar operacao com barra amarela

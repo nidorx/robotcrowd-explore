@@ -1,0 +1,15 @@
+[R.28] PARAMETROS SIGNAL TRADER
+
+[R.28.1] Tipo de sinal usado como referencia
+
+[R.28.2] Nome da variavel global ou arquivo com sinal
+
+[R.28.3] Operar no sentido inverso ao sinal
+
+[R.28.4] Fator de escala sobre volume do sinal
+
+[R.28.5] Seguir mudancas de volume verificadas no sinal
+
+[R.28.6] Arquivo CSV com os deals do sinal (Common/Files)
+
+[R.28.6.1] Delimitador usado no arquivo CSV

@@ -1,0 +1,9 @@
+[C] EXECUCAO DE ORDENS
+
+[C.01] Utilizar ordens pendentes
+
+[C.02] Offset para colocacao da ordem pendente
+
+[C.03] Tempo limite (minutos) para ordem aberta (zero ilimitado)
+
+[C.04] Cancelar ordem pendente com uma nova barra

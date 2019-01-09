@@ -1,0 +1,15 @@
+[S.04] PARAMETROS GRAD LINEAR - VOLATILITY
+
+[S.04.1] Periodo da media movel
+
+[S.04.2] Metodo de calculo da media movel
+
+[S.04.3] Valor fixo para calculo das bandas
+
+[S.04.4] Periodo ATR para calculo das bandas
+
+[S.04.5] Periodo para calculo do desvio padrao
+
+[S.04.6] Inverter sinais de compra e venda
+
+[S.04.7] Definir pontos de entrada com barra atual

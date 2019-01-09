@@ -1,0 +1,7 @@
+[R.29] PARAMETROS HILO
+
+[R.29.1] Periodo para calculo do HiLo
+
+[R.29.2] Aguardar fechamento com virada do HiLo
+
+[R.29.3] Entrar na abertura da barra seguinte

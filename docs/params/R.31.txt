@@ -1,0 +1,13 @@
+[R.31] PARAMETROS AMKA
+
+[R.31.1] Periodo da media movel adaptativa (AMA)
+
+[R.31.2] Periodo media movel rapida
+
+[R.31.3] Periodo media movel lenta
+
+[R.31.4] Expoente constante suavizacao (G)
+
+[R.31.5] Coeficiente de filtragem (dK)
+
+[R.31.6] Entrar no rompimento da barra de sinal

@@ -1,0 +1,29 @@
+[E] STOP LOSS E OBJETIVO
+
+[E.01] Tipo de stop e objetivo
+
+[E.01.1] Valor ou multiplicador stop loss (Zero desativa)
+
+[E.01.1.1] Valor minimo em pontos para SL (zero ilimitado)
+
+[E.01.1.2] Valor maximo em pontos para SL (zero ilimitado)
+
+[E.01.2] Valor ou multiplicador take profit (Zero desativa)
+
+[E.01.2.1] Valor minimo em pontos para TP (zero ilimitado)
+
+[E.01.2.2] Valor maximo em pontos para TP (zero ilimitado)
+
+[E.01.3] Periodo dos indicadores para calculo de SL e TP
+
+[E.01.4] Tempo grafico dos indicadores para calculo de SL e TP
+
+[E.06] Usar stop de tempo
+
+[E.06.1] Periodo para determinacao do stop
+
+[E.06.2] Numero de barras considerado
+
+[E.08] Objetivo de lucro no trade (Zero ilimitado)
+
+[E.09] Limite de perda financeira no trade (Zero ilimitado)

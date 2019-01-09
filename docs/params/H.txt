@@ -1,0 +1,317 @@
+[H] PARAMETROS PARA FILTRAGEM DE TRADES
+
+[H.01] Modo de operacao dos filtros
+
+[H.02] Barra usada na verificacao dos filtros
+
+[H.03] Trocar sinais de compra e venda dos filtros
+
+[H.04] Mostrar indicadores de filtro (apenas mesmo timeframe)
+
+[H.06.] Filtro por Price Action
+
+[H.06.1] Filtro Price Action para compras 1
+
+[H.06.2] Filtro Price Action para compras 2
+
+[H.06.3] Filtro Price Action para compras 3
+
+[H.06.4] Filtro Price Action para compras 4
+
+[H.06.5] Filtro Price Action para compras 5
+
+[H.06.6] Filtro Price Action para vendas 1
+
+[H.06.7] Filtro Price Action para vendas 2
+
+[H.06.8] Filtro Price Action para vendas 3
+
+[H.06.9] Filtro Price Action para vendas 4
+
+[H.06.10] Filtro Price Action para vendas 5
+
+[H.06.11] Logica inversa filtro 4 compra e venda
+
+[H.06.12] Logica inversa filtro 5 compra e venda
+
+[H.06.13] Ativo usado no filtro 5 se diferente
+
+[H.07.] Filtro de Media Movel 1
+
+[H.07.1] Habilita Filtro de Media Movel 1
+
+[H.07.2] Modo do filtro media 1 para compras
+
+[H.07.3] Modo do filtro media 1 para vendas
+
+[H.07.4] Tempo grafico media movel 1
+
+[H.07.5] Periodo media movel 1 (Barras)
+
+[H.07.6] Tipo media movel 1
+
+[H.07.7] Preco media movel 1
+
+[H.07.8] Afastamento da media movel 1
+
+[H.07.9] Ativo para calculo da media 1 (Se diferente do atual)
+
+[H.08.] Filtro de Media Movel 2
+
+[H.08.1] Habilita Filtro de Media Movel 2
+
+[H.08.2] Modo do filtro media 2 para compras
+
+[H.08.3] Modo do filtro media 2 para vendas
+
+[H.08.4] Tempo grafico media movel 2
+
+[H.08.5] Periodo media movel 2 (Barras)
+
+[H.08.6] Tipo media movel 2
+
+[H.08.7] Preco media movel 2
+
+[H.08.8] Afastamento da media movel 2
+
+[H.08.9] Ativo para calculo da media 2 (Se diferente do atual)
+
+[H.09.] Filtro pelo ADX
+
+[H.09.1] Habilita Filtro pelo ADX
+
+[H.09.2] Modo do filtro ADX para compras
+
+[H.09.3] Modo do filtro ADX para vendas
+
+[H.09.4] Tempo grafico para indicador ADX
+
+[H.09.5] Periodo para ADX
+
+[H.09.6] Valor referencia do ADX
+
+[H.10.] Filtro pelo MACD
+
+[H.10.1] Habilita Filtro pelo MACD
+
+[H.10.2] Modo do filtro MACD para compras
+
+[H.10.3] Modo do filtro MACD para vendas
+
+[H.10.4] Tempo grafico para MACD
+
+[H.10.5] Periodo media rapida do MACD
+
+[H.10.6] Periodo media lenta do MACD
+
+[H.10.7] Periodo sinal do MACD
+
+[H.11.] Filtro pelo SAR
+
+[H.11.1] Habilita Filtro pelo SAR
+
+[H.11.2] Modo do filtro SAR para compras
+
+[H.11.3] Modo do filtro SAR para vendas
+
+[H.11.4] Tempo grafico para o SAR
+
+[H.11.5] Valor de passo para o SAR
+
+[H.11.6] Valor maximo para o SAR
+
+[H.12.] Filtro pelo IFR
+
+[H.12.1] Habilita Filtro pelo IFR
+
+[H.12.2] Modo do filtro IFR para compras
+
+[H.12.3] Modo do filtro IFR para vendas
+
+[H.12.4] Tempo grafico IFR
+
+[H.12.5] Periodo para o IFR
+
+[H.12.6] Nivel de sobrevenda do IFR
+
+[H.12.7] Nivel de sobrecompra do IFR
+
+[H.13.] Filtro por Volume
+
+[H.13.1] Habilita Filtro pelo Volume
+
+[H.13.2] Modo do filtro Volume para compras
+
+[H.13.3] Modo do filtro Volume para vendas
+
+[H.13.4] Tipo de volume considerado
+
+[H.13.5] Periodo da media movel do volume
+
+[H.14.] Filtro pelo Phibo
+
+[H.14.1] Habilita Filtro pelo Phibo
+
+[H.14.2] Modo do filtro Phibo para compras
+
+[H.14.3] Modo do filtro Phibo para vendas
+
+[H.14.4] Tempo grafico para o Phibo
+
+[H.15.] Filtro pelo WPR
+
+[H.15.1] Habilita Filtro pelo Williams' Percent Range
+
+[H.15.2] Modo do filtro WPR para compras
+
+[H.15.3] Modo do filtro WPR para vendas
+
+[H.15.4] Tempo grafico para o WPR
+
+[H.15.5] Periodo para calculo do WPR
+
+[H.15.6] Nivel de sobrevenda do WPR
+
+[H.15.7] Nivel de sobrecompra do WPR
+
+[H.16.] Filtro pelo MasterTrend
+
+[H.16.1] Habilita Filtro pelo MasterTrend
+
+[H.16.2] Modo do filtro MasterTrend para compras
+
+[H.16.3] Modo do filtro MasterTrend para vendas
+
+[H.16.4] Tempo grafico para o MasterTrend
+
+[H.16.5] Periodo do CCI para calculo do MasterTrend
+
+[H.16.6] Periodo do ATR para calculo do MasterTrend
+
+[H.16.7] Multiplicador do ATR para calculo do MasterTrend
+
+[H.16.8] Periodo Media Movel para calculo do MasterTrend
+
+[H.17.] Filtro pelo GMMA - Guppy
+
+[H.17.1] Habilita Filtro pelo GMMA
+
+[H.17.2] Modo do filtro GMMA para compras
+
+[H.17.3] Modo do filtro GMMA para vendas
+
+[H.17.4] Tempo grafico para o GMMA
+
+[H.18.] Filtro pelo ATR
+
+[H.18.1] Habilita Filtro pelo ATR
+
+[H.18.2] Modo do filtro ATR para compras
+
+[H.18.3] Modo do filtro ATR para vendas
+
+[H.18.4] Tempo grafico para o ATR
+
+[H.18.5] Periodo para calculo do ATR
+
+[H.18.6] Valor de referencia 1 para o ATR
+
+[H.18.7] Valor de referencia 2 para o ATR
+
+[H.19.] Filtro pelo Desvio Padrao
+
+[H.19.1] Habilita Filtro pelo Desvio Padrao
+
+[H.19.2] Modo do filtro desvio padrao para compras
+
+[H.19.3] Modo do filtro desvio padrao para vendas
+
+[H.19.4] Tempo grafico para o desvio padrao
+
+[H.19.5] Periodo para calculo do desvio padrao
+
+[H.19.6] Valor de referencia para o desvio padrao
+
+[H.20.] Filtro pelo HiLo
+
+[H.20.1] Habilita Filtro pelo HiLo
+
+[H.20.2] Modo do filtro HiLo para compras
+
+[H.20.3] Modo do filtro HiLo para vendas
+
+[H.20.4] Tempo grafico para o HiLo
+
+[H.20.5] Periodo para calculo do HiLo
+
+[H.21.] Filtro pelo RAFI
+
+[H.21.1] Habilita Filtro pelo RAFI
+
+[H.21.2] Modo do filtro RAFI para compras
+
+[H.21.3] Modo do filtro RAFI para vendas
+
+[H.21.4] Tempo grafico para o RAFI
+
+[H.22.] Filtro pelo CCI
+
+[H.22.1] Habilita Filtro pelo CCI
+
+[H.22.2] Modo do filtro CCI para compras
+
+[H.22.3] Modo do filtro CCI para vendas
+
+[H.22.4] Tempo grafico para o CCI
+
+[H.22.5] Periodo para calculo do CCI
+
+[H.23.] Filtro pelo VoltyChannel
+
+[H.23.1] Habilita Filtro pelo VoltyChannel
+
+[H.23.2] Modo do filtro VoltyChannel para compras
+
+[H.23.3] Modo do filtro VoltyChannel para vendas
+
+[H.23.4] Tempo grafico para o VoltyChannel
+
+[H.23.5] Periodo media movel VoltyChannel
+
+[H.23.6] Metodo de calculo media movel VoltyChannel
+
+[H.23.7] Preco usado media movel VoltyChannel
+
+[H.23.8] Periodo do ATR para VoltyChannel
+
+[H.23.9] Fator de volatilidade VoltyChannel
+
+[H.23.10] Fator de offset VoltyChannel
+
+[H.23.11] Usar rompimentos para VoltyChannel
+
+[H.23.12] Usar envelopes para VoltyChannel
+
+[H.24.] Filtro pelo SilverTrend
+
+[H.24.1] Habilita Filtro pelo SilverTrend
+
+[H.24.2] Modo do filtro SilverTrend para compras
+
+[H.24.3] Modo do filtro SilverTrend para vendas
+
+[H.24.4] Tempo grafico para o SilverTrend
+
+[H.24.5] Parametro Risco do SilverTrend
+
+[H.25.] Filtro por saldo de agressao
+
+[H.25.1] Habilita Filtro por saldo de agressao (ticks)
+
+[H.25.2] Modo do filtro de ticks para compras
+
+[H.25.3] Modo do filtro de ticks para vendas
+
+[H.25.4] Tempo grafico para a analise de ticks
+
+[H.25.5] Saldo minimo esperado para permitir trades

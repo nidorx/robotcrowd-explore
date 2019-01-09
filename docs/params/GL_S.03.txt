@@ -1,0 +1,27 @@
+[S.03] PARAMETROS GRADIENTE LINEAR - PHIBO
+
+[S.03.1] Periodo para Phibo
+
+[S.03.2] Usar niveis 0% e 100% do Phibo
+
+[S.03.3] Usar niveis 21.4% e 78.6% do Phibo
+
+[S.03.4] Usar niveis 61.8% e 38.2% do Phibo
+
+[S.03.5] Tamanho maximo do stop (zero ilimitado)
+
+[S.03.6] Usar stop no nivel mais proximo
+
+[S.03.7] Limite maximo entre niveis Max/Min do Phibo (zero ilimitado)
+
+[S.03.8] Limite minimo entre niveis Max/Min do Phibo
+
+[S.03.9] Filtrar com bandas de bollinger
+
+[S.03.9.1] Periodo para media
+
+[S.03.9.2] Multiplicador desvio padrao
+
+[S.03.9.3] Amplitude minima das bandas para trade
+
+[S.03.10] Inverter sinais de compra e venda

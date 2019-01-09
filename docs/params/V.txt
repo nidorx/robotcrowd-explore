@@ -1,0 +1,49 @@
+[V] PARCIAIS E ACRESCIMO
+
+[V.01] Tipo das Realizacoes parciais
+
+[V.01.1] Numero de realizacoes parciais (max 9)
+
+[V.01.2] Usar niveis com distancia padrao conforme #1
+
+[V.01.3] Distancia para realizacao parcial #1
+
+[V.01.4] Quantidade executada na RP #1
+
+[V.01.5] Distancia para realizacao parcial #2
+
+[V.01.6] Quantidade executada na RP #2
+
+[V.01.7] Distancia para realizacao parcial #3
+
+[V.01.8] Quantidade executada na RP #3
+
+[V.02] Fazer acrescimo de posicao
+
+[V.02.1] Numero de acrescimos de posicao (max 9)
+
+[V.02.2] Direcao dos aumentos definidos manualmente
+
+[V.02.3] Usar niveis com distancia padrao conforme #1
+
+[V.02.4] Incremento de volume a cada nivel padrao
+
+[V.02.4.1] Valor para soma ou multiplicao de volume
+
+[V.02.5] Distancia para acrescimo de posicao #1
+
+[V.02.6] Quantidade executada no acrescimo #1
+
+[V.02.7] Distancia para acrescimo de posicao #2
+
+[V.02.8] Quantidade executada no acrescimo #2
+
+[V.02.9] Distancia para acrescimo de posicao #3
+
+[V.02.10] Quantidade executada no acrescimo #3
+
+[V.02.11] Atualizar TP em relacao ao novo preco medio
+
+[V.02.12] Atualizar SL em relacao ao novo preco medio
+
+[V.03] Usar ordens pendentes para RP e acrescimo

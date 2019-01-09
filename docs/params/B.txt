@@ -1,0 +1,16 @@
+[B] GERENCIAMENTO DE RISCO
+    Exemplo de conteúdo de ajuda para um parametro.
+    Pode ter múltiplas linhas de documentação.
+    Os espaços no começo são ignorados.
+    Pode ter links [para sites externos](https://www.google.com)
+    E também imagens, que devem ser salvas no diretorio assets ![logotipo.png]
+
+[B.01] Método para cálculo de volume inicial
+    Aqui outro exemplo de documentação. Esse conteúdo vai ser exibido na ferramenta.
+    Perceba que é possível alterar o título dos campos. Neste exemplo, o parametro recebeu acentuação.
+
+[B.02] Volume fixo ou incremento/minimo
+
+[B.03] Incremento de capital ou risco percentual
+
+[B.04] Capital considerado (Zero usa saldo da conta/Negativo variavel global)

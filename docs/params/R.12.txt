@@ -1,0 +1,11 @@
+[R.12] PARAMETROS LINHA D'AGUA
+
+[R.12.1] Tamanho do gap operado
+
+[R.12.2] Aguardar confirmacao com fechamento
+
+[R.12.3] Inverter sinais de compra e venda
+
+[R.12.4] Nao operar primeiro rompimento do dia
+
+[R.12.4.1] Numero minimo de barras apos primeiro rompimento

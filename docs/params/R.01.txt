@@ -1,0 +1,27 @@
+[R.01] PARAMETROS PRIMEIRA BARRA
+
+[R.01.1] Operar gaps de abertura
+
+[R.01.2] Tamanho do gap operado
+
+[R.01.3] Considerar gap como abertura ou barra
+
+[R.01.4] Offset de rompimento para confirmacao
+
+[R.01.5] Tipo do offset aplicado no ponto de entrada
+
+[R.01.6] Orientacao do trade em relacao ao gap
+
+[R.01.7] Aguardar fechamento para confirmacao
+
+[R.01.8] Opera apenas continuacao da barra
+
+[R.01.9] Amplitude minima da primeira barra (0.0 - qualquer)
+
+[R.01.10] Amplitude maxima da primeira barra
+
+[R.01.11] Inverter sinais de compra e venda
+
+[R.01.12] Nao operar primeiro rompimento do dia
+
+[R.01.12.1] Numero minimo de barras apos primeiro rompimento

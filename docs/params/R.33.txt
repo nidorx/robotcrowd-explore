@@ -1,0 +1,13 @@
+[R.33] PARAMETROS MASTERTREND
+
+[R.33.1] Periodo do CCI para calculo do MasterTrend
+
+[R.33.2] Periodo do ATR para calculo do MasterTrend
+
+[R.33.3] Multiplicador para ATR aplicado ao calculo
+
+[R.33.4] Periodo da media movel para MasterTrend
+
+[R.33.5] Sinal usado para entradas
+
+[R.33.6] Margem em relacao a linha para retorno

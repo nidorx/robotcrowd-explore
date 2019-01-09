@@ -1,0 +1,5 @@
+[R.23] PARAMETROS THREE BAR REVERSAL
+
+[R.23.1] Numero de barras para determinar minimo/maximo
+
+[R.23.2] Barra de reversao deve fechar alem das duas barras

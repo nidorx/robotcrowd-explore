@@ -1,0 +1,23 @@
+[R.02] PARAMETROS BANDAS DE BOLLINGER
+
+[R.02.1] Periodo da Banda de Bollinger
+
+[R.02.2] Desvio Padrao da Banda de Bollinger
+
+[R.02.3] Preco usado na Banda de Bollinger
+
+[R.02.4] Direcao das operacoes
+
+[R.02.5] Modo de abertura da posicao
+
+[R.02.6] Ponto de encerramento da posicao
+
+[R.02.7] Preco de referencia para entradas
+
+[R.02.8] Limite amplitude Bandas Bollinger
+
+[R.02.8.1] Valor para amplitude minima
+
+[R.02.8.2] Valor para amplitude maxima
+
+[R.02.9] Evitar o uso de barras do dia anterior

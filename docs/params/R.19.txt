@@ -1,0 +1,11 @@
+[R.19] PARAMETROS PIVOT BREAKOUT
+
+[R.19.1] Numero de Barras para Determinar Minimo/Maximo
+
+[R.19.2] Numero de Barras para Confirmacao de Rompimento
+
+[R.19.3] Offset de rompimento para confirmacao
+
+[R.19.4] Aguarda fechamento para confirmacao
+
+[R.19.5] Move o stop para o ultimo fundo/topo

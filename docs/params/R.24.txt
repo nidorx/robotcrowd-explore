@@ -1,0 +1,9 @@
+[R.24] PARAMETROS TURTLE TRADER
+
+[R.24.1] Precos para calculo dos pontos de entrada
+
+[R.24.2] Numero de barras para verificacao da maxima (compra)
+
+[R.24.3] Numero de barras para verificacao da minima (venda)
+
+[R.24.4] Inverter sinais de compra e venda

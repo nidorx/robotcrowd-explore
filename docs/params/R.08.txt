@@ -1,0 +1,13 @@
+[R.08] PARAMETROS HEIKEN ASHI
+
+[R.08.1] Metodo de calculo da media para suavizacao
+
+[R.08.2] Periodo da media para suavizacao
+
+[R.08.3] Metodo de calculo da media do Heiken Ashi
+
+[R.08.4] Periodo da media do Heiken Ashi
+
+[R.08.5] Preco usado na media do Heiken Ashi
+
+[R.08.6] Deslocamento da media do Heiken Ashi

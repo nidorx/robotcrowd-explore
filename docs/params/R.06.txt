@@ -1,0 +1,11 @@
+[R.06] PARAMETROS ENGULFING
+
+[R.06.1] Amplitude minima da corpo na barra de sinal
+
+[R.06.2] Numero de Barras para Determinar Minimo/Maximo
+
+[R.06.3] Filtrar com bandas de bollinger (fora)
+
+[R.06.3.1] Periodo para media bollinger
+
+[R.06.3.2] Multiplicador desvio padrao bollinger

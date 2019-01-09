@@ -1,0 +1,27 @@
+[R.04] PARAMETROS CTOD
+
+[R.04.1] Numero de barras observadas
+
+[R.04.2] Numero de barras iniciais desprezadas
+
+[R.04.3] Referencia de calculo dos pontos de entrada
+
+[R.04.4] Offset de rompimento para confirmacao
+
+[R.04.5] Aguardar fechamento para confirmacao
+
+[R.04.6] Operar apenas barra com abertura dentro dos limites
+
+[R.04.7] Aguarda fechamento da primeira barra
+
+[R.04.8] Operar buscando falso rompimento
+
+[R.04.9] Valor minimo diferenca entre fechamentos
+
+[R.04.10] Valor maximo diferenca entre fechamentos
+
+[R.04.11] Inverter sinais de compra e venda
+
+[R.04.12] Nao operar primeiro rompimento do dia
+
+[R.04.12.1] Numero minimo de barras apos primeiro rompimento

@@ -1,0 +1,19 @@
+[R.09] PARAMETROS IFR
+
+[R.09.1] Periodo (Numero de barras)
+
+[R.09.2] Preco usado no IFR
+
+[R.09.3] Nivel de sobrevenda (%)
+
+[R.09.4] Nivel de sobrecompra (%)
+
+[R.09.5] Ponto de entrada pelo IFR
+
+[R.09.6] Metodo de Saida da Operacao
+
+[R.09.6.1] Periodo da media movel
+
+[R.09.6.2] Tipo da media movel
+
+[R.09.6.3] Preco para calculo da media

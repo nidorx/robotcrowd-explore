@@ -1,0 +1,19 @@
+[R.22] PARAMETROS ESTOCASTICO
+
+[R.22.1] Periodo %K (Numero de barras)
+
+[R.22.2] Periodo %D (Primeira suavizacao)
+
+[R.22.3] Periodo de suavizacao final
+
+[R.22.4] Metodo de calculo da suavizacao (Media Movel)
+
+[R.22.5] Preco considerado no estocastico
+
+[R.22.6] Nivel de sobrevenda (%)
+
+[R.22.7] Nivel de sobrecompra (%)
+
+[R.22.8] Modo de operacao pelo estocastico
+
+[R.22.9] Metodo de saida da operacao

@@ -1,0 +1,9 @@
+[R.32] PARAMETROS SUPERTREND
+
+[R.32.1] Periodo para calculo do SuperTrend
+
+[R.32.2] Multiplicador aplicado ao calculo
+
+[R.32.3] Sinal usado para entradas
+
+[R.32.4] Margem em relacao a linha para retorno

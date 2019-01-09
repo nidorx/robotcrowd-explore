@@ -1,0 +1,53 @@
+[E] DEFINICAO DE STOPS
+
+[E.01] Tipo de stop e objetivo
+
+[E.01.1] Valor ou multiplicador stop loss (Zero desativa)
+
+[E.01.1.1] Valor minimo em pontos para SL (zero ilimitado)
+
+[E.01.1.2] Valor maximo em pontos para SL (zero ilimitado)
+
+[E.01.2] Valor ou multiplicador take profit (Zero desativa)
+
+[E.01.2.1] Valor minimo em pontos para TP (zero ilimitado)
+
+[E.01.2.2] Valor maximo em pontos para TP (zero ilimitado)
+
+[E.01.3] Periodo dos indicadores para calculo de SL e TP
+
+[E.01.4] Tempo grafico dos indicadores para calculo de SL e TP
+
+[E.02] Stop loss movel (Trailing Stop)
+
+[E.02.1] Tipo de gatilho para iniciar trailing stop
+
+[E.02.2] Numero barras, pontos ou % para iniciar trailing
+
+[E.02.3] Valor fixo em pontos, % ou multiplicador ATR
+
+[E.02.4] Periodo dos trailing stops com indicadores
+
+[E.03] Aplicar breakeven apos movimentacao do ativo
+
+[E.03.1] Valor em pontos, percentual ou multiplicador breakeven
+
+[E.03.2] Offset em relacao ao preco de entrada para breakeven
+
+[E.04] Reducao do take profit (protecao)
+
+[E.04.1] Tempo (min), recuo ou numero de acrescimos para reducao
+
+[E.04.2] Nova distancia para take profit (Pontos, %, Pips - E.04)
+
+[E.04.3] Usar preco medio como referencia (false - preco atual)
+
+[E.05] Tempo grafico para atualizacao de stops
+
+[E.06] Corrigir stops em caso de slippage na entrada
+
+[E.07] Usar stop de tempo
+
+[E.07.1] Periodo para determinacao do stop no tempo
+
+[E.07.2] Numero de barras considerado

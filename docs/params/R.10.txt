@@ -1,0 +1,13 @@
+[R.10] PARAMETROS INSIDE DAY BREAKOUT
+
+[R.10.1] Nao operar abertura com gap fora da inside bar
+
+[R.10.2] Offset de rompimento para confirmacao
+
+[R.10.3] Aguardar fechamento para confirmacao
+
+[R.10.4] Inverter sinais de compra e venda
+
+[R.10.5] Nao operar primeiro rompimento do dia
+
+[R.10.5.1] Numero minimo de barras apos primeiro rompimento

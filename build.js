@@ -1,9 +1,10 @@
 const fs = require('fs');
 const https = require('https');
 const querystring = require('querystring');
+require('./latinise.min.js');
 
 // Gerar conteúdo minificado?
-const MINIFY = true;
+const MINIFY = false;
 
 // Todos os enums documentados
 var enums = {};
@@ -24,8 +25,11 @@ Esse item deve ser preenchido usando o proprio codigo fonte dos robos , afim de 
 
 Aqui deve entrar ENUMS e INPUTS
 */
-parseDocs(fs.readFileSync(__dirname + '/docs.txt') + '', '');
-parseDocs(fs.readFileSync(__dirname + '/docs_gl.txt') + '', 'GL_');
+parseEnumsInputs(fs.readFileSync(__dirname + '/docs/params.txt') + '', '');
+parseEnumsInputs(fs.readFileSync(__dirname + '/docs/params_gl.txt') + '', 'GL_');
+
+// Tratamento da documentação dos parametros de entrada
+parseParamsDocs();
 
 // Gera o index.html
 generateHtml();
@@ -100,14 +104,156 @@ function minifyHTML(html, callback) {
 }
 
 /**
- * 
- * @param {*} docs 
- * @param {*} prefix Permite prefixar os Grupos (Usado nos robos GL)
+ * Gera documentação dos Robos
  */
-function parseDocs(docs, prefix) {
-   prefix = prefix || '';
+function parseRobotsDocs(){
 
-   var lines = docs.split('\n');
+   var robots = {};
+   // Palavras a ignorar na indexação
+   var ignoredWords = ''
+
+   // Indice de palavras relacionado aos robos que possuem essa palavra na documentação
+   var indexedWordsXrefRobots = {};
+
+   // Obtém a documetação dos parametros a partir dos documentos de texto. 
+   var dirents = fs.readdirSync(__dirname + '/docs/robots', {withFileTypes:true});
+   dirents.filter(d => d.isFile() && d.name.endsWith('.txt')).forEach(file => {
+      var name = file.name.replace('.txt', ''); 
+      var lines = (fs.readFileSync(__dirname + '/docs/robots/' + file.name) + '').split('\n');
+      var robot = {
+         name: name,
+         title: lines[0],
+         header: lines[1],
+         doc: ''
+      };
+      robots[name]  = robot;
+      for (var i = 2; i < lines.length; i++) {
+         var line = lines[i].replace(/(^\s+)|(\s+$)/g, '');
+
+         robot.doc +=  '\n' + line;
+      }
+      // Faz a indexação dos parametros de pesquisa 
+      var words = robot.doc
+            .latinise()
+            .split('')
+            .filter(w => w !=='' && a.length > 2 && ignoredWords.indexOf(w) < 0)
+            ;
+   });
+}
+
+/**
+ * Faz o carregamento da documentação detalhada dos parametros.
+ * 
+ * Após o parsing, atualiza a documentação com todos os inputs existentes
+ */
+function parseParamsDocs() {
+
+   // Documentação dos parametros por índice
+   var docs = {};
+
+   // Obtém a documetação dos parametros a partir dos documentos de texto. 
+   var dirents = fs.readdirSync(__dirname + '/docs/params', {withFileTypes:true});
+   dirents.filter(d => d.isFile() && d.name.endsWith('.txt')).forEach(file => {
+      var contextParts = file.name.replace('.txt', '').split('_'); 
+      var context = contextParts.length == 1 ? '': (contextParts[0] + '_');
+      var lines = (fs.readFileSync(__dirname + '/docs/params/' + file.name) + '').split('\n');
+      var currentParam;
+      for (var i = 0; i < lines.length; i++) {
+         var line = lines[i].replace(/(^\s+)|(\s+$)/g, '');
+
+         var match = line.match(/^\[([^]+)\]\s*(.*)/);
+         if (match) {
+            var docID = context + match[1];
+            var description = match[2];
+
+            currentParam = {
+               // Permite sobrescrever a descrição do parametro que foi previamente documentado no codigo fonte
+               description: description,
+               // Conteúdo da ajuda de contexto
+               help: ''
+            };
+
+            docs[docID] = currentParam;
+         } else if(currentParam && line !== '') {
+            if(currentParam.help === ''){
+               currentParam.help = line;
+            } else {
+               currentParam.help +=  '\n' + line;
+            }
+         }
+      }
+   });
+
+   // Salva a documentação de todos os paremtros, atualiza os documentos, adicionando os parametros não documentados
+   for(var group in inputs){
+      if(!inputs.hasOwnProperty(group)){
+         continue;
+      }
+      
+      // Abriga o conteúdo da documentação deste grupo
+      var fileContent = [];
+      
+      var parseParamDocs = (item) => {
+         // Parametro possui doucmentação?
+         var docID = item.docID;
+         var contextDocID = item._context + docID;
+         if(docs.hasOwnProperty(contextDocID)){
+            //console.log(`"${docID}"`, docs[docID]);
+            item.description = docs[contextDocID].description;
+            item.help = docs[contextDocID].help;
+         } 
+         
+         var description = item.description || item.name;
+         var content = `[${docID}] ${description}\n`;
+         if(item.help && item.help !== ''){
+            content += '    ' + item.help.replace(/\n/g,'\n    ') + '\n';
+
+            // Gera o html para o conteúdo
+            // ![caminho/da/imagem.png] -> <img src="./assets/caminho/da/imagem.png" />
+            // [I'm an inline-style link](https://www.google.com)
+
+            item.help = 
+               '<p>' + (
+                  item.help
+                     .replace(/(^\s+)|(\s+$)/g, '')
+                     .replace(/\n+/g,'</p><p>')
+                     .replace(/!\[([^\]]+)\]/g,'<img src="./assets/$1" />')
+                     .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>')
+               )
+               + '</p>';
+         }
+
+         fileContent.push(content);
+
+         // Remove a variável de marcação
+         delete item._context;
+
+         // Atualiza documentação dos atributos relacionados
+         for(var key in item.itens) {
+            if(!item.itens.hasOwnProperty(key)){
+               continue;
+            }
+            parseParamDocs(item.itens[key]);
+         }
+      };
+
+      parseParamDocs(inputs[group]);
+
+      // Finalmente, salva o arquivo de documentação deste grupo de parametros
+      fs.writeFileSync(__dirname + '/docs/params/' + group + '.txt', fileContent.join('\n'));
+   }
+}
+
+/**
+ *  Faz o parsing do codigo fonte dos enums e inputs dos robos
+ * 
+ * @param {*} source 
+ * @param {*} context Permite prefixar os Grupos (Usado nos robos GL)
+ */
+function parseEnumsInputs(source, context) {
+   context = context || '';
+
+   var lines = source.split('\n');
 
    var enumCurrent;
 
@@ -116,7 +262,7 @@ function parseDocs(docs, prefix) {
 
       // Inicio de ENUM
       if (line.indexOf('enum ') === 0) {
-         var enumName = prefix + line.replace(/enum \s*([^{\s]+).*/, '$1');
+         var enumName = context + line.replace(/enum \s*([^{\s]+).*/, '$1');
          enumCurrent = {};
          if (enums.hasOwnProperty(enumName)) {
             throw new Error('Enum com nome ' + enumName + ' já foi registrado antes');
@@ -168,23 +314,30 @@ function parseDocs(docs, prefix) {
             var groupLetter = matchGroupDescri[1];
             var groupPathNu = matchGroupDescri[2].replace(/\.$/g, ''); // Caminho do item (numero)
             var inputDescription = matchGroupDescri[3];
-
+            var docID = inputDescriptionOrig.replace(inputDescription, '').replace(/(^\s+)|(\s+$)/g, '');
 
             if ((inputName.indexOf('inDesc') === 0 && groupLetter !== 'H') || inputName.indexOf('inDescFilter1') === 0) {
                // Início de novo grupo de entrada (Ignora agrupamento de filtros. Ex. "H.07. Filtro de Media Movel 1")
 
                var groupItem = {
+                  // O número do parametro na documentaçao
+                  docID: '',
                   name: inputDescription,
-                  descriptionOrig: inputDescriptionOrig,
                   itens: {}
                };
-
+               
                if (groupLetter === 'R' || groupLetter === 'S') {
                   // Input específico do robo
                   groupLetter = groupLetter + '.' + groupPathNu
                }
 
-               groupLetter = prefix + groupLetter;
+               // Docid de parametros de descrição segue um modelo diferente
+               groupItem.docID = groupLetter;
+
+               // TEMP! registra o caminho original do item, usado na documentação dos parametros
+               groupItem._context = context;
+               
+               groupLetter = context + groupLetter;
 
                inputs[groupLetter] = groupItem;
             } else {
@@ -192,8 +345,8 @@ function parseDocs(docs, prefix) {
                var PRIMITIVES = ['char', 'short', 'int', 'long', 'uchar', 'ushort', 'uint', 'ulong', 'color', 'datetime', 'double', 'float', 'string', 'bool'];
                if(PRIMITIVES.indexOf(inputType) < 0){
                   // É um enum, deve usar o prefixo, se o enum existir
-                  if(enums.hasOwnProperty(prefix + inputType)){
-                     inputType = prefix + inputType;                  
+                  if(enums.hasOwnProperty(context + inputType)){
+                     inputType = context + inputType;                  
                   }
 
                   if(!enums.hasOwnProperty(inputType)) {
@@ -209,9 +362,11 @@ function parseDocs(docs, prefix) {
                   name: inputName,
                   type: inputType,
                   value: inputDefault,
+                  docID : docID,
                   description: inputDescription,
-                  descriptionOrig: inputDescriptionOrig,
-                  itens: {}
+                  itens: {},
+                  // TEMP! registra o caminho original do item, usado na documentação dos parametros
+                  _context : context
                };
                // Obtem o caminho do item
                var intemPath = groupPathNu.split('.');
@@ -221,15 +376,17 @@ function parseDocs(docs, prefix) {
                   groupLetter = groupLetter + '.' + intemPath.shift()
                }
 
-               groupLetter = prefix + groupLetter;
+               groupLetter = context + groupLetter;
 
                // Subgrupo descritivos
                if (inputName.indexOf('inDesc') === 0) {
                   inputs[groupLetter].itens[ '_' + intemPath[0]] = {
                      name: inputDescription,
+                     docID : docID,
                      description: inputDescription,
-                     descriptionOrig: inputDescriptionOrig,
-                     itens: {}
+                     itens: {},
+                     // TEMP! registra o caminho original do item, usado na documentação dos parametros
+                     _context:context
                   };
                   continue;
                }

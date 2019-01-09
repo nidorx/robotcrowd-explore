@@ -1,0 +1,13 @@
+[B] GERENCIAMENTO DE RISCO
+
+[B.01] Metodo para calculo de volume inicial
+
+[B.02] Volume fixo ou incremento/minimo
+
+[B.03] Incremento de capital ou risco percentual
+
+[B.04] Capital considerado (Zero usa saldo da conta/Negativo variavel global)
+
+[B.05] Tipo de aumento de volume a cada nivel de entrada
+
+[B.06] Valor para soma ou multiplicao para lotes progressivos

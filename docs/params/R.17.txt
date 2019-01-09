@@ -1,0 +1,7 @@
+[R.17] PARAMETROS MME
+
+[R.17.1] Periodo da media movel
+
+[R.17.2] Metodo de calculo da media movel
+
+[R.17.3] Metodo de entrada secundario

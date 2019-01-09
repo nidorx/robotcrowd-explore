@@ -1,0 +1,15 @@
+[R.11] PARAMETROS LAST DAY BREAKOUT
+
+[R.11.1] Nao operar abertura com gap alem da max/min anterior
+
+[R.11.2] Offset de rompimento para confirmacao
+
+[R.11.3] Aguardar fechamento para confirmacao
+
+[R.11.4] Inverter sinais de compra e venda
+
+[R.11.5] Nao operar primeiro rompimento do dia
+
+[R.11.5.1] Numero minimo de barras apos primeiro rompimento
+
+[R.11.6] Distancia maxima entre abertura e pontos de entrada

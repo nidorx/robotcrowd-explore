@@ -1,0 +1,29 @@
+[R.25] PARAMETROS VOLATILITY BREAKOUT
+
+[R.25.1] Tipo de calculo da volatilidade
+
+[R.25.2] Periodo para calulo da volatilidade
+
+[R.25.3] Preco utilizado como base para limites
+
+[R.25.4] Calcular pontos de entrada apenas na abertura
+
+[R.25.5] Numero de barras para media de volatilidade
+
+[R.25.6] Valor fixo, percentual, ou multiplicador ponto de compra
+
+[R.25.7] Valor fixo, percentual, ou multiplicador ponto de venda
+
+[R.25.8] Offset de rompimento para confirmacao
+
+[R.25.9] Aguardar fechamento para confirmacao
+
+[R.25.10] Opera apenas barra com cruzamento dos limites
+
+[R.25.11] Calcular limites intraday apos uma inside bar
+
+[R.25.12] Nao operar primeiro rompimento do dia
+
+[R.25.12.1] Numero minimo de barras apos primeiro rompimento
+
+[R.25.13] Inverter sinais de compra e venda

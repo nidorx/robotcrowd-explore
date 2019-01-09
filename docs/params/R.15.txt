@@ -1,0 +1,25 @@
+[R.15] PARAMETROS MEAN REVERSAL
+
+[R.15.1] Periodo da media movel de referencia
+
+[R.15.2] Metodo de calculo da media movel de referencia
+
+[R.15.3] Distancia fixa de afastamento da media
+
+[R.15.4] Periodo do ATR para somar ao afastamento
+
+[R.15.4.1] Multiplicador aplicado ao ATR
+
+[R.15.5] Periodo do desvio padrao para somar ao afastamento
+
+[R.15.5.1] Multiplicador aplicado ao desvio padrao
+
+[R.15.6] Modo de determinacao dos pontos de entrada
+
+[R.15.6.1] Fazer aumento de posicao a cada candle contra media
+
+[R.15.6.2] Deslocamento minimo para fazer aumento de posicao
+
+[R.15.7] Aguardar superacao do afastamento para colocar ordens
+
+[R.15.8] Metodo usado para saida do trade
