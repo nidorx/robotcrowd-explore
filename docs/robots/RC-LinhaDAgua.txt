@@ -1,2 +1,6 @@
-# RC-1aBarra
+Rompimento da Linha D’Água
+Observa aberturas em gap se o preço ultrapassa a linha d’água
 
+É chamada linha d’água aquela que passa pelo preço de fechamento do dia anterior. A ideia do setup é que, após uma abertura em gap, se o preço ultrapassar a linha d’água, consequentemente fechando o gap de abertura, o ativo tende a continuar o movimento que provocou o rompimento desta linha. O robô tenta capturar este comportamento do mercado, montando uma operação de day trade.
+
+![RC-LinhaDAgua.png]

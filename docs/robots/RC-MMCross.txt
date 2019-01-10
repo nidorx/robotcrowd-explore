@@ -1,2 +1,6 @@
-# RC-1aBarra
+Cruzamento de Médias
+Opera o cruzamento de médias móveis
 
+A estratégia do cruzamento de médias é uma das mais conhecidas no mercado. Neste caso são utilizadas duas médias móveis, uma de período menor (rápida) e outra de período maior (lenta). Quando a média rápida cruza a média lenta para cima ou para baixo, tem-se uma indicação de mudança na tendência, e o robô baseado nesta estratégia inicia a operação no rompimento da máxima ou mínima do candle onde houve o cruzamento. Caso o ponto de entrada não seja superado, o mesmo é ajustado para a máxima ou mínima do próximo candle.
+
+![RC-MMCross.png]

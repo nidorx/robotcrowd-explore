@@ -1,2 +1,10 @@
-# RC-1aBarra
+Bollinger
+tem como base o indicador Bandas de Bollinger
 
+Este robô pode operar tanto em day trade como também no swing trade e tem como base o indicador Bandas de Bollinger.
+
+No setup clássico, o robô busca operações de retorno à média, após um fechamento fora ou simplesmente um toque nas bandas superior e inferior.
+
+Pode ser usado também como seguidor de tendência, observando a banda virada a favor da tendência e operando o rompimento destes limites.
+
+![RC-Bollinger.png]

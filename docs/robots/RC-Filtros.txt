@@ -1,2 +1,8 @@
-# RC-1aBarra
+Filtros
+conjunto de indicadores e regras que habilitam uma compra ou venda 
 
+Os filtros disponíveis nos robôs nada mais são que um conjunto de indicadores e regras que habilitam uma compra ou venda de acordo com determinado setup. A ideia deste robô é usar apenas a combinação destas regras para definir o ponto de compra ou venda de um ativo. Isso possibilita uma forma fácil de configurar robôs baseados em indicadores, bastando escolher a combinação desejada nos parâmetros e observar a execução dos trades.
+
+No exemplo abaixo, foram parametrizados um dos filtros de média móvel exponencial com período 17 e as linhas de Phibo PC/PV. A entrada é realizada quando o preço fecha acima da média móvel de 17 e também está acima das linhas Phibo PV 1 (72) e Phibo PV 2 (305).
+
+![RC-Filtros.png]

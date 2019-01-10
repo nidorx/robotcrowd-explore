@@ -1,2 +1,6 @@
-# RC-1aBarra
+GLVolatilityBands
+permite entrada automatizada em trades do tipo Gradiente Linear baseado em um indicador de afastamento de média móvel
 
+Robô que implementa abordagem para entrada automatizada em trades do tipo Gradiente Linear, conforme definido por Su Choung Wei, baseado em um indicador de afastamento de média móvel, que forma um canal de volatilidade. As bandas do indicador podem ser compostas por distância fixa, ATR e desvio padrão de forma a acomodar melhor as oscilações normais do mercado.
+
+![RC-GLVolatilityBands.png]

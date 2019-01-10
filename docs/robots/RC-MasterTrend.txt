@@ -1,2 +1,7 @@
-# RC-1aBarra
+MasterTrend
+opera sinais dados pelo indicador de tendência MasterTrend
 
+
+Este robô opera sinais dados pelo indicador de tendência MasterTrend, disponibilizado na comunidade, que tem por objetivo apresentar as tendências de forma mais estável, sem muitas sinalizações de inversão de tendência. O robô pode operar mudanças na cor do indicador, retorno até a linha, ou apenas a posição relativa dos preços em relação à linha.
+
+![RC-MasterTrend.png]

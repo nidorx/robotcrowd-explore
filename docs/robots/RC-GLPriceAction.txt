@@ -1,2 +1,6 @@
-# RC-1aBarra
+GLPriceAction
+permite entrada automatizada em trades do tipo Gradiente Linear baseado em padrões de Price Action
 
+Robô que implementa abordagem para entrada automatizada em trades do tipo Gradiente Linear, conforme definido por Su Choung Wei, baseado em padrões de Price Action. A ideia é usar o robô em conjunto com os filtros disponíveis para encontrar os melhores momentos de entrada nas operações.
+
+![RC-GLPriceAction.png]

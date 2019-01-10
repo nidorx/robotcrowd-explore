@@ -1,2 +1,6 @@
-# RC-1aBarra
+Phibo PC/PV
+opera o retorno até as linhas verdes e vermelhas do indicador Phibo-PCPV, de Bo Williams
 
+Este robô opera o retorno até as linhas verdes e vermelhas do indicador Phibo-PCPV, criado por Bo Williams. O robô possui uma configuração independente de volume para cada linha, sendo que um volume zero indica que o nível não deverá ser usado. Após a entrada na primeira linha o robô fará acréscimos de posição nas linhas subsequentes, se configuradas com volume.
+
+![RC-PhiboPCPV.png]

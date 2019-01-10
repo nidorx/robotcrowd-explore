@@ -1,2 +1,10 @@
-# RC-1aBarra
+CTOD
+Critical Time of the Day, baseado em estratégia apresentada por Jake Bernstein
 
+Também um robô para day trade, o CTOD (Critical Time of the Day) é baseado em uma estratégia apresentada pelo trader Jake Bernstein. O setup original definido por Jake consistia em monitorar a primeira hora de operação do mercado e marcar os preços de fechamento de cada candle de 5 minutos. Após este período, deveria ser marcado o maior e menor preço de fechamento e operar o rompimento dos mesmos.
+
+Este robô foi adaptado para permitir tanto a monitoração dos preços de fechamento quando as máximas e mínimas dos candles, para determinação do range de interesse. Pode-se também ignorar um número de barras iniciais para se considerar apenas um período de tempo específico, desprezando por exemplo os primeiros candles do dia que tendem a ser mais voláteis.
+
+A imagem abaixo mostra o setup configurado para ignorar a primeira barra e considerar como limites os fechamentos das próximas duas barras, entrando no rompimento da máxima ou mínima encontrada.
+
+![RC-CTOD.png]

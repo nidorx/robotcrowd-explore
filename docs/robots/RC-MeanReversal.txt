@@ -1,2 +1,6 @@
-# RC-1aBarra
+Mean Reversal
+busca operações de retorno à media após os preços distanciarem
 
+Robô que busca operações de retorno à media após os preços distanciarem da mesma por um afastamento pré-definido. Este afastamento pode ser composto por uma combinação de valor fixo, proporção do ATR e também desvio padrão dos preços.
+
+![RC-MeanReversal.png]

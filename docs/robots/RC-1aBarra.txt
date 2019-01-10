@@ -7,3 +7,4 @@ Pode operar tanto na compra quanto na venda, seguindo o sentido do rompimento da
 
 Seu funcionamento pode ser condicionado à existência de um gap de abertura, buscando operação no fechamento do gap ou apostando na continuação do movimento inicial.
 
+![RC-1aBarra.png]

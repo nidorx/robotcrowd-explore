@@ -1,2 +1,6 @@
-# RC-1aBarra
+MME
+observa a virada da média móvel exponencial
 
+Este robô também usa um setup bastante conhecido, que consiste em observar a virada da média móvel exponencial e entrar na superação do candle onde ocorreu a virada. Uma das configurações mais famosas é a MME 9, mas este robô pode operar com qualquer tipo de média móvel e qualquer período pode ser configurado.
+
+![RC-MME.png]

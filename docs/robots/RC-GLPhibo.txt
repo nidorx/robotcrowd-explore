@@ -1,2 +1,6 @@
-# RC-1aBarra
+GLPhibo
+permite entrada automatizada em trades do tipo Gradiente Linear com base no indicador Phibo de Bo Williams
 
+Este robô implementa uma abordagem para entrada automatizada em trades do tipo Gradiente Linear, conforme definido por Su Choung Wei. É utilizado como base o indicador Phibo, criado por Bo Williams, que mostra níveis de suporte e resistência dados pelos percentuais de Fibonacci. A ideia é que entre esses níveis possa haver algum tipo de consolidação, que o robô tenta explorar.
+
+![RC-GLPhibo.png]

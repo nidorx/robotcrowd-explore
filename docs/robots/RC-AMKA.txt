@@ -1,2 +1,6 @@
-# RC-1aBarra
+AMKA
+baseado em médias móveis adaptativas, com fatores de suavização
 
+Robô que usa o indicador AMKA, indicador que é baseado em médias móveis adaptativas, com fatores de suavização. O indicador AMKA gera sinais de compra e venda que são seguidos pelo robô.
+
+![RC-AMKA.png]

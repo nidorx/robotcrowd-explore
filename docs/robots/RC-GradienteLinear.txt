@@ -1,2 +1,6 @@
-# RC-1aBarra
+Gradiente Linear
+de Su Choung Wei, opera em momentos de consolidação aproveitando a volatilidade do mercado
 
+Esta estratégia foi apresentada por Su Choung Wei, e consiste em operar em momentos de consolidação aproveitando a volatilidade do mercado, abrindo diversos trades com alvos curtos enquanto os preços oscilam para cima ou para baixo em uma determinada faixa. O robô insere todas as ordens pendentes do tipo limitadas e acompanha a execução das mesmas, colocando uma ordem oposta sempre que um dos níveis é atingido. Esta versão do robô não tem uma estratégia automatizada de entrada, e dessa forma, o início de operação deste robô deve ser feito manualmente usando uma mini-boleta com botões que permitem o controle manual das operações.
+
+![RC-GradienteLinear.png]

@@ -1,2 +1,6 @@
-# RC-1aBarra
+CCI + MA
+baseado no indicador CCI (Commodity Channel Index) em conjunto com uma média móvel
 
+O Robô é baseado no indicador CCI (Commodity Channel Index) em conjunto com uma média móvel do próprio indicador. O sinal de compra ou venda é dado quando o CCI cruza a sua média móvel além de um dos limites de sobrecompra ou sobrevenda, entrando no sentido de retorno à média.
+
+![RC-CCI-MA.png]

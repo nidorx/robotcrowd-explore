@@ -1,2 +1,7 @@
-# RC-1aBarra
+Equity Control
+robô auxiliar para proteção do saldo na conta de negociação
 
+
+O Equity Control é um robô auxiliar para proteção do saldo na conta de negociação. Podem ser definidos no robô limites diários, semanais e mensais de ganho e perda. Quando os limites forem atingidos, o Equity Control pode ser configurado para fechar todas as posições e ordens abertas por Expert Advisors e, opcionalmente, desabilitar a negociação automatizada para o terminal. Outro modo de operação é apenas informar aos demais robôs da RobotCrowd que o limite global foi atingido e cada robô se encarrega de fechar suas operações.
+
+![RC-EquityControl.png]

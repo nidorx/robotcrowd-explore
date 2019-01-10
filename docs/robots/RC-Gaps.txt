@@ -1,2 +1,6 @@
-# RC-1aBarra
+Gaps
+busca operações de acordo com os gaps de abertura no mercado
 
+Este robô busca operações de acordo com os gaps de abertura no mercado. Pode ser configurado para operar em sentido contrário ao gap (fechamento), a favor do gap (continuação), ou ambos. Pode ser definido um tamanho mínimo de gap para filtrar as diferenças de abertura menos importantes. Esta é uma estratégia de day trade.
+
+![RC-Gaps.png]

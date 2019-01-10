@@ -1,2 +1,8 @@
-# RC-1aBarra
+Oops
+criado por Larry Williams, busca operações com a ocorrência de gaps de abertura
 
+Este setup foi criado por Larry Williams, e também busca operações com a ocorrência de gaps de abertura. Nesta estratégia, observa-se se a abertura do dia ocorreu com um gap acima da máxima do dia anterior, ou abaixo da mínima do dia anterior, o que sugeriria um movimento forte já na abertura. Contudo, caso o mercado recue na direção contrária ao gap, chegando até a máxima ou mínima do dia anterior, uma entrada é feita buscando um movimento no sentido contrário. O setup é chamado de Oops porque pode indicar o entendimento por parte dos traders que eles estavam errados na suposição inicial do movimento do mercado e tenderiam a encerrar ou inverter as posições montadas na abertura.
+
+Pode ser definido o tamanho mínimo do gap a ser operado por esta estratégia.
+
+![RC-Oops.png]

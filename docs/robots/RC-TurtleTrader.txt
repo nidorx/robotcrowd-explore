@@ -1,2 +1,6 @@
-# RC-1aBarra
+Turtle Trader
+ baseado na estratégia seguidora de tendência, de Richard Dennis e William Eckhardt
 
+Este robô é baseado na estratégia seguidora de tendência utilizada pelo grupo de traders aprendizes, chamados de Turtle Traders, treinados por Richard Dennis e William Eckhardt. Basicamente, o sistema prevê a entrada em operações de compra após o rompimento da máxima de um número configurável de barras, e da mesma forma a entrada na ponta vendedora se perder a mínima das últimas barras consideradas.
+
+![RC-TurtleTrader.png]

@@ -1,2 +1,6 @@
-# RC-1aBarra
+Shadow Line
+criada por Larry Williams, observa o cruzamento da sombra de uma média móvel
 
+Este robô é baseado na estratégia criada por Larry Williams que consiste em plotar no gráfico uma média móvel e a mesma média deslocada um número de períodos para frente. Quando a média cruza a sua sombra (média deslocada) pode indicar a mudança de tendência ou o início de um movimento mais longo.
+
+![RC-ShadowLine.png]

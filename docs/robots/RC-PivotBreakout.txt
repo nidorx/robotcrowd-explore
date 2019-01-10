@@ -1,2 +1,6 @@
-# RC-1aBarra
+Pivot Breakout
+compra o rompimento do último topo ou vende a perda do último fundo
 
+Movimentos de alta e baixa muitas vezes apresentam a característica de pivôs, ou movimentos com ondas 1-2-3. A ideia deste robô é comprar o rompimento do último topo ou vender a perda do último fundo, apostando na continuação da tendência.
+
+![RC-PivotBreakout.png]

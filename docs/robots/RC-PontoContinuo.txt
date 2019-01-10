@@ -1,2 +1,6 @@
-# RC-1aBarra
+Ponto Contínuo
+busca a entrada em operações em tendência após uma correção até uma média móvel
 
+Esta estratégia, apresentada por Alexandre Wolwacz (Stormer), busca a entrada em operações em tendência após uma correção até uma média móvel. Na configuração sugerida, utiliza-se uma média móvel aritmética de 20 períodos e, após os preços estarem variando acima ou abaixo da média, quando for observado um toque na média móvel deve-se fazer a entrada no rompimento da máxima ou mínima do candle que encostou na média.
+
+![RC-PontoContinuo.png]

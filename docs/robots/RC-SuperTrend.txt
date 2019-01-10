@@ -1,2 +1,6 @@
-# RC-1aBarra
+SuperTrend
+opera sinais dados pelo indicador de tendência SuperTrend
 
+Este robô opera sinais dados pelo indicador de tendência SuperTrend. O robô pode operar mudanças na sinalização de tendência do indicador, retorno até a linha, ou apenas a posição relativa dos preços em relação à linha.
+
+![RC-SuperTrend.png]

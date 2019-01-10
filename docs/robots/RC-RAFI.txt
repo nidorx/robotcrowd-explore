@@ -1,2 +1,6 @@
-# RC-1aBarra
+RAFI
+tem como base o indicador RAFI, criado por Raphael Figueredo
 
+O robô usa como base o indicador RAFI, criado por Raphael Figueredo, que mostra a força nos rompimentos e sinaliza no gráfico colorindo os candles de verde para alta e vermelho para baixa. Nestas condições o valor do indicador RAFI é maior que 2.5, indicando força no movimento.
+
+![RC-RAFI.png]

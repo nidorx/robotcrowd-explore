@@ -1,2 +1,6 @@
-# RC-1aBarra
+Stochastic
+usa o indicador estocástico para determinação dos pontos de compra e venda
 
+O robô usa o indicador estocástico para determinação dos pontos de compra e venda. Pode operar em dois modos,  sendo o primeiro mais clássico, buscando o retorno à média a partir dos pontos de sobrecompra e sobrevenda. O segundo modo tenta entrar a favor da tendência ao cruzar as linhas de sobrecompra ou sobrevenda, seguindo uma estratégia chamada de “Stochastic Pop”, por Jake Bernstein. Este último modo de operação é representado pela figura abaixo.
+
+![RC-Stochastic.png]

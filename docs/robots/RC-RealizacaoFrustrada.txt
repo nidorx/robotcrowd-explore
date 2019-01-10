@@ -1,2 +1,6 @@
-# RC-1aBarra
+Realização Frustrada
+busca padrão que representa a frustação dos traders em prever a movimentação dos preços
 
+Este setup, também apresentado pelo Stormer, busca uma sequencia de três candles que representam a frustação dos traders em prever a movimentação dos preços. Em uma tendência de alta, o padrão é formato por uma sequência de baixa-alta-baixa, e a entrada ocorre no rompimento da máxima destes três candles. Já em uma tendência de baixa, a sequência é invertida: alta-baixa-alta, com entrada na perda da mínima das três barras. A ideia do setup é que na primeira barra alguns traders apostam na reversão da tendência, na segunda a tendência continua e os traders ficam preocupados, enquanto que na terceira acreditam que estavam certos e aumentam a aposta. Quando o mercado faz o movimento contrário e continua a tendência, são obrigados a encerrar as posições e o rompimento tende a apresentar força.
+
+![RC-RealizacaoFrustrada.png]

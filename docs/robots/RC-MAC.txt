@@ -1,2 +1,8 @@
-# RC-1aBarra
+MAC
+Opera com base no indicador MAC (Moving Average Channel)
 
+O MAC (Moving Average Channel) é formado por um par de médias móveis, uma das máximas e outra das mínimas. Quando o canal está inclinado para cima e os preços estão acima do canal, uma tendência de alta é confirmada. Da mesma forma, quando o canal está voltado para baixo e os preços são negociados abaixo do canal, temos uma tendência de baixa. Este robô aguarda a ocorrência de dois candles totalmente acima ou abaixo do canal para a confirmação da tendência, fazendo a entrada no rompimento da máxima ou mínima do segundo candle.
+
+Pode ser usado também com uma entrada secundária caso os preços voltem até o canal indicando um repique e teste das médias móveis.
+
+![RC-MAC.png]

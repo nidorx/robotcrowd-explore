@@ -1,2 +1,6 @@
-# RC-1aBarra
+Engulfing
+busca este padrão de candlesticks e faz a entrada logo no fechamento do candle 
 
+O robô de engolfo busca este padrão de candlesticks no gráfico e faz a entrada logo no fechamento do candle de engolfo acompanhando a indicação de alta ou baixa. O engolfo de alta (bullish engulfing) é caracterizado por um par de candles onde o corpo (diferença entre abertura e fechamento) do segundo envolve completamente o corpo do primeiro, sendo o primeiro candle baixista e o segundo de alta. Já o engolfo de baixa (bearish engulfing) é caracterizado pelo padrão ao inverso, ainda com o corpo do segundo candle envolvendo o primeiro, mas sendo este de alta e o segundo de baixa.
+
+![RC-Engulfing.png]

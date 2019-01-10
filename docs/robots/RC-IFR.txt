@@ -1,2 +1,8 @@
-# RC-1aBarra
+IFR
+baseado no indicador IFR (Indice de Força Relativa)
 
+Robô baseado no indicador IFR (Indice de Força Relativa). Pode operar tanto na busca de correções como na confirmação de tendência. No primeiro caso, as operações de compra são abertas após um fechamento abaixo do nível sobrevendido, enquando as de venda são inicados quando um candle fecha acima do nível sobrecomprado. A saída do trade pode ser no retorno a uma média móvel, no nível oposto, ou conforme definição de objetivo nos ajustes. O segundo tipo de operação busca aproveitar a força relativa do mercado. As operações são iniciadas quando o preço sai da região de sobrecompra (para venda) ou da região de sobrevenda (para compra). Os percentuais de sobrecompra e sobrevenda são configuráveis, bem como o período de cálculo do IFR.
+
+A imagem abaixo mostra a operação de um IFR 2, com limites 5% e 95%, e saída no cruzamento da média móvel simples de 7 períodos.
+
+![RC-IFR.png]

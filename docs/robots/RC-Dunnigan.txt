@@ -1,2 +1,6 @@
-# RC-1aBarra
+Dunnigan
+usa os conceitos definidos por William Dunnigan 
 
+Este setup usa os conceitos definidos por William Dunnigan no que diz respeito ao início de um movimento de alta ou baixa, que pode ser identificado, respectivamente, por uma up bar ou down bar. Uma up bar é composta por uma barra com a máxima maior que a máxima anterior e também a mínima maior que a mínima anterior. Já uma down bar é caracterizada por ter a máxima menor que a máxima da barra anterior, e a mínima mais baixa que a mínima anterior. Em ambos os casos, a cor do candle (abertura – fechamento) é indiferente. O robô pode ser configurado para ignorar gaps, e operar apenas barras que não superem totalmente a barra anterior. Esta estratégia pode ser aplicada tanto para day trade como também para swing trade.
+
+![RC-Dunnigan.png]

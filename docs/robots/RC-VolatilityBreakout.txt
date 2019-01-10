@@ -1,2 +1,6 @@
-# RC-1aBarra
+Volatility Breakout
+de Larry Williams, prevê a entrada na operação quando os preços ultrapassam a volatilidade média, e tendem a manter a direção do movimento. 
 
+O setup de rompimento de volatilidade foi apresentado por Larry Williams, e também é adotado por diversos traders buscam operações de rompimento. Esta estratégia prevê a entrada na operação quando os preços ultrapassam a volatilidade média, e tendem a manter a direção do movimento. A volatilidade pode ser medida de diversas formas, como diferença entre máxima e fechamento, mínima e fechamento, máximas e mínimas, ATR (Average True Range), desvio padrão, e também o GSV (Greatest Swing Value, conforme definido por Williams). A volatilidade também pode ser determinada em período diário, buscando o rompimento a partir da abertura do dia, ou calculada nas barras no intraday, que permite operações de rompimento de consolidações menores de preços no intraday.
+
+![RC-VolatilityBreakout.png]

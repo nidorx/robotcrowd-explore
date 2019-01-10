@@ -1,2 +1,6 @@
-# RC-1aBarra
+Last Day Breakout
+opera o rompimento das máximas e mínimas do dia anterior
 
+Este robô opera o rompimento das máximas e mínimas do dia anterior, buscando tirar proveito de uma tendência mais longa
+
+![RC-LastDayBreakout.png]

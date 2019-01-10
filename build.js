@@ -1,22 +1,37 @@
 const fs = require('fs');
 const https = require('https');
 const querystring = require('querystring');
-require('./latinise.min.js');
+const buscaBR = require('./libs/buscaBR.js');
+require('./libs/latinise.min.js');
 
 // Gerar conteúdo minificado?
 const MINIFY = false;
 
-// Todos os enums documentados
-var enums = {};
 
 // Registra os enums não usados
 var enumsNotUsed = [];
+
+// Todos os enums documentados
+var enums = {};
 
 // Inputs são agrupados por LETRA, conforme a documentação do robo
 // Inputs de robos seguem o padrão LETRA.NUMERO
 // Ex. input = { F:{ name: 'LIMITES DE OPERACAO', itens: [ { name: 'inMaxDayLoss', type:'double', value:'0.0', description: 'Perda maxima aceitavel no dia (Zero ilimitado)' } ] }}
 // Um item pode ter subitens, respeitando a numeraçaõ da documentação
 var inputs = {};
+
+// Listagem dos robos investidores documentados
+var robots = [];
+
+// A documentação do robô é criado aqui, renderizado no HTML com display:none, afim de melhorar o SEO 
+var robotsHTMLDocs = [];
+
+// Os cartões como o nome dos robôs já é criado antecipadamente
+var robotsHTMLCards = [];
+
+// Indice de palavras relacionado aos robos que possuem essa palavra na documentação
+// Usado pelo filtro de pesquisa da funcionalidade
+var searchIndex = {};
 
 /*
 Documentação de todos os parametros disponível para todos os robos.
@@ -25,13 +40,20 @@ Esse item deve ser preenchido usando o proprio codigo fonte dos robos , afim de 
 
 Aqui deve entrar ENUMS e INPUTS
 */
+console.log('-- Geração dos parametros de entrada');
 parseEnumsInputs(fs.readFileSync(__dirname + '/docs/params.txt') + '', '');
 parseEnumsInputs(fs.readFileSync(__dirname + '/docs/params_gl.txt') + '', 'GL_');
 
+// Tratamento da documentação e indice de busca de robos
+console.log('-- Gerando documentação dos robos');
+parseRobotsDocs();
+
 // Tratamento da documentação dos parametros de entrada
+console.log('-- Gerando documentação dos parametros de entrada');
 parseParamsDocs();
 
 // Gera o index.html
+console.log('-- Gerando HTML');
 generateHtml();
 
 
@@ -48,23 +70,35 @@ function generateHtml() {
 
 
    // Finalmente, gera o arquivo final
-   var html = fs.readFileSync(__dirname + '/template.html') + '';
-
-   html = html
+   var html = (fs.readFileSync(__dirname + '/template/template.html') + '')
+      .replace(
+         "/*__JS__*/",
+         fs.readFileSync(__dirname + '/libs/latinise.min.js') + ';'
+         + fs.readFileSync(__dirname + '/template/main.js') + ''
+      )
+      .replace("/*__JS__*/", fs.readFileSync(__dirname + '/template/main.js') + '')
+      .replace("/*__STYLES__*/", fs.readFileSync(__dirname + '/template/styles.css') + '')
+      .replace("<!--__HTML_DOCS__-->", robotsHTMLDocs.join('\n'))
+      .replace("<!--__HTML_CARDS__-->", robotsHTMLCards.join('\n'))
       .replace("'__ENUMS__'", JSON.stringify(enums))
-      .replace("'__INPUTS__'", JSON.stringify(inputs));
+      .replace("'__INPUTS__'", JSON.stringify(inputs))
+      .replace("'__ROBOTS__'", JSON.stringify(robots))
+      .replace("'__SEARCH_INDEX__'", JSON.stringify(searchIndex))
+      ;
 
-   if(MINIFY){
+   if (MINIFY) {
       minifyHTML(html, function (htmlMinified) {
          fs.writeFileSync(__dirname + '/RobotCrowd-Explorer.html', htmlMinified);
       });
-   }else {
+   } else {
       fs.writeFileSync(__dirname + '/RobotCrowd-Explorer.html', html);
    }
 
 }
 
 function minifyHTML(html, callback) {
+   console.log('   - Gerar HTML minificado');
+
    var query = querystring.stringify({
       input: html
    });
@@ -88,12 +122,12 @@ function minifyHTML(html, callback) {
          });
 
          resp.on('end', () => {
-            callback(body);      
+            callback(body);
          });
       }
    );
 
-   
+
 
    req.on('error', function (err) {
       throw err;
@@ -106,39 +140,84 @@ function minifyHTML(html, callback) {
 /**
  * Gera documentação dos Robos
  */
-function parseRobotsDocs(){
+function parseRobotsDocs() {
 
-   var robots = {};
    // Palavras a ignorar na indexação
-   var ignoredWords = ''
-
-   // Indice de palavras relacionado aos robos que possuem essa palavra na documentação
-   var indexedWordsXrefRobots = {};
+   var ignoredWords = ''.split('');
 
    // Obtém a documetação dos parametros a partir dos documentos de texto. 
-   var dirents = fs.readdirSync(__dirname + '/docs/robots', {withFileTypes:true});
-   dirents.filter(d => d.isFile() && d.name.endsWith('.txt')).forEach(file => {
-      var name = file.name.replace('.txt', ''); 
+   var dirents = fs.readdirSync(__dirname + '/docs/robots', { withFileTypes: true });
+   dirents.filter(d => d.isFile() && d.name.endsWith('.txt')).forEach((file, robotIndex) => {
+      var name = file.name.replace('.txt', '');
       var lines = (fs.readFileSync(__dirname + '/docs/robots/' + file.name) + '').split('\n');
+      var title = (lines[0] || '');
+      var header = (lines[1] || '');
+      var robotDoc = '';
       var robot = {
-         name: name,
-         title: lines[0],
-         header: lines[1],
-         doc: ''
+         name: name
       };
-      robots[name]  = robot;
+      robots.push(robot);
       for (var i = 2; i < lines.length; i++) {
-         var line = lines[i].replace(/(^\s+)|(\s+$)/g, '');
-
-         robot.doc +=  '\n' + line;
+         robotDoc += '\n' + lines[i].replace(/(^\s+)|(\s+$)/g, '');
       }
-      // Faz a indexação dos parametros de pesquisa 
-      var words = robot.doc
-            .latinise()
-            .split('')
-            .filter(w => w !=='' && a.length > 2 && ignoredWords.indexOf(w) < 0)
-            ;
+
+      // Gera o conteúdo HTML com a descrição dos robos
+      robotsHTMLCards.push([
+         '<div class="item">',
+         '   <div class="conteudo">',
+         '      <a href="#robot-' + robotIndex + '-docs" onClick="selectRobot(' + robotIndex + '); return false;">',
+         '         <span>' + title + '</span>',
+         '         <i>' + header + '</i>',
+         '      </a>',
+         '   </div>',
+         '</div>'
+      ].join(''));
+
+      robotsHTMLDocs.push([
+         '<div>',
+         '<h1>' + title + '</h1>',
+         '<p>',
+         (
+            robotDoc
+               .replace(/(^\s+)|(\s+$)/g, '')
+               .replace(/\n+/g, '</p><p>')
+               .replace(/!\[([^\]]+)\]/g, '<img src="./assets/$1" />')
+               .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+         ),
+         '</p>',
+         '</div>'
+      ].join('\n'));
+
+      // Faz a indexação dos parametros de pesquisa do robo
+      `${robot.name} ${robot.title} ${robot.header} ${robotDoc}`
+         // Remove acentuação
+         .latinise()
+         .replace(/\n+/g, ' ')
+         // remove caracteres especiais
+         .replace(/[^a-z0-9\s]/gi, '')
+         .toLowerCase()
+         .split(' ')
+         .filter(w => {
+            return w !== '' && w !== 'undefined' && w.length > 2 && ignoredWords.indexOf(w) < 0;
+         })
+         .forEach(word => {
+            if (!searchIndex.hasOwnProperty(word)) {
+               searchIndex[word] = { r: 0, d: [] };
+            }
+            if (searchIndex[word].d.indexOf(robotIndex) < 0) {
+               searchIndex[word].d.push(robotIndex);
+            }
+         });
    });
+
+   // Gera o peso das palavras, quanto mais específica uma palavra, mais importante é
+   var qtdRobots = robots.length;
+   for (var word in searchIndex) {
+      if (!searchIndex.hasOwnProperty(word)) {
+         continue;
+      }
+      searchIndex[word].r = qtdRobots / searchIndex[word].d.length;
+   }
 }
 
 /**
@@ -152,10 +231,10 @@ function parseParamsDocs() {
    var docs = {};
 
    // Obtém a documetação dos parametros a partir dos documentos de texto. 
-   var dirents = fs.readdirSync(__dirname + '/docs/params', {withFileTypes:true});
+   var dirents = fs.readdirSync(__dirname + '/docs/params', { withFileTypes: true });
    dirents.filter(d => d.isFile() && d.name.endsWith('.txt')).forEach(file => {
-      var contextParts = file.name.replace('.txt', '').split('_'); 
-      var context = contextParts.length == 1 ? '': (contextParts[0] + '_');
+      var contextParts = file.name.replace('.txt', '').split('_');
+      var context = contextParts.length == 1 ? '' : (contextParts[0] + '_');
       var lines = (fs.readFileSync(__dirname + '/docs/params/' + file.name) + '').split('\n');
       var currentParam;
       for (var i = 0; i < lines.length; i++) {
@@ -174,51 +253,51 @@ function parseParamsDocs() {
             };
 
             docs[docID] = currentParam;
-         } else if(currentParam && line !== '') {
-            if(currentParam.help === ''){
+         } else if (currentParam && line !== '') {
+            if (currentParam.help === '') {
                currentParam.help = line;
             } else {
-               currentParam.help +=  '\n' + line;
+               currentParam.help += '\n' + line;
             }
          }
       }
    });
 
    // Salva a documentação de todos os paremtros, atualiza os documentos, adicionando os parametros não documentados
-   for(var group in inputs){
-      if(!inputs.hasOwnProperty(group)){
+   for (var group in inputs) {
+      if (!inputs.hasOwnProperty(group)) {
          continue;
       }
-      
+
       // Abriga o conteúdo da documentação deste grupo
       var fileContent = [];
-      
+
       var parseParamDocs = (item) => {
          // Parametro possui doucmentação?
          var docID = item.docID;
          var contextDocID = item._context + docID;
-         if(docs.hasOwnProperty(contextDocID)){
+         if (docs.hasOwnProperty(contextDocID)) {
             //console.log(`"${docID}"`, docs[docID]);
             item.description = docs[contextDocID].description;
             item.help = docs[contextDocID].help;
-         } 
-         
+         }
+
          var description = item.description || item.name;
          var content = `[${docID}] ${description}\n`;
-         if(item.help && item.help !== ''){
-            content += '    ' + item.help.replace(/\n/g,'\n    ') + '\n';
+         if (item.help && item.help !== '') {
+            content += '    ' + item.help.replace(/\n/g, '\n    ') + '\n';
 
             // Gera o html para o conteúdo
             // ![caminho/da/imagem.png] -> <img src="./assets/caminho/da/imagem.png" />
             // [I'm an inline-style link](https://www.google.com)
 
-            item.help = 
+            item.help =
                '<p>' + (
                   item.help
                      .replace(/(^\s+)|(\s+$)/g, '')
-                     .replace(/\n+/g,'</p><p>')
-                     .replace(/!\[([^\]]+)\]/g,'<img src="./assets/$1" />')
-                     .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>')
+                     .replace(/\n+/g, '</p><p>')
+                     .replace(/!\[([^\]]+)\]/g, '<img src="./assets/$1" />')
+                     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
                )
                + '</p>';
          }
@@ -229,8 +308,8 @@ function parseParamsDocs() {
          delete item._context;
 
          // Atualiza documentação dos atributos relacionados
-         for(var key in item.itens) {
-            if(!item.itens.hasOwnProperty(key)){
+         for (var key in item.itens) {
+            if (!item.itens.hasOwnProperty(key)) {
                continue;
             }
             parseParamDocs(item.itens[key]);
@@ -289,9 +368,9 @@ function parseEnumsInputs(source, context) {
 
             // @TODO: Documentar os itens de enum que não possuem
             enumCurrent[nameItem] = descItem
-                                          .replace(/[>]/g,'&gt;')
-                                          .replace(/[<]/g,'&lt;')
-                                          ;
+               .replace(/[>]/g, '&gt;')
+               .replace(/[<]/g, '&lt;')
+               ;
          }
       }
 
@@ -302,7 +381,7 @@ function parseEnumsInputs(source, context) {
          if (matchInput) {
             var inputType = matchInput[1];
             var inputName = matchInput[2];
-            var inputDefault = (matchInput[3]||'').replace(/(^")|("$)/g, '').replace(/(^\s+)|(\s+$)/g, ''); // Remove aspas (SE HOUVER) + TRIM;
+            var inputDefault = (matchInput[3] || '').replace(/(^")|("$)/g, '').replace(/(^\s+)|(\s+$)/g, ''); // Remove aspas (SE HOUVER) + TRIM;
             var inputDescriptionOrig = (matchInput[5] || inputName).replace(/([=])/g, '').replace(/(^\s+)|(\s+$)/g, '');; // remove "====" de descrição + TRIM
             var matchGroupDescri = inputDescriptionOrig.match(/^([A-Z])\.([\d.]*)\s+(.*)/);
 
@@ -325,7 +404,7 @@ function parseEnumsInputs(source, context) {
                   name: inputDescription,
                   itens: {}
                };
-               
+
                if (groupLetter === 'R' || groupLetter === 'S') {
                   // Input específico do robo
                   groupLetter = groupLetter + '.' + groupPathNu
@@ -336,20 +415,20 @@ function parseEnumsInputs(source, context) {
 
                // TEMP! registra o caminho original do item, usado na documentação dos parametros
                groupItem._context = context;
-               
+
                groupLetter = context + groupLetter;
 
                inputs[groupLetter] = groupItem;
             } else {
 
                var PRIMITIVES = ['char', 'short', 'int', 'long', 'uchar', 'ushort', 'uint', 'ulong', 'color', 'datetime', 'double', 'float', 'string', 'bool'];
-               if(PRIMITIVES.indexOf(inputType) < 0){
+               if (PRIMITIVES.indexOf(inputType) < 0) {
                   // É um enum, deve usar o prefixo, se o enum existir
-                  if(enums.hasOwnProperty(context + inputType)){
-                     inputType = context + inputType;                  
+                  if (enums.hasOwnProperty(context + inputType)) {
+                     inputType = context + inputType;
                   }
 
-                  if(!enums.hasOwnProperty(inputType)) {
+                  if (!enums.hasOwnProperty(inputType)) {
                      throw new Error('Tipo de dado não documentado: ' + inputType);
                   }
 
@@ -362,11 +441,11 @@ function parseEnumsInputs(source, context) {
                   name: inputName,
                   type: inputType,
                   value: inputDefault,
-                  docID : docID,
+                  docID: docID,
                   description: inputDescription,
                   itens: {},
                   // TEMP! registra o caminho original do item, usado na documentação dos parametros
-                  _context : context
+                  _context: context
                };
                // Obtem o caminho do item
                var intemPath = groupPathNu.split('.');
@@ -380,13 +459,13 @@ function parseEnumsInputs(source, context) {
 
                // Subgrupo descritivos
                if (inputName.indexOf('inDesc') === 0) {
-                  inputs[groupLetter].itens[ '_' + intemPath[0]] = {
+                  inputs[groupLetter].itens['_' + intemPath[0]] = {
                      name: inputDescription,
-                     docID : docID,
+                     docID: docID,
                      description: inputDescription,
                      itens: {},
                      // TEMP! registra o caminho original do item, usado na documentação dos parametros
-                     _context:context
+                     _context: context
                   };
                   continue;
                }
@@ -422,18 +501,18 @@ function parseEnumsInputs(source, context) {
  * Obtém o valor para o item do enum, seja indice ou nome, de acordo com o modo selecionado
  */
 function getEnumValue(enumName, value) {
-   if(!Number.isNaN(Number.parseInt(value))){
+   if (!Number.isNaN(Number.parseInt(value))) {
       // Tratamento para conversão automática, quando o valor é o índice do item do enum
       value = Number.parseInt(value);
    }
 
    var i = 0;
-   for(var key in enums[enumName]){
-      if(!enums[enumName].hasOwnProperty(key)){
+   for (var key in enums[enumName]) {
+      if (!enums[enumName].hasOwnProperty(key)) {
          continue;
       }
 
-      if(value === key){
+      if (value === key) {
          // conversão automática do valor para o índice
          value = i;
          break;

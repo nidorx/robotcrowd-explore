@@ -1,2 +1,6 @@
-# RC-1aBarra
+Three Bar Reversal
+busca padrões formados por três candles que podem indicar a reversão de tendência
 
+Este setup busca padrões formados por três candles que podem indicar a reversão de tendência. Para compra, o padrão é formado pelo primeiro candle de baixa, o segundo com mínima menor que o primeiro, e o último fechando preferencialmente com acima das máximas dos dois candles anteriores. Já para venda a combinação é na direção oposta: primeiro candle de alta, máxima do segundo maior que o anterior, e fechamento do terceiro abaixo das mínimas.
+
+![RC-ThreeBarReversal.png]

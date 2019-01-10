@@ -1,2 +1,6 @@
-# RC-1aBarra
+Inside Day Breakout
+observa a variação de preços de um dia
 
+O padrão Inside Day é observado quando toda a variação de preços de um dia está contida entre a máxima e mínima do dia anterior. Isso pode indicar uma indecisão no mercado, já que não foi possível romper os limites do dia anterior. A ideia é quando houver o rompimento o movimento pode ser mais forte, indicando uma tomada de decisão dos participantes do mercado.
+
+![RC-InsideDayBreakout.png]
