@@ -5,7 +5,7 @@ const buscaBR = require('./libs/buscaBR.js');
 require('./libs/latinise.min.js');
 
 // Gerar conteúdo minificado?
-const MINIFY = false;
+const MINIFY = true;
 
 
 // Registra os enums não usados
