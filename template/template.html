@@ -16,120 +16,85 @@
             <article class="main-column">
                <div class="subtle-wrap">
                   <header class="article-header clearfix">
-                     <h1>RobotCrowd v2.9 - Documentação - Gerador de setup</h1>
+                     <h1>
+                        <a href="https://www.robotcrowd.com.br/" target="_blank">RobotCrowd</a> v2.9 - Documentação
+                     </h1>
                   </header>
                   <div class="article-body">
+                     <div id="filtro-container">
                         <fieldset class="field-container">
-                           <input type="text" placeholder="Buscar..." class="field" id="search-input" onkeyup="filtrarRobos(this.value)"/>
+                           <input type="text" placeholder="Buscar robô..." class="field" id="search-input" onkeyup="filtrarRobos(this.value)"/>
                            <div class="icons-container">
                               <div class="icon-search"></div>
-                              <div class="icon-close">
+                              <div class="icon-close" onmousedown="(document.getElementById('search-input').value = '') || 1 && filtrarRobos('');">
                                  <div class="x-up"></div>
                                  <div class="x-down"></div>
                               </div>
                            </div>
                         </fieldset>
-                     <div class="cartoes-robos">
-                           <!--__HTML_CARDS__-->
+                        <div class="cartoes-robos" id="cartoes-robos-container">
+                              <!--__HTML_CARDS__-->
+                        </div>
+
+                        <!-- @TODO: Documentação dos robos -->
+                     
                      </div>
 
-                     <!--__HTML_DOCS__-->
-                     
-                     <h1>Resumo</h1>
-                     <p>
-                        Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos <a href="https://www.robotcrowd.com.br/" target="_blank">RobotCrowd</a>. 
-                        Permite também o Download do arquivo de setup (RC-*.set) e o Upload de um setup pronto.
-                     </p>
-                     <p>
-                        Além disso, esta ferramenta busca trazer uma documentação mais detalhada de todos os parametros disponíves para os robos RobotCrowd.
-                     </p>
-                     <h1>Robô & Tipo de Setup</h1>
-                     <div>
-                        <div class="input-container" style="display: flex;">
-                           <label placeholder="Qual robô deseja configurar?" for="robo-investidor" >
-                              <span>Qual robô deseja configurar?</span>
-                           </label>
-                           <select id="robo-investidor" name="robo-investidor" onchange="onChangeRobot()">
-                              <option value="" selected="">Selecione um robo</option>
-                              <option value="RC-1aBarra"             data-configs="R.01,A,B,C,D,E,V,F,G,H"   >01 - 1ª Barra</option>
-                              <option value="RC-Bollinger"           data-configs="R.02,A,B,C,D,E,V,F,G,H"   >02 - Bollinger</option>
-                              <option value="RC-CCI-MA"              data-configs="R.03,A,B,C,D,E,V,F,G,H"   >03 - CCI-MA</option>
-                              <option value="RC-CTOD"                data-configs="R.04,A,B,C,D,E,V,F,G,H"   >04 - CTOD</option>
-                              <option value="RC-Dunnigan"            data-configs="R.05,A,B,C,D,E,V,F,G,H"   >05 - Dunnigan</option>
-                              <option value="RC-Engulfing"           data-configs="R.06,A,B,C,D,E,V,F,G,H"   >06 - Engulfing</option>
-                              <option value="RC-Gaps"                data-configs="R.07,A,B,C,D,E,V,F,G,H"   >07 - Gaps</option>
-                              <option value="RC-HeinkenAshi"         data-configs="R.08,A,B,C,D,E,V,F,G,H"   >08 - HeinkenAshi</option>
-                              <option value="RC-IFR"                 data-configs="R.09,A,B,C,D,E,V,F,G,H"   >09 - IFR</option>
-                              <option value="RC-InsideDayBreakout"   data-configs="R.10,A,B,C,D,E,V,F,G,H"   >10 - Inside Day Breakout</option>
-                              <option value="RC-LastDayBreakout"     data-configs="R.11,A,B,C,D,E,V,F,G,H"   >11 - Last Day Breakout</option>
-                              <option value="RC-LinhaDAgua"          data-configs="R.12,A,B,C,D,E,V,F,G,H"   >12 - Linha D'Agua</option>
-                              <option value="RC-MAC"                 data-configs="R.13,A,B,C,D,E,V,F,G,H"   >13 - MAC</option>
-                              <option value="RC-RealizacaoFrustrada" data-configs="A,B,C,D,E,V,F,G,H"        >14 - Realizacao Frustrada</option>
-                              <option value="RC-MeanReversal"        data-configs="R.15,A,B,C,D,E,V,F,G,H"   >15 - Mean Reversal</option>
-                              <option value="RC-MMCross"             data-configs="R.16,A,B,C,D,E,V,F,G,H"   >16 - MMCross Cruzamento de Médias</option>
-                              <option value="RC-MME"                 data-configs="R.17,A,B,C,D,E,V,F,G,H"   >17 - MME</option>
-                              <option value="RC-Oops"                data-configs="R.18,A,B,C,D,E,V,F,G,H"   >18 - Oops</option>
-                              <option value="RC-PivotBreakout"       data-configs="R.19,A,B,C,D,E,V,F,G,H"   >19 - Pivot Breakout</option>
-                              <option value="RC-PontoContinuo"       data-configs="R.20,A,B,C,D,E,V,F,G,H"   >20 - Ponto Continuo</option>
-                              <option value="RC-ShadowLine"          data-configs="R.21,A,B,C,D,E,V,F,G,H"   >21 - ShadowLine</option>
-                              <option value="RC-Stochastic"          data-configs="R.22,A,B,C,D,E,V,F,G,H"   >22 - Stochastic</option>
-                              <option value="RC-ThreeBarReversal"    data-configs="R.23,A,B,C,D,E,V,F,G,H"   >23 - Three Bar Reversal</option>
-                              <option value="RC-TurtleTrader"        data-configs="R.24,A,B,C,D,E,V,F,G,H"   >24 - TurtleTrader</option>
-                              <option value="RC-VolatilityBreakout"  data-configs="R.25,A,B,C,D,E,V,F,G,H"   >25 - Volatility Breakout</option>
-                              <option value="RC-PhiboPCPV"           data-configs="R.26,A,B,C,D,E,V,F,G,H"   >26 - Phibo PC/PV</option>
-                              <option value="RC-Filtros"             data-configs="A,B,C,D,E,V,F,G,H"        >27 - Filtros</option>
-                              <option value="RC-SignalTrader"        data-configs="R.28,A,B,C,D,E,V,F,G,H"   >28 - SignalTrader</option>
-                              <option value="RC-HiLo"                data-configs="R.29,A,B,C,D,E,V,F,G,H"   >29 - HiLo</option>
-                              <option value="RC-RAFI"                data-configs="R.30,A,B,C,D,E,V,F,G,H"   >30 - RAFI</option>
-                              <option value="RC-AMKA"                data-configs="R.31,A,B,C,D,E,V,F,G,H"   >31 - AMKA</option>
-                              <option value="RC-SuperTrend"          data-configs="R.32,A,B,C,D,E,V,F,G,H"   >32 - SuperTrend</option>
-                              <option value="RC-MasterTrend"         data-configs="R.33,A,B,C,D,E,V,F,G,H"   >33 - MasterTrend</option>
-                              <option value="RC-EquityControl"       data-configs="R.34"                     >34 - Equity Control</option>
-                              <optgroup label="Gradiente Linear">
-                                 <option value="RC-GradienteLinear"     data-configs="GL_S.01,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G"     >01 - Gradiente Linear</option>
-                                 <option value="RC-GLBollinger"         data-configs="GL_S.02,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >02 - GL Bollinger</option>
-                                 <option value="RC-GLPhibo"             data-configs="GL_S.03,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >03 - GL Phibo</option>
-                                 <option value="RC-GLVolatilityBands"   data-configs="GL_S.04,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >04 - GL Volatility Bands</option>
-                                 <option value="RC-GLPriceAction"       data-configs="GL_S.05,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"   >05 - GL Price Action</option>
-                              </optgroup>
-                           </select>
-                        </div>
-                        <div  class="input-container" style="display: flex;">
-                           <label placeholder="Qual é o tipo de setup?" for="tipo-setup" >
-                              <span>Qual é o tipo de setup?</span>
-                           </label>
-                           <select id="tipo-setup" name="tipo-setup" onchange="onChangeMode()">
-                              <option value="" selected="">Selecione um tipo de setup</option>
-                              <option value="trade">Trading</option>
-                              <option value="otimizacao">Backtest + Otimização</option>
-                           </select>
-                        </div>
+                     <div id="documentacao-robos-container">
+                        <!--__HTML_DOCS__-->
                      </div>
-                     <p>&nbsp;</p>
-                     
-                     <div id="container-setup">
-                        <h1>Setup</h1>
+
+                     <div id="editor-setup-container" style="display: none;">
+                        <h1>Editor de Setup</h1>
+                        <p>
+                           Esta é uma ferramenta que lhe auxilia na geração de configurações (setups) para os robos <a href="https://www.robotcrowd.com.br/" target="_blank">RobotCrowd</a>. 
+                           Permite também o Download do arquivo de setup (RC-*.set) e o Upload de um setup pronto.
+                        </p>
+                        <p>
+                           Além disso, esta ferramenta busca trazer uma documentação mais detalhada de todos os parametros disponíves para os robos RobotCrowd.
+                        </p>
                         <div>
-                           <textarea id="output-setup" rows="20"></textarea>
-                           <br/>
-                           <div id="botoes-controle">
-                              <button onclick="downloadSetup()">
-                                    Download do Setup
-                                 </button>
-                                 <label for="load-setup" id="load-setup-label">
-                                    Carregar um Setup
-                                    <input type='file' id="load-setup" accept='.set' onchange='loadSetup(event)' style="display:none;">
-                                 </label>
-                              </div>
+                           <div  class="input-container" style="display: flex;">
+                              <label placeholder="Qual é o tipo de setup?" for="tipo-setup" >
+                                 <span>Qual é o tipo de setup?</span>
+                              </label>
+                              <select id="tipo-setup" name="tipo-setup" onchange="onChangeMode()">
+                                 <option value="" selected="">Selecione um tipo de setup</option>
+                                 <option value="trade">Trading</option>
+                                 <option value="otimizacao">Backtest + Otimização</option>
+                              </select>
                            </div>
-                     </div>
-                     <p>&nbsp;</p> 
-                     <div id="conteudo-formulario"></div>                 
+                        </div>
+                        <p>&nbsp;</p>
+                        
+                        <div id="container-setup">
+                           <h1>Setup</h1>
+                           <div>
+                              <textarea id="output-setup" rows="20"></textarea>
+                              <br/>
+                              <div id="botoes-controle">
+                                 <button onclick="downloadSetup()">
+                                       Download do Setup
+                                    </button>
+                                    <label for="load-setup" id="load-setup-label">
+                                       Carregar um Setup
+                                       <input type='file' id="load-setup" accept='.set' onchange='loadSetup(event)' style="display:none;">
+                                    </label>
+                                 </div>
+                              </div>
+                        </div>
+                        <p>&nbsp;</p> 
+                        <div id="conteudo-formulario"></div>  
+                     </div>               
                   </div>
                </div>
             </article>
          </div>
       </main>
-      <script type="text/javascript">/*__JS__*/</script>
+      <script type="text/javascript">
+      (function(){
+         /*__JS__*/
+      })();
+      </script>
    </body>
 </html>

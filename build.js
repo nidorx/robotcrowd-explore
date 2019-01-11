@@ -20,8 +20,52 @@ var enums = {};
 // Um item pode ter subitens, respeitando a numeraçaõ da documentação
 var inputs = {};
 
-// Listagem dos robos investidores documentados
-var robots = [];
+
+// Quantidade de robos investidores documentados
+var qtdRobots = 0;
+
+// Os parametros de configuração de cada ROBO
+var robotParams = {
+   "RC-1aBarra": "R.01,A,B,C,D,E,V,F,G,H",
+   "RC-Bollinger": "R.02,A,B,C,D,E,V,F,G,H",
+   "RC-CCI-MA": "R.03,A,B,C,D,E,V,F,G,H",
+   "RC-CTOD": "R.04,A,B,C,D,E,V,F,G,H",
+   "RC-Dunnigan": "R.05,A,B,C,D,E,V,F,G,H",
+   "RC-Engulfing": "R.06,A,B,C,D,E,V,F,G,H",
+   "RC-Gaps": "R.07,A,B,C,D,E,V,F,G,H",
+   "RC-HeinkenAshi": "R.08,A,B,C,D,E,V,F,G,H",
+   "RC-IFR": "R.09,A,B,C,D,E,V,F,G,H",
+   "RC-InsideDayBreakout": "R.10,A,B,C,D,E,V,F,G,H",
+   "RC-LastDayBreakout": "R.11,A,B,C,D,E,V,F,G,H",
+   "RC-LinhaDAgua": "R.12,A,B,C,D,E,V,F,G,H",
+   "RC-MAC": "R.13,A,B,C,D,E,V,F,G,H",
+   "RC-RealizacaoFrustrada": "A,B,C,D,E,V,F,G,H",
+   "RC-MeanReversal": "R.15,A,B,C,D,E,V,F,G,H",
+   "RC-MMCross": "R.16,A,B,C,D,E,V,F,G,H",
+   "RC-MME": "R.17,A,B,C,D,E,V,F,G,H",
+   "RC-Oops": "R.18,A,B,C,D,E,V,F,G,H",
+   "RC-PivotBreakout": "R.19,A,B,C,D,E,V,F,G,H",
+   "RC-PontoContinuo": "R.20,A,B,C,D,E,V,F,G,H",
+   "RC-ShadowLine": "R.21,A,B,C,D,E,V,F,G,H",
+   "RC-Stochastic": "R.22,A,B,C,D,E,V,F,G,H",
+   "RC-ThreeBarReversal": "R.23,A,B,C,D,E,V,F,G,H",
+   "RC-TurtleTrader": "R.24,A,B,C,D,E,V,F,G,H",
+   "RC-VolatilityBreakout": "R.25,A,B,C,D,E,V,F,G,H",
+   "RC-PhiboPCPV": "R.26,A,B,C,D,E,V,F,G,H",
+   "RC-Filtros": "A,B,C,D,E,V,F,G,H",
+   "RC-SignalTrader": "R.28,A,B,C,D,E,V,F,G,H",
+   "RC-HiLo": "R.29,A,B,C,D,E,V,F,G,H",
+   "RC-RAFI": "R.30,A,B,C,D,E,V,F,G,H",
+   "RC-AMKA": "R.31,A,B,C,D,E,V,F,G,H",
+   "RC-SuperTrend": "R.32,A,B,C,D,E,V,F,G,H",
+   "RC-MasterTrend": "R.33,A,B,C,D,E,V,F,G,H",
+   "RC-EquityControl": "R.34",
+   "RC-GradienteLinear": "GL_S.01,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G",
+   "RC-GLBollinger": "GL_S.02,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H",
+   "RC-GLPhibo": "GL_S.03,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H",
+   "RC-GLVolatilityBands": "GL_S.04,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H",
+   "RC-GLPriceAction": "GL_S.05,GL_L,GL_A,GL_B,GL_D,GL_E,GL_F,G,H"
+}
 
 // A documentação do robô é criado aqui, renderizado no HTML com display:none, afim de melhorar o SEO 
 var robotsHTMLDocs = [];
@@ -73,16 +117,17 @@ function generateHtml() {
    var html = (fs.readFileSync(__dirname + '/template/template.html') + '')
       .replace(
          "/*__JS__*/",
-         fs.readFileSync(__dirname + '/libs/latinise.min.js') + ';'
+         fs.readFileSync(__dirname + '/template/flipping.js') + ''
+         + fs.readFileSync(__dirname + '/template/flipping.css.js') + ''
+         + fs.readFileSync(__dirname + '/libs/latinise.min.js') + ''
          + fs.readFileSync(__dirname + '/template/main.js') + ''
       )
-      .replace("/*__JS__*/", fs.readFileSync(__dirname + '/template/main.js') + '')
       .replace("/*__STYLES__*/", fs.readFileSync(__dirname + '/template/styles.css') + '')
       .replace("<!--__HTML_DOCS__-->", robotsHTMLDocs.join('\n'))
       .replace("<!--__HTML_CARDS__-->", robotsHTMLCards.join('\n'))
       .replace("'__ENUMS__'", JSON.stringify(enums))
       .replace("'__INPUTS__'", JSON.stringify(inputs))
-      .replace("'__ROBOTS__'", JSON.stringify(robots))
+      .replace("'__QTD_ROBOTS__'", JSON.stringify(qtdRobots))
       .replace("'__SEARCH_INDEX__'", JSON.stringify(searchIndex))
       ;
 
@@ -153,30 +198,34 @@ function parseRobotsDocs() {
       var title = (lines[0] || '');
       var header = (lines[1] || '');
       var robotDoc = '';
-      var robot = {
-         name: name
-      };
-      robots.push(robot);
+      qtdRobots++;
       for (var i = 2; i < lines.length; i++) {
          robotDoc += '\n' + lines[i].replace(/(^\s+)|(\s+$)/g, '');
       }
 
       // Gera o conteúdo HTML com a descrição dos robos
       robotsHTMLCards.push([
-         '<div class="item">',
+         '<div class="item" data-flip-key="robot-card-' + robotIndex + '" id="robot-card-' + robotIndex + '">',
          '   <div class="conteudo">',
-         '      <a href="#robot-' + robotIndex + '-docs" onClick="selectRobot(' + robotIndex + '); return false;">',
+         '      <div class="btn" onClick="selectRobot(\'' + name + '\', \'' + (robotParams[name] || '' ) +'\'); return false;">',
          '         <span>' + title + '</span>',
          '         <i>' + header + '</i>',
-         '      </a>',
+         '      </div>',
          '   </div>',
          '</div>'
       ].join(''));
 
       robotsHTMLDocs.push([
-         '<div>',
-         '<h1>' + title + '</h1>',
-         '<p>',
+         '<div id="' + name + '" style="display:none;">',
+         '   <h1>' + title ,
+         '      <div class="icons-container active">',
+         '         <div class="icon-close" onmousedown="selectRobot(null, null);">',
+         '            <div class="x-up"></div>',
+         '            <div class="x-down"></div>',
+         '         </div>',
+         '      </div>',
+         '</h1>',
+         '   <p>',
          (
             robotDoc
                .replace(/(^\s+)|(\s+$)/g, '')
@@ -184,12 +233,12 @@ function parseRobotsDocs() {
                .replace(/!\[([^\]]+)\]/g, '<img src="./assets/$1" />')
                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
          ),
-         '</p>',
+         '   </p>',
          '</div>'
       ].join('\n'));
 
       // Faz a indexação dos parametros de pesquisa do robo
-      `${robot.name} ${robot.title} ${robot.header} ${robotDoc}`
+      `${name} ${title} ${header} ${robotDoc}`
          // Remove acentuação
          .latinise()
          .replace(/\n+/g, ' ')
@@ -211,7 +260,6 @@ function parseRobotsDocs() {
    });
 
    // Gera o peso das palavras, quanto mais específica uma palavra, mais importante é
-   var qtdRobots = robots.length;
    for (var word in searchIndex) {
       if (!searchIndex.hasOwnProperty(word)) {
          continue;
@@ -300,6 +348,8 @@ function parseParamsDocs() {
                      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
                )
                + '</p>';
+         } else {
+            item.help = undefined;
          }
 
          fileContent.push(content);

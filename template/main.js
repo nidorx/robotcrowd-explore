@@ -1,9 +1,10 @@
 (function () {
 
-   var robots = '__ROBOTS__';
+   var qtdRobots = '__QTD_ROBOTS__';
    var searchIndex = '__SEARCH_INDEX__';
    var enums = '__ENUMS__';
    var inputs = '__INPUTS__';
+   var elementsById = {};
 
    var ignoreUpdateSetup = false;
 
@@ -17,16 +18,28 @@
    var values = {};
    var robotInputs = {};
 
+   /**
+    * Utilitario para cachear buscas por ID
+    * 
+    * @param {*} id 
+    */
+   function getElementById(id) {
+      if (!elementsById.hasOwnProperty(id)) {
+         elementsById[id] = document.getElementById(id);
+      }
+      return elementsById[id];
+   }
+
    function updateSetup() {
       if (ignoreUpdateSetup) {
          return;
       }
       if (!selected || !mode) {
-         document.getElementById('container-setup').style.display = 'none';
+         getElementById('container-setup').style.display = 'none';
          return;
       }
 
-      document.getElementById('output-setup').value =
+      getElementById('output-setup').value =
          Object.keys(values)
             .map(function (key) {
                var value = values[key];
@@ -37,11 +50,13 @@
             })
             .join('\n');
 
-      document.getElementById('container-setup').style.display = '';
+      getElementById('container-setup').style.display = '';
    }
 
    function renderRobotParams() {
       var html = [];
+      // Limpa cache de elementos por id
+      elementsById = {};
       if (selected && mode) {
          for (var groupLetter in robotInputs) {
             if (!robotInputs.hasOwnProperty(groupLetter)) {
@@ -58,12 +73,21 @@
 
             html.push([
                '<h1>' + groupLetter.replace(/(^[^_]*_)/, '') + ' - ' + groupItem.name + '</h1>',
+               groupItem.help
+                  ? [
+                     '<div style="background-color: #f5f7fa; border: 1px solid #e5ecf2; padding: 30px 20px 15px 15px;" id="robo-investidor-info">',
+                     // '   <p><span class="wysiwyg-font-size-large"> <strong>Robô MasterTrend</strong></span></p>',
+                     groupItem.help,
+                     '</div>',
+                     '<p>&nbsp;</p>',
+                  ].join('')
+                  : '',
                '<ul>' + keys.map(function (key) { return renderItem(groupItem.itens[key]); }).join('') + '</ul>'
             ].join(''));
          }
       }
 
-      document.getElementById('conteudo-formulario').innerHTML = html.join('');
+      getElementById('conteudo-formulario').innerHTML = html.join('');
    }
 
    function renderElement(type, name, value, prefix, onChange, attributes) {
@@ -307,7 +331,19 @@
 
          return [
             '<li id="input-' + item.name + '-parent" default-value="' + defaultValue + '">',
-            '   <div class="input-container" title="' + item.descriptionOrig + '">',
+            item.help
+               ? [
+                  '<div class="us-help-area"><div class="us-help">',
+                  '   <div class="us-help-icon"></div>',
+                  '   <div class="us-help-inner">',
+                  '      <p><strong>' + item.docID + ' ' + item.description + '</strong></p>',
+                  '      <p>&nbsp;</p>',
+                  item.help,
+                  '   </div>',
+                  '</div></div>',
+               ].join('')
+               : '',
+            '   <div class="input-container" title="' + item.docID + '">',
             '      <label for="input-' + item.name + '"><span>' + item.description + '</span> </label>',
             '      <div style="display: flex; justify-content: flex-end;">',
             renderElement(item.type, item.name, item.value, 'input', 'onChangeInput', 'class="input-value"'),
@@ -337,7 +373,7 @@
 
    function downloadSetup() {
       var element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById('output-setup').value));
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(getElementById('output-setup').value));
       element.setAttribute('download', selected + '.set');
 
       element.style.display = 'none';
@@ -372,7 +408,7 @@
             var parts = line.match(/^([^=]+)=(.*)/);
             if (parts) {
                var key = parts[1];
-               var inputEl = document.getElementById('input-' + key);
+               var inputEl = getElementById('input-' + key);
 
                if (!inputEl) {
                   // Parametro não existe para o robo atual
@@ -380,11 +416,11 @@
                }
 
                var value = parts[2];
-               var startEl = document.getElementById('start-' + key);
+               var startEl = getElementById('start-' + key);
                if (mode === 'otimizacao' && startEl) {
                   // item.type !== 'string' && item.type !== 'color' && item.type !== 'datetime'
                   var partsOptimization = value.split('||');
-                  var defaultValues = document.getElementById('input-' + key + '-parent').attributes['default-value'].value.split('||');
+                  var defaultValues = getElementById('input-' + key + '-parent').attributes['default-value'].value.split('||');
 
                   // Se a entrada não tiver valores, considera o valor default para o campo
                   var inputValue = partsOptimization[0] !== undefined ? partsOptimization[0] : defaultValues[0];
@@ -395,9 +431,9 @@
 
                   setElementValue(inputEl, inputValue);
                   setElementValue(startEl, startValue);
-                  setElementValue(document.getElementById('step-' + key), stepValue);
-                  setElementValue(document.getElementById('stop-' + key), stopValue);
-                  setElementValue(document.getElementById('optimize-' + key), optimizeValue == 'Y' ? 'true' : 'false');
+                  setElementValue(getElementById('step-' + key), stepValue);
+                  setElementValue(getElementById('stop-' + key), stopValue);
+                  setElementValue(getElementById('optimize-' + key), optimizeValue == 'Y' ? 'true' : 'false');
                } else {
                   value = value.split('||')[0];
                   setElementValue(inputEl, value);
@@ -408,7 +444,7 @@
          }
 
          // Substitui o botão de seleção, afim de permitir o upload do mesmo arquivo novamente
-         document.getElementById('load-setup-label').innerHTML
+         getElementById('load-setup-label').innerHTML
             = 'Carregar um Setup <input type="file" id="load-setup" accept=".set" onchange="loadSetup(event)" style="display:none;">';
 
          // Atualiza conteúdo
@@ -424,7 +460,7 @@
     */
    function checkDefaultValue(elID, value) {
       // Valor diferente do padrão?
-      var elParent = document.getElementById(elID + '-parent');
+      var elParent = getElementById(elID + '-parent');
       if (value !== elParent.attributes['default-value'].value) {
          elParent.className = 'ativo';
       } else {
@@ -478,14 +514,14 @@
 
       if (mode === 'otimizacao') {
          // Salva os valores inicio, passo, fim e ativado
-         var startEl = document.getElementById('start-' + name);
+         var startEl = getElementById('start-' + name);
          if (startEl) {
-            var optimizeEl = document.getElementById('optimize-' + name);
+            var optimizeEl = getElementById('optimize-' + name);
             var optimize = (getElementValue(optimizeEl) === 'true' ? 'Y' : 'N');
             // Se existir o elemento, significa que o tipo de dado aceita range de parametrização
             value = value + '||' + getElementValue(startEl);
-            value = value + '||' + getElementValue(document.getElementById('step-' + name));
-            value = value + '||' + getElementValue(document.getElementById('stop-' + name));
+            value = value + '||' + getElementValue(getElementById('step-' + name));
+            value = value + '||' + getElementValue(getElementById('stop-' + name));
             value = value + '||' + optimize;
 
             if (optimize === 'Y') {
@@ -505,22 +541,45 @@
 
    function onChangeOptimization(el) {
       var name = el.attributes.name.value.replace(/^(start|step|stop|optimize)-/, '');
-      onChangeInput(document.getElementById('input-' + name));
+      onChangeInput(getElementById('input-' + name));
    }
 
 
-   function onChangeRobot() {
-      var select = document.getElementById('robo-investidor');
-      values = {};
-      selected = select.options[select.selectedIndex].value;
-      if (selected == '') {
-         selected = null;
+   function selectRobot(robotName, groups) {
+
+      if (selected && selected === robotName) {
+         return;
+      } else if (selected && selected !== robotName) {
+         // Oculta o item selecionado previamente
+         getElementById(selected).style.display = 'none';
       }
+
+      values = {};
+
+      selected = robotName;
+      if (!selected || selected === '') {
+         selected = null;
+         getElementById('filtro-container').style.display = '';
+         getElementById('editor-setup-container').style.display = 'none';
+         getElementById('documentacao-robos-container').style.display = 'none';
+         // Limpa o modo de seleção
+         getElementById('tipo-setup').value = '';
+         onChangeMode();
+      } else {
+         getElementById(selected).style.display = '';
+         getElementById('filtro-container').style.display = 'none';
+         getElementById('editor-setup-container').style.display = '';
+         getElementById('documentacao-robos-container').style.display = '';
+      }
+
+      // volta ao inicio da pagina
+      window.scrollTo(0, 0);
 
       robotInputs = {};
       if (selected) {
          // Quais coonfigurações serão exibidas para esse Robo?
-         var groups = select.options[select.selectedIndex].attributes['data-configs'].value.split(',');
+         // var groups = select.options[select.selectedIndex].attributes['data-configs'].value.split(',');
+         groups = groups.split(',');
          for (var a = 0, l = groups.length; a < l; a++) {
             var group = groups[a];
             if (inputs.hasOwnProperty(group)) {
@@ -534,7 +593,7 @@
    }
 
    function onChangeMode() {
-      var select = document.getElementById('tipo-setup');
+      var select = getElementById('tipo-setup');
       mode = select.options[select.selectedIndex].value;
       if (mode == '') {
          document.body.className = '';
@@ -547,51 +606,111 @@
       updateSetup();
    }
 
+   var flippingCards = new Flipping({
+      parent: getElementById('cartoes-robos-container')
+   });
+
    function filtrarRobos(texto) {
       if (filtrarRobos.timeoutID) {
          clearTimeout(filtrarRobos.timeoutID);
       }
-      if (texto.length < 3) {
-         // Exibe todos os robos
-         return;
-      }
 
-
+      // posterga o processamento para quando o usuário deixar de digitar 
       filtrarRobos.timeoutID = setTimeout(function () {
-         var searchWords = texto
-            // Remove acentuação
-            .latinise()
-            .replace(/\n+/g, ' ')
-            // remove caracteres especiais
-            .replace(/[^a-z0-9\s]/gi, '')
-            .toLowerCase()
-            .split(' ')
-            .filter(function(w) {
-               return w !== '' && w !== 'undefined' && w.length > 2;
-            });
+         // Robos que batem com a descrição
+         // index -> poontos
+         var ranking = {};
 
-            
+         if (texto.length < 3) {
+            // Exibe todos os robos, na ordem original
+            for (var i = qtdRobots, a = 0; i > 0; i-- , a++) {
+               ranking['robot-card-' + a] = i;
+            }
+
+         } else {
+            // Faz busca     
+            var searchWords = texto
+               // Remove acentuação
+               .latinise()
+               .replace(/\n+/g, ' ')
+               // remove caracteres especiais
+               .replace(/[^a-z0-9\s]/gi, '')
+               .toLowerCase()
+               .split(' ')
+               .filter(function (w) {
+                  return w !== '' && w !== 'undefined' && w.length > 2;
+               });
 
             for (var word in searchIndex) {
                if (!searchIndex.hasOwnProperty(word)) {
                   continue;
                }
-               for(var i = 0; i < searchWords.length; i++){
-                  if(word.indexOf(searchWords[i]) >= 0){
-                     console.log('word', word, searchIndex[word]);
+               for (var i = 0; i < searchWords.length; i++) {
+
+                  if (word.indexOf(searchWords[i]) >= 0) {
+                     var key;
+                     var match = searchIndex[word];
+
+                     // Obém os robos dessa palavra
+                     for (var a = 0, l = match.d.length; a < l; a++) {
+                        key = 'robot-card-' + match.d[a];
+                        if (!ranking.hasOwnProperty(key)) {
+                           ranking[key] = 0;
+                        }
+                        // Incrementa o ranking de busca
+                        ranking[key] += match.r;
+                     }
                   }
                }
             }
+         }
 
-         console.log(searchWords);
+         var container = getElementById('cartoes-robos-container');
+
+         // Antes de ajustar o layout, salva prosicinamentos
+         flippingCards.read();
+
+         //node1.parentNode.insertBefore(node2, node1); 
+         var cards = [];
+         for (var a = 0; a < container.children.length; a++) {
+            // data-flip-key
+            var card = container.children[a];
+            var rank = ranking[card.attributes.id.value];
+            if (!rank) {
+               card.className = 'item no-match';
+            } else {
+               card.className = 'item';
+            }
+
+            cards.push(card);
+         }
+
+         // Já faz ordenação, oculta e exibe itens
+         cards.sort(function (elA, elB) {
+            var rankA = ranking[elA.attributes.id.value] || 0;
+            var rankB = ranking[elB.attributes.id.value] || 0;
+
+            return rankB - rankA;
+         });
+
+         for (var a = 0, l = cards.length - 1; a < l; a++) {
+            var card = cards[a];
+            var elB = cards[a + 1]
+
+            // insert after
+            container.insertBefore(elB, card.nextSibling);
+         }
+
+         // Depois do ajuste do layout, executa animação
+         flippingCards.flip();
       }, 250);
    }
 
    window.loadSetup = loadSetup;
    window.downloadSetup = downloadSetup;
 
+   window.selectRobot = selectRobot;
    window.onChangeMode = onChangeMode;
-   window.onChangeRobot = onChangeRobot;
 
    window.onChangeInput = onChangeInput;
    window.onChangeOptimization = onChangeOptimization;

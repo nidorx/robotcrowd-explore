@@ -24,3 +24,8 @@ node ./build.js
         src="https://github.com/nidorx/robotcrowd-explore/raw/master/preview.png"
         alt="Preview" style="max-width:100%;">
 </div>
+
+
+https://codepen.io/pixelthing/pen/tgaJe
+http://www.cssflow.com/snippets/notification-windows/demo
+http://www.cssflow.com/snippets/growl-notifications/demo

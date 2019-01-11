@@ -1,4 +1,6 @@
 [A] PARAMETROS GERAIS
+    Documentação dos parametros gerais bla bla bla
+    Com múltiplas linhas
 
 [A.01] Descricao do ajuste ativo
 
